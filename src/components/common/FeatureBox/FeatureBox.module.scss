@@ -61,7 +61,7 @@
     }
   }
 
-  &.active {
+  &.active, &:hover {
     .iconWrapper {
       color: #ffffff;
 
@@ -73,6 +73,7 @@
 
     .content {
       color: $primary;
+      text-decoration: none;
     }
   }
 }
