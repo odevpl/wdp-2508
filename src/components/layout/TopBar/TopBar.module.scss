@@ -13,13 +13,9 @@
       line-height: 55px;
 
       a {
+        @extend %hover-style;
         color: #ffffff;
         font-size: 13px;
-
-        &:hover {
-          color: $primary;
-          text-decoration: none;
-        }
       }
     }
   }

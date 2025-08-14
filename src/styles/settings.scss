@@ -11,3 +11,25 @@ $primary: #d58e32;
 $text-color: #2a2a2a;
 
 $form-border-color: #292929;
+
+$hover-bg: $primary;
+$hover-color: #ffffff;
+$hover-bg-time: 250ms;
+$hover-color-time: 250ms;
+$hover-transform-time: 250ms;
+$hover-transition: ease;
+$hover-transform: none;
+$hover-text-decoration: none;
+
+%hover-style {
+  transition: background-color $hover-bg-time $hover-transition,
+    color $hover-color-time $hover-transition,
+    transform $hover-transform-time $hover-transition;
+
+  &:hover {
+    background-color: $hover-bg;
+    color: $hover-color;
+    transform: $hover-transform;
+    text-decoration: $hover-text-decoration;
+  }
+}

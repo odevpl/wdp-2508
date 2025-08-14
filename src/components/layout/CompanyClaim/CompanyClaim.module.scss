@@ -64,8 +64,10 @@
         transform: translate(-30%, -50%);
       }
 
-      &:hover {
-        .cartIcon {
+      .cartIcon {
+        @extend %hover-style;
+
+        &:hover {
           background-color: lighten($primary, 10%);
         }
       }
