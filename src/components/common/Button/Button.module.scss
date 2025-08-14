@@ -11,11 +11,7 @@
   font-weight: 600;
   padding: 10px 30px;
 
-  &:not(.noHover):hover {
-    color: #ffffff !important;
-    background-color: $primary;
-    text-decoration: none;
-  }
+  @extend %hover-style;
 }
 
 .small {
@@ -34,8 +30,5 @@
   font-size: 13px;
   line-height: 22px;
 
-  &:not(.noHover):hover {
-    background-color: #2a2a2a;
-    color: #ffffff;
-  }
+  @extend %hover-style;
 }
