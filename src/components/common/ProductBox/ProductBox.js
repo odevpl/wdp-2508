@@ -11,14 +11,14 @@ import {
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 
-const ProductBox = ({ name, price, promo, stars }) => (
-  <div className={styles.root}>
+const ProductBox = ({ name, price, promo, stars, image }) => (
+  <div className={styles.root} style={{ '--ProductBox-bg-image': `url(${image})` }}>
     <div className={styles.photo}>
       {promo && <div className={styles.sale}>{promo}</div>}
       <div className={styles.buttons}>
         <Button variant='small'>Quick View</Button>
         <Button variant='small'>
-          <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
+          <FontAwesomeIcon icon={faShoppingBasket} /> ADD TO CART
         </Button>
       </div>
     </div>
@@ -28,9 +28,9 @@ const ProductBox = ({ name, price, promo, stars }) => (
         {[1, 2, 3, 4, 5].map(i => (
           <a key={i} href='#'>
             {i <= stars ? (
-              <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
+              <FontAwesomeIcon icon={faStar} title={`${i} stars`} />
             ) : (
-              <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
+              <FontAwesomeIcon icon={farStar} title={`${i} stars`} />
             )}
           </a>
         ))}
@@ -40,10 +40,10 @@ const ProductBox = ({ name, price, promo, stars }) => (
     <div className={styles.actions}>
       <div className={styles.outlines}>
         <Button variant='outline'>
-          <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+          <FontAwesomeIcon icon={faHeart} title='Favorite' />
         </Button>
         <Button variant='outline'>
-          <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
+          <FontAwesomeIcon icon={faExchangeAlt} title='Add to compare' />
         </Button>
       </div>
       <div className={styles.price}>
@@ -61,6 +61,7 @@ ProductBox.propTypes = {
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
+  image: PropTypes.string,
 };
 
 export default ProductBox;
