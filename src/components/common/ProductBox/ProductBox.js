@@ -18,7 +18,7 @@ const ProductBox = ({ name, price, promo, stars, image }) => (
       <div className={styles.buttons}>
         <Button variant='small'>Quick View</Button>
         <Button variant='small'>
-          <FontAwesomeIcon icon={faShoppingBasket} /> ADD TO CART
+          <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
         </Button>
       </div>
     </div>
@@ -28,9 +28,9 @@ const ProductBox = ({ name, price, promo, stars, image }) => (
         {[1, 2, 3, 4, 5].map(i => (
           <a key={i} href='#'>
             {i <= stars ? (
-              <FontAwesomeIcon icon={faStar} title={`${i} stars`} />
+              <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
             ) : (
-              <FontAwesomeIcon icon={farStar} title={`${i} stars`} />
+              <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
             )}
           </a>
         ))}
@@ -40,10 +40,10 @@ const ProductBox = ({ name, price, promo, stars, image }) => (
     <div className={styles.actions}>
       <div className={styles.outlines}>
         <Button variant='outline'>
-          <FontAwesomeIcon icon={faHeart} title='Favorite' />
+          <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
         </Button>
         <Button variant='outline'>
-          <FontAwesomeIcon icon={faExchangeAlt} title='Add to compare' />
+          <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
         </Button>
       </div>
       <div className={styles.price}>
