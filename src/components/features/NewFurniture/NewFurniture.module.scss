@@ -100,4 +100,66 @@
       }
     }
   }
+  .compareContainer {
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border-top: 1px solid $primary;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      li {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        img {
+          max-width: 8rem;
+          height: 4rem;
+          object-fit: contain;
+          cursor: pointer;
+        }
+        .removeBtn {
+          display: none;
+          position: absolute;
+          top: -10px;
+          right: -5px;
+          padding: 3px 3px;
+          border: none;
+          cursor: pointer;
+
+          @extend %hover-style;
+        }
+        &:hover .removeBtn {
+          display: block;
+        }
+      }
+    }
+    .compareBtn {
+      margin-left: auto;
+      top: 0;
+      left: 0;
+      padding: 0.5rem;
+      background-color: $primary;
+      cursor: pointer;
+      @extend %hover-style;
+      &:hover {
+        background-color: lighten($primary, 10%);
+      }
+    }
+  }
 }
