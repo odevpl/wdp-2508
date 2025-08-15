@@ -8,6 +8,7 @@ class NewFurniture extends React.Component {
   state = {
     activePage: 0,
     activeCategory: 'bed',
+    counter: [],
   };
 
   handlePageChange(newPage) {
@@ -17,6 +18,20 @@ class NewFurniture extends React.Component {
   handleCategoryChange(newCategory) {
     this.setState({ activeCategory: newCategory });
   }
+
+  handleCompare = product => {
+    const { counter } = this.state;
+    const compare = counter.find(el => el.id === product.id);
+    if (compare) {
+      this.setState({ counter: counter.filter(el => el.id !== product.id) });
+    } else {
+      if (counter.length >= 4) {
+        alert('Możesz dodać maksymalnie 4 produkty do porównainia');
+      } else {
+        this.setState({ counter: [...counter, product] });
+      }
+    }
+  };
 
   render() {
     const { categories, products } = this.props;
