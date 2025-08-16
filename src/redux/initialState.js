@@ -15,6 +15,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/chair_aenean_ru_bristique_1.jpg',
     },
     {
@@ -25,6 +26,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: true,
       image: '/images/products/chair_aenean_ru_bristique_2.jpg',
     },
     {
@@ -35,6 +37,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/chair_aenean_ru_bristique_3.jpg',
     },
     {
@@ -45,6 +48,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/chair_aenean_ru_bristique_4.jpg',
     },
     {
@@ -55,6 +59,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: true,
       image: '/images/products/chair_aenean_ru_bristique_5.jpg',
     },
     {
@@ -65,6 +70,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/sofa_aenean_ru_bristique_6.jpg',
     },
     {
@@ -75,6 +81,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/sofa_aenean_ru_bristique_7.jpg',
     },
     {
@@ -85,6 +92,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/sofa_aenean_ru_bristique_8.jpg',
     },
     {
@@ -95,6 +103,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/sofa_aenean_ru_bristique_9.jpg',
     },
     {
@@ -105,6 +114,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/sofa_aenean_ru_bristique_10.jpg',
     },
     {
@@ -115,6 +125,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/bed_aenean_ru_bristique_11.jpg',
     },
     {
@@ -125,6 +136,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/bed_aenean_ru_bristique_12.jpg',
     },
     {
@@ -135,6 +147,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: true,
       image: '/images/products/bed_aenean_ru_bristique_13.jpg',
     },
     {
@@ -145,6 +158,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/bed_aenean_ru_bristique_14.jpg',
     },
     {
@@ -155,6 +169,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/bed_aenean_ru_bristique_15.jpg',
     },
     {
@@ -165,6 +180,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/table_aenean_ru_bristique_16.jpg',
     },
     {
@@ -175,6 +191,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/table_aenean_ru_bristique_17.jpg',
     },
     {
@@ -185,6 +202,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/table_aenean_ru_bristique_18.jpg',
     },
     {
@@ -195,6 +213,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: true,
       image: '/images/products/table_aenean_ru_bristique_19.jpg',
     },
     {
@@ -205,6 +224,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/table_aenean_ru_bristique_20.jpg',
     },
     {
@@ -215,6 +235,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/dining_aenean_ru_bristique_21.jpg',
     },
     {
@@ -225,6 +246,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/dining_aenean_ru_bristique_22.jpg',
     },
     {
@@ -235,6 +257,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/dining_aenean_ru_bristique_23.jpg',
     },
     {
@@ -245,6 +268,7 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
+      favorite: false,
       image: '/images/products/dining_aenean_ru_bristique_24.jpg',
     },
   ],
