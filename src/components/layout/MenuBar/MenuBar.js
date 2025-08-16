@@ -6,6 +6,7 @@ import ProductSearch from '../../features/ProductSearch/ProductSearch';
 import styles from './MenuBar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../common/Button/Button';
 
 const MenuBar = ({ children }) => {
   const [shown, setShown] = useState(false);
@@ -45,13 +46,14 @@ const MenuBar = ({ children }) => {
             </ul>
           </div>
           <div className={`dropdown ${styles.dropDown}`} tabIndex={0}>
-            <button
-              className='btn btn-secondary dropdown-toggle'
+            <Button
+              className={`btn ${styles.btnDropDown}`}
               type='button'
+              variant='small'
               onClick={() => setShown(!shown)}
             >
               <FontAwesomeIcon icon={faBars} />
-            </button>
+            </Button>
             {shown && (
               <ul className='dropdown-menu show'>
                 <li>
