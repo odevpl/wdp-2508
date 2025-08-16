@@ -10,6 +10,8 @@ const initialState = {
     {
       id: 'aenean-ru-bristique-1',
       name: 'Aenean Ru Bristique 1',
+      isFavourite: false,
+      isCompared: false,
       category: 'bed',
       price: 30,
       stars: 2,
@@ -20,6 +22,8 @@ const initialState = {
     {
       id: 'aenean-ru-bristique-2',
       name: 'Aenean Ru Bristique 2',
+      isFavourite: true,
+      isCompared: false,
       category: 'bed',
       price: 30,
       stars: 2,
@@ -30,6 +34,8 @@ const initialState = {
     {
       id: 'aenean-ru-bristique-3',
       name: 'Aenean Ru Bristique 3',
+      isFavourite: false,
+      isCompared: true,
       category: 'bed',
       price: 30,
       stars: 2,
@@ -40,6 +46,8 @@ const initialState = {
     {
       id: 'aenean-ru-bristique-4',
       name: 'Aenean Ru Bristique 4',
+      isFavourite: true,
+      isCompared: true,
       category: 'bed',
       price: 30,
       stars: 2,
