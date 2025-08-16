@@ -11,8 +11,10 @@
     display: flex;
     flex: 1;
     padding: 10px 0;
+    gap: 50px;
     @media (max-width: 1200px) {
       flex-direction: column;
+      gap: 0;
     }
     @media (max-width: 576px) {
       flex-direction: row;
