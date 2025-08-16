@@ -7,10 +7,64 @@
   :global(.container) > :global(.row) {
     height: 84px;
   }
+  .menuBar {
+    display: flex;
+    flex: 1;
+    padding: 10px 0;
+    gap: 50px;
+    @media (max-width: 1200px) {
+      flex-direction: column;
+      gap: 0;
+    }
+    @media (max-width: 576px) {
+      flex-direction: row;
+    }
+  }
+  .activeBar {
+    display: block;
+  }
+
+  .searchMenu {
+    flex: 1;
+    @media (max-width: 1200px) {
+      order: 2;
+      text-align: center;
+    }
+    @media (max-width: 576px) {
+      order: 1;
+    }
+  }
+  .dropDown {
+    display: none;
+    position: relative;
+
+    @media (max-width: 576px) {
+      display: block;
+      order: 2;
+    }
+    ul {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: auto;
+      z-index: 999;
+    }
+  }
+  .btnDropDown {
+    background-color: $primary;
+  }
 
   .menu {
+    flex: 1;
     display: flex;
     align-self: stretch;
+    @media (max-width: 1200px) {
+      order: 1;
+      justify-content: center;
+    }
+    @media (max-width: 576px) {
+      display: none;
+    }
 
     ul {
       margin: 0;
