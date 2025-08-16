@@ -9,7 +9,7 @@ describe('Component ProductBox', () => {
     const component = shallow(
       <Provider store={store}>
         {' '}
-        {/* Przekazany store do celów prawidłowego działąnia testu */}
+        {/* Przekazany store do celów prawidłowego działania testu */}
         <ProductBox />
       </Provider>
     );
