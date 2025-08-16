@@ -10,8 +10,15 @@ const ProductSearch = () => (
   <form action='' className={styles.root}>
     <div className={styles.category}>
       <FontAwesomeIcon className={styles.icon} icon={faListUl} />
-      <select name='' id=''>
+      <select
+        name=''
+        id=''
+        onChange={e => {
+          e.target.blur();
+        }}
+      >
         <option value=''>Select a category</option>
+        <option value='placeholder'>placeholder</option>
       </select>
       <FontAwesomeIcon className={styles.icon} icon={faCaretDown} />
     </div>
