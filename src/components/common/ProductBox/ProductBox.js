@@ -4,16 +4,13 @@ import PropTypes from 'prop-types';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faStar,
   faHeart,
   faExchangeAlt,
   faShoppingBasket,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faStar as farStar,
-  faHeart as farHeart,
-} from '@fortawesome/free-regular-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
+import StarRating from '../../features/StarRating/StarRating';
 
 import { useDispatch } from 'react-redux';
 import { toggleFavourite } from '../../../redux/productsRedux';
@@ -24,6 +21,7 @@ const ProductBox = ({
   price,
   promo,
   stars,
+  userStars,
   image,
   isFavourite,
   isCompared,
@@ -49,17 +47,7 @@ const ProductBox = ({
       </div>
       <div className={styles.content}>
         <h5>{name}</h5>
-        <div className={styles.stars}>
-          {[1, 2, 3, 4, 5].map(i => (
-            <a key={i} href='#'>
-              {i <= stars ? (
-                <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
-              ) : (
-                <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
-              )}
-            </a>
-          ))}
-        </div>
+        <StarRating stars={stars} userStars={0} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
@@ -98,6 +86,7 @@ ProductBox.propTypes = {
   price: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
+  userStars: PropTypes.number,
   handleCompare: PropTypes.func,
   image: PropTypes.string,
   isFavourite: PropTypes.bool,
