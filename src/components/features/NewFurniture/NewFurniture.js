@@ -12,14 +12,35 @@ class NewFurniture extends React.Component {
     activePage: 0,
     activeCategory: 'bed',
     counter: [],
+    isFading: false,
   };
 
+  fadeAnd(doChange) {
+    const DURATION = 260;
+    if (this.state.isFading) return;
+
+    this.setState({ isFading: true }, () => {
+      setTimeout(() => {
+        doChange();
+        requestAnimationFrame(() => this.setState({ isFading: false }));
+      }, DURATION);
+    });
+  }
+
   handlePageChange(newPage) {
-    this.setState({ activePage: newPage });
+    if (newPage === this.state.activePage) return;
+    this.setState({ isFading: true });
+    setTimeout(() => {
+      this.setState({ activePage: newPage, isFading: false });
+    }, 260);
   }
 
   handleCategoryChange(newCategory) {
-    this.setState({ activeCategory: newCategory });
+    if (newCategory === this.state.activeCategory) return;
+    this.setState({ isFading: true });
+    setTimeout(() => {
+      this.setState({ activeCategory: newCategory, activePage: 0, isFading: false });
+    }, 260);
   }
 
   handleCompare = product => {
@@ -84,12 +105,23 @@ class NewFurniture extends React.Component {
               </div>
             </div>
           </div>
-          <div className='row'>
-            {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
-              <div key={item.id} className='col-3'>
-                <ProductBox {...item} handleCompare={() => this.handleCompare(item)} />
-              </div>
-            ))}
+          <div
+            className={`${styles.products} ${
+              this.state.isFading ? styles.isFading : ''
+            }`}
+          >
+            <div className='row'>
+              {categoryProducts
+                .slice(activePage * 8, (activePage + 1) * 8)
+                .map(item => (
+                  <div key={item.id} className='col-3'>
+                    <ProductBox
+                      {...item}
+                      handleCompare={() => this.handleCompare(item)}
+                    />
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
         {counter.length > 0 && (
