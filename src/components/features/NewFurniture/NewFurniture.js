@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../common/Button/Button';
 
 class NewFurniture extends React.Component {
   state = {
     activePage: 0,
     activeCategory: 'bed',
+    counter: [],
   };
 
   handlePageChange(newPage) {
@@ -18,9 +22,23 @@ class NewFurniture extends React.Component {
     this.setState({ activeCategory: newCategory });
   }
 
+  handleCompare = product => {
+    const { counter } = this.state;
+    const compare = counter.find(el => el.id === product.id);
+    if (compare) {
+      this.setState({ counter: counter.filter(el => el.id !== product.id) });
+    } else {
+      if (counter.length >= 4) {
+        alert('Możesz dodać maksymalnie 4 produkty do porównainia');
+      } else {
+        this.setState({ counter: [...counter, product] });
+      }
+    }
+  };
+
   render() {
     const { categories, products } = this.props;
-    const { activeCategory, activePage } = this.state;
+    const { activeCategory, activePage, counter } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
     const pagesCount = Math.ceil(categoryProducts.length / 8);
@@ -69,11 +87,38 @@ class NewFurniture extends React.Component {
           <div className='row'>
             {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
               <div key={item.id} className='col-3'>
-                <ProductBox {...item} />
+                <ProductBox {...item} handleCompare={() => this.handleCompare(item)} />
               </div>
             ))}
           </div>
         </div>
+        {counter.length > 0 && (
+          <div className={styles.compareContainer}>
+            <ul>
+              {counter.map(product => {
+                return (
+                  <li key={product.id}>
+                    <img src={product.image} alt={product.name} />
+                    <Button
+                      className={styles.removeBtn}
+                      variant='outline'
+                      onClick={() => {
+                        this.setState({
+                          counter: counter.filter(el => el.id !== product.id),
+                        });
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faTimes} />
+                    </Button>
+                  </li>
+                );
+              })}
+              <Button className={styles.compareBtn} variant='small'>
+                Compare
+              </Button>
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
