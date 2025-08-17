@@ -13,15 +13,17 @@ const DropdownMenu = ({ title, content }) => {
       }}
     >
       <li className={styles.title}>{title}</li>
-      <ul className={styles.dropdownContent}>
-        {content.map(item => (
-          <li key={item.id} id={item.id}>
-            <a className={styles.link} href={'/' + item.id}>
-              {item.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <li className={styles.wrapper}>
+        <ul className={styles.content}>
+          {content.map(item => (
+            <li key={item.id} id={item.id}>
+              <a className={styles.link} href={'/' + item.id}>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
     </ul>
   );
 };

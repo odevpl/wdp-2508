@@ -1,6 +1,6 @@
 @import "../../../styles/settings.scss";
 
- .dropdown, .dropdownContent {
+ .dropdown, .content {
       padding: 0;
       margin: 0;
     }
@@ -16,8 +16,13 @@
       display: flex;
       align-items: center;
       height: 100%;
+
       &:focus > .title{
         color: $primary;
+      }
+
+      .wrapper{
+        list-style: none;
       }
 
       .title{
@@ -28,7 +33,7 @@
         }
     }
 
-      .dropdownContent {
+      .content {
         min-width: 10rem;
         display: none;
         top: 43px;
@@ -38,9 +43,10 @@
         position: absolute;
         border: 1px solid black;
         background: $hover-color;
+        list-style: none;
       }
 
-      .dropdownContent li {
+      .content li {
         padding: 5px 30px 5px 35px;
         height: 45px;
         border-bottom: 1px solid $form-border-color;
@@ -58,7 +64,7 @@
         }
       }
 
-      &:hover .dropdownContent, &:focus-within .dropdownContent{
+      &:hover .content, &:focus-within .content{
         display: block;
       }
 
