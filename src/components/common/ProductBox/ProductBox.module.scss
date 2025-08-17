@@ -74,10 +74,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .active {
-    color: $primary;
-    border-color: $primary;
+    .active {
+      background-color: $primary;
+    }
   }
 }
