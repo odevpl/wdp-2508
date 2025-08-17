@@ -1,0 +1,65 @@
+@import "../../../styles/settings.scss";
+
+ .dropdown, .dropdownContent {
+      padding: 0;
+      margin: 0;
+    }
+
+    .dropdown {
+      -webkit-appearance: none;
+      border: 0;
+      background-color: transparent;
+      position: relative;
+      padding: 5px 30px 5px 35px;
+      z-index: 1;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      &:focus > .title{
+        color: $primary;
+      }
+
+      .title{
+        display: block;
+          &:hover {
+            cursor: pointer;
+            color: $primary;
+        }
+    }
+
+      .dropdownContent {
+        min-width: 10rem;
+        display: none;
+        top: 43px;
+        left: -1px;
+        padding: 0;
+        list-style: none;
+        position: absolute;
+        border: 1px solid black;
+        background: $hover-color;
+      }
+
+      .dropdownContent li {
+        padding: 5px 30px 5px 35px;
+        height: 45px;
+        border-bottom: 1px solid $form-border-color;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .link {
+          color: $text-color;
+        }
+
+        &:hover, &:focus, .link:hover, .link:focus {
+          color: $primary;
+          text-decoration: none;
+        }
+      }
+
+      &:hover .dropdownContent, &:focus-within .dropdownContent{
+        display: block;
+      }
+
+    }
