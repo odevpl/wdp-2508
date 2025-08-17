@@ -47,7 +47,7 @@ const ProductBox = ({
       </div>
       <div className={styles.content}>
         <h5>{name}</h5>
-        <StarRating stars={stars} userStars={0} />
+        <StarRating id={id} stars={stars} userStars={userStars} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>

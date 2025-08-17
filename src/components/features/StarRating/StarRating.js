@@ -6,10 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-const StarRating = ({ stars, userStars }) => {
+import { useDispatch } from 'react-redux';
+import { starRating } from '../../../redux/productsRedux';
+
+const StarRating = ({ id, stars, userStars }) => {
   const [hoveredStar, setHoveredStar] = React.useState(0);
   const [myStars, setMyStars] = React.useState(userStars);
   const currentStarsValue = myStars || stars;
+  const dispatch = useDispatch();
 
   const handleMouseEnter = i => {
     setHoveredStar(i);
@@ -18,7 +22,13 @@ const StarRating = ({ stars, userStars }) => {
     setHoveredStar(0);
   };
   const handleClick = i => {
-    myStars === i ? setMyStars(0) : setMyStars(i); // Możliwość wycofania oceny poprzez ponowne kliknięcie tej samej gwiazdki
+    if (myStars === i) {
+      dispatch(starRating(id, 0)); // Możliwość usunięcia oceny jeśli kliknięto na tę samą gwiazdkę
+      setMyStars(0);
+    } else {
+      dispatch(starRating(id, i));
+      setMyStars(i);
+    }
   };
 
   return (
@@ -47,6 +57,7 @@ const StarRating = ({ stars, userStars }) => {
 };
 
 StarRating.propTypes = {
+  id: PropTypes.string,
   stars: PropTypes.number,
   userStars: PropTypes.number,
 };
