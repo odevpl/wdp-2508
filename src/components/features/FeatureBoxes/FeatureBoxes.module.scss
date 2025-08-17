@@ -3,3 +3,19 @@
 .root {
   padding: 5rem 0;
 }
+.rowContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  @media (max-width: 991px) {
+  }
+}
+.rowContainer div {
+  height: 200px;
+  flex: 1 1 calc(25% - 20px);
+  @media (max-width: 991px) {
+    flex: 1 1 calc(50% - 20px);
+    height: 200px;
+    margin-bottom: 60px;
+  }
+}
