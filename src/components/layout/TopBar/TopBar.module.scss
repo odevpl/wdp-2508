@@ -16,12 +16,20 @@
         @extend %hover-style;
         color: #ffffff;
         font-size: 13px;
+        .subtitle {
+          @media (max-width: 576px) {
+            display: none;
+          }
+        }
       }
     }
   }
 
   .topOptions ul li {
     margin-right: 1.5rem;
+    @media (max-width: 576px) {
+      margin-right: 0.5rem;
+    }
 
     .icon {
       margin-left: 5px;
