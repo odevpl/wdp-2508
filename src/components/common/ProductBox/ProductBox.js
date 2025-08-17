@@ -14,6 +14,7 @@ import Button from '../Button/Button';
 const ProductBox = ({
   name,
   price,
+  oldPrice,
   promo,
   stars,
   image,
@@ -60,6 +61,9 @@ const ProductBox = ({
         </Button>
       </div>
       <div className={styles.price}>
+        {typeof oldPrice === 'number' && oldPrice > price && (
+          <span className={styles.oldPrice}>$ {oldPrice}</span>
+        )}
         <Button noHover variant='small'>
           $ {price}
         </Button>
@@ -72,6 +76,7 @@ ProductBox.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   price: PropTypes.number,
+  oldPrice: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
   handleCompare: PropTypes.func,
