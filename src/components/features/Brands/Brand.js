@@ -13,7 +13,7 @@ const Brands = () => {
     infinite: true, // nieskończone przewijanie
     speed: 500,
     slidesToShow: 6, // ile obrazków widać naraz
-    slidesToScroll: 1, // ile przesuwa się na raz
+    slidesToScroll: 6, // ile przesuwa się na raz
     autoplay: true,
     autoplaySpeed: 2000,
     responsive: [
@@ -21,12 +21,14 @@ const Brands = () => {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ],
