@@ -8,6 +8,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
 
 class NewFurniture extends React.Component {
+  static FADE_MS = 260;
+
   state = {
     activePage: 0,
     activeCategory: 'bed',
@@ -16,31 +18,23 @@ class NewFurniture extends React.Component {
   };
 
   fadeAnd(doChange) {
-    const DURATION = 260;
     if (this.state.isFading) return;
-
     this.setState({ isFading: true }, () => {
       setTimeout(() => {
         doChange();
         requestAnimationFrame(() => this.setState({ isFading: false }));
-      }, DURATION);
+      }, NewFurniture.FADE_MS);
     });
   }
 
   handlePageChange(newPage) {
-    if (newPage === this.state.activePage) return;
-    this.setState({ isFading: true });
-    setTimeout(() => {
-      this.setState({ activePage: newPage, isFading: false });
-    }, 260);
+    if (newPage === this.state.activePage || this.state.isFading) return;
+    this.fadeAnd(() => this.setState({ activePage: newPage }));
   }
 
   handleCategoryChange(newCategory) {
-    if (newCategory === this.state.activeCategory) return;
-    this.setState({ isFading: true });
-    setTimeout(() => {
-      this.setState({ activeCategory: newCategory, activePage: 0, isFading: false });
-    }, 260);
+    if (newCategory === this.state.activeCategory || this.state.isFading) return;
+    this.fadeAnd(() => this.setState({ activeCategory: newCategory, activePage: 0 }));
   }
 
   handleCompare = product => {
@@ -67,10 +61,14 @@ class NewFurniture extends React.Component {
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
       dots.push(
-        <li>
+        <li key={i}>
           <a
-            onClick={() => this.handlePageChange(i)}
-            className={i === activePage && styles.active}
+            href='#'
+            onClick={e => {
+              e.preventDefault();
+              this.handlePageChange(i);
+            }}
+            className={i === activePage ? styles.active : undefined}
           >
             page {i}
           </a>
@@ -91,8 +89,14 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        className={item.id === activeCategory && styles.active}
-                        onClick={() => this.handleCategoryChange(item.id)}
+                        href='#'
+                        className={
+                          item.id === activeCategory ? styles.active : undefined
+                        }
+                        onClick={e => {
+                          e.preventDefault();
+                          this.handleCategoryChange(item.id);
+                        }}
                       >
                         {item.name}
                       </a>
