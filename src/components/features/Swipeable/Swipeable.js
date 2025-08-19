@@ -9,12 +9,10 @@ const Swipeable = ({ leftAction, rightAction, children }) => {
 
   function handleTouchStart(e) {
     touchData.start.x = e.changedTouches[0].screenX;
-    touchData.start.y = e.changedTouches[0].screenY;
   }
 
   function handleTouchEnd(e) {
     touchData.end.x = e.changedTouches[0].screenX;
-    touchData.end.y = e.changedTouches[0].screenY;
     if (touchData.end.x < touchData.start.x) {
       //Left
       leftAction();
