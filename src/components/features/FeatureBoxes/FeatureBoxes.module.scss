@@ -3,19 +3,30 @@
 .root {
   padding: 5rem 0;
 }
+
 .rowContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  @media (max-width: 991px) {
-  }
 }
-.rowContainer div {
-  height: 200px;
-  flex: 1 1 calc(25% - 20px);
-  @media (max-width: 991px) {
-    flex: 1 1 calc(50% - 20px);
-    height: 200px;
-    margin-bottom: 60px;
+
+.big {
+  grid-column: span 2;
+  min-height: 200px;
+}
+.small {
+  min-height: 200px;
+}
+
+@media (max-width: 991px) {
+  .rowContainer {
+    grid-template-columns: 1fr;
+  }
+  .big {
+    grid-column: auto;
+    order: 0;
+  }
+  .small {
+    order: 1;
   }
 }
