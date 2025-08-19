@@ -6,6 +6,7 @@ import ProductBox from '../../common/ProductBox/ProductBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
+import Swipeable from '../Swipeable/Swipeable';
 
 class NewFurniture extends React.Component {
   state = {
@@ -35,6 +36,30 @@ class NewFurniture extends React.Component {
       }
     }
   };
+
+  leftAction(pagesCount) {
+    //console.log('<- left');
+    const newPage = this.state.activePage + 1;
+    if (newPage < 0) {
+      return;
+    } else if (newPage >= pagesCount) {
+      return;
+    } else {
+      this.handlePageChange(newPage);
+    }
+  }
+
+  rightAction(pagesCount) {
+    //console.log('right ->');
+    const newPage = this.state.activePage - 1;
+    if (newPage < 0) {
+      return;
+    } else if (newPage > pagesCount) {
+      return;
+    } else {
+      this.handlePageChange(newPage);
+    }
+  }
 
   render() {
     const { categories, products } = this.props;
@@ -84,13 +109,23 @@ class NewFurniture extends React.Component {
               </div>
             </div>
           </div>
-          <div className='row'>
-            {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
-              <div key={item.id} className='col-3'>
-                <ProductBox {...item} handleCompare={() => this.handleCompare(item)} />
-              </div>
-            ))}
-          </div>
+          <Swipeable
+            leftAction={() => this.leftAction(pagesCount)}
+            rightAction={() => this.rightAction(pagesCount)}
+          >
+            <div className='row'>
+              {categoryProducts
+                .slice(activePage * 8, (activePage + 1) * 8)
+                .map(item => (
+                  <div key={item.id} className='col-3'>
+                    <ProductBox
+                      {...item}
+                      handleCompare={() => this.handleCompare(item)}
+                    />
+                  </div>
+                ))}
+            </div>
+          </Swipeable>
         </div>
         {counter.length > 0 && (
           <div className={styles.compareContainer}>
