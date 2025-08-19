@@ -14,7 +14,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 
-export default function PromotionSection({ id, handleCompare }) {
+let timePromotion = [
+  { number: 25, title: 'DAYS' },
+  { number: 10, title: 'HRS' },
+  { number: 45, title: 'MMS' },
+  { number: 30, title: 'SECS' },
+];
+export default function PromotionSection({ id }) {
   const promotion = useSelector(state => state.products.find(el => el.id === id));
 
   if (!promotion) return <p>Promocja nie znaleziona</p>;
@@ -43,9 +49,22 @@ export default function PromotionSection({ id, handleCompare }) {
                 </ul>
               </div>
             </div>
+            <div className={styles.timer}>
+              <ul>
+                {timePromotion.map(el => {
+                  return (
+                    <li key={el.title}>
+                      <p>{el.number}</p>
+                      <p>{el.title}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
             <div className={styles.buttons}>
               <Button variant='small'>
-                <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
+                <FontAwesomeIcon icon={faShoppingBasket} />
+                ADD TO CART
               </Button>
             </div>
           </div>
@@ -69,17 +88,10 @@ export default function PromotionSection({ id, handleCompare }) {
               <Button variant='outline'>
                 <FontAwesomeIcon icon={faEye} />
               </Button>
-              <Button
-                variant='outline'
-                className={promotion.isFavourite ? styles.active : ''}
-              >
+              <Button variant='outline'>
                 <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
               </Button>
-              <Button
-                variant='outline'
-                onClick={handleCompare}
-                className={promotion.isCompared ? styles.active : ''}
-              >
+              <Button variant='outline'>
                 <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
               </Button>
             </div>
@@ -97,7 +109,9 @@ export default function PromotionSection({ id, handleCompare }) {
             style={{ '--ProductBox-bg-image': `url(${promotion.image})` }}
           >
             <div className={styles.rightSectionDescription}>
-              <h2>INDOOR FURNITURE</h2>
+              <h2>
+                INDOOR <span>FURNITURE</span>
+              </h2>
               <p>SAVE UP 50% OF ALL FURNITURE</p>
             </div>
             <Button className={styles.rightSectionButton}>SHOP NOW</Button>
@@ -118,5 +132,4 @@ export default function PromotionSection({ id, handleCompare }) {
 
 PromotionSection.propTypes = {
   id: PropTypes.string.isRequired,
-  handleCompare: PropTypes.func,
 };

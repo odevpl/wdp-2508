@@ -23,6 +23,14 @@
         position: center;
         repeat: no-repeat;
       }
+      &:hover .buttons {
+        opacity: 1;
+        visibility: visible;
+      }
+      &:hover .timer {
+        opacity: 1;
+        visibility: visible;
+      }
 
       .sale {
         display: flex;
@@ -66,12 +74,48 @@
           }
         }
       }
-
-      .buttons {
+      .timer {
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s;
+      }
+      .timer ul {
         position: absolute;
-        bottom: 0;
+        top: 90%;
         left: 50%;
         transform: translate(-50%, -50%);
+        display: flex;
+        padding: 0;
+        margin: 0;
+        line-height: 4px;
+        list-style: none;
+        color: white;
+
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 50px;
+          height: 50px;
+          padding-top: 10px;
+          margin: 0 6px;
+          border-radius: 50%;
+          background-color: rgba(0, 0, 0, 0.7);
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .buttons {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        bottom: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
       }
     }
     .content {
@@ -134,11 +178,10 @@
   }
   .rightSection {
     width: 65%;
-    border: 1px solid rgb(211, 211, 211);
 
     .rightSectionPhoto {
       position: relative;
-      padding: 50% 10px 0 10px;
+      padding: 54% 10px 0 10px;
       background: {
         image: var(--ProductBox-bg-image);
         size: contain;
@@ -155,6 +198,13 @@
         text-align: center;
         background-color: rgba(0, 0, 0, 0.5);
         color: #ffffff;
+        h2 {
+          font-size: 35px;
+          letter-spacing: 2px;
+          span {
+            font-weight: bold;
+          }
+        }
       }
       .rightSectionButton {
         position: absolute;
@@ -162,26 +212,42 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 999;
-        background-color: white;
+        background-color: #ffffff;
         padding: 13px;
         color: black;
+        border-radius: 5px;
+        text-decoration: none;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        transition: 0.4s;
+        &:hover {
+          background-color: $primary;
+          color: #ffffff;
+        }
       }
     }
     .rightSectionButtons {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      background-color: black;
+
       .buttonLeft {
+        @extend %hover-style;
+        padding: 3px 0;
         width: 50%;
-        background-color: black;
+        color: white;
         text-align: center;
       }
       .buttonRight {
+        @extend %hover-style;
+        padding: 3px 0;
         width: 50%;
-        background-color: $primary;
+        color: white;
         text-align: center;
       }
     }
+  }
+  .isActive {
+    background-color: $primary;
   }
 }
