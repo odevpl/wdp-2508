@@ -54,7 +54,7 @@ class NewFurniture extends React.Component {
     const newPage = this.state.activePage - 1;
     if (newPage < 0) {
       return;
-    } else if (newPage > pagesCount) {
+    } else if (newPage >= pagesCount) {
       return;
     } else {
       this.handlePageChange(newPage);
