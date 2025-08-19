@@ -7,6 +7,8 @@
 
   .container {
     display: flex;
+    height: 420px;
+    justify-content: space-between;
   }
 
   .leftSection {
@@ -131,7 +133,55 @@
     }
   }
   .rightSection {
-    width: 70%;
-    background-color: red;
+    width: 65%;
+    border: 1px solid rgb(211, 211, 211);
+
+    .rightSectionPhoto {
+      position: relative;
+      padding: 50% 10px 0 10px;
+      background: {
+        image: var(--ProductBox-bg-image);
+        size: contain;
+        position: center;
+        repeat: no-repeat;
+      }
+      .rightSectionDescription {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        padding: 15px 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+      }
+      .rightSectionButton {
+        position: absolute;
+        top: 67%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        background-color: white;
+        padding: 13px;
+        color: black;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      }
+    }
+    .rightSectionButtons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .buttonLeft {
+        width: 50%;
+        background-color: black;
+        text-align: center;
+      }
+      .buttonRight {
+        width: 50%;
+        background-color: $primary;
+        text-align: center;
+      }
+    }
   }
 }

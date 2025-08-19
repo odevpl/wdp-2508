@@ -9,6 +9,8 @@ import {
   faExchangeAlt,
   faShoppingBasket,
   faEye,
+  faArrowRight,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 
@@ -89,7 +91,26 @@ export default function PromotionSection({ id, handleCompare }) {
             </div>
           </div>
         </div>
-        <div className={styles.rightSection}></div>
+        <div className={styles.rightSection}>
+          <div
+            className={styles.rightSectionPhoto}
+            style={{ '--ProductBox-bg-image': `url(${promotion.image})` }}
+          >
+            <div className={styles.rightSectionDescription}>
+              <h2>INDOOR FURNITURE</h2>
+              <p>SAVE UP 50% OF ALL FURNITURE</p>
+            </div>
+            <Button className={styles.rightSectionButton}>SHOP NOW</Button>
+          </div>
+          <div className={styles.rightSectionButtons}>
+            <Button className={styles.buttonLeft}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </Button>
+            <Button className={styles.buttonRight}>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
