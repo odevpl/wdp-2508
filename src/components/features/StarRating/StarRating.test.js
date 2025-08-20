@@ -1,15 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductBox from './ProductBox';
+import StarRating from './StarRating';
 import { Provider } from 'react-redux';
 import store from '../../../redux/store';
 
-describe('Component ProductBox', () => {
+describe('Component StarRating', () => {
   it('should render without crashing', () => {
     const component = shallow(
-      // Przekazany store do celów prawidłowego działania testu
       <Provider store={store}>
-        <ProductBox />
+        <StarRating />
       </Provider>
     );
     expect(component).toBeTruthy();
