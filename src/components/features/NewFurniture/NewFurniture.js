@@ -38,7 +38,6 @@ class NewFurniture extends React.Component {
   };
 
   leftAction(pagesCount) {
-    //console.log('<- left');
     const newPage = this.state.activePage + 1;
     if (newPage < 0) {
       return;
@@ -50,7 +49,6 @@ class NewFurniture extends React.Component {
   }
 
   rightAction(pagesCount) {
-    //console.log('right ->');
     const newPage = this.state.activePage - 1;
     if (newPage < 0) {
       return;
@@ -82,16 +80,14 @@ class NewFurniture extends React.Component {
       );
     }
 
-    //console.log('viewport', this.state.viewport);
-
-    let colSize =
-      viewport.mode === 'desktop'
-        ? 'col-3'
-        : viewport.mode === 'tablet'
-        ? 'col-4'
-        : viewport.mode === 'mobile'
-        ? 'col-sm-6 col-12'
-        : 'col-12';
+    let colSize = 'col-12';
+    if (viewport.mode === 'desktop') {
+      colSize = 'col-3';
+    } else if (viewport.mode === 'tablet') {
+      colSize = 'col-4';
+    } else if (viewport.mode === 'mobile') {
+      colSize = 'col-sm-6 col-12';
+    }
 
     return (
       <div className={styles.root}>
