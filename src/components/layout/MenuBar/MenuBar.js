@@ -59,24 +59,21 @@ const MenuBar = ({ children }) => {
             {shown && (
               <ul className='dropdown-menu show'>
                 <li>
-                  <a className='dropdown-item' href='#'>
+                  <Link to='/' className='dropdown-item'>
                     Home
-                  </a>
+                  </Link>
                 </li>
+                {categories.map(category => (
+                  <li key={category.id}>
+                    <Link to={`/shop/${category.id}`} className='dropdown-item'>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
                 <li>
-                  <a className='dropdown-item' href='#'>
-                    Furniture
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Chair
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Table
-                  </a>
+                  <Link to='/blog' className='dropdown-item'>
+                    Blog
+                  </Link>
                 </li>
               </ul>
             )}
