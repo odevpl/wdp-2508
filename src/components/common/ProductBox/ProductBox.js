@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,20 +37,26 @@ const ProductBox = ({
 
   return (
     <div className={styles.root} style={{ '--ProductBox-bg-image': `url(${image})` }}>
-      <div className={styles.photo}>
-        {promo && <div className={styles.sale}>{promo}</div>}
-        <div className={styles.buttons}>
-          <Button variant='small' className={styles.button}>
-            Quick View
-          </Button>
-          <Button variant='small'>
-            <FontAwesomeIcon icon={faShoppingBasket} />
-            <span className={styles.button}>ADD TO CART</span>
-          </Button>
+      <Link to={`/product/${id}`}>
+        <div className={styles.photo}>
+          {promo && <div className={styles.sale}>{promo}</div>}
+          <div className={styles.buttons}>
+            <Button variant='small' className={styles.button}>
+              Quick View
+            </Button>
+            <Button variant='small'>
+              <FontAwesomeIcon icon={faShoppingBasket} />
+              <span className={styles.button}>ADD TO CART</span>
+            </Button>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className={styles.content}>
-        <h5>{name}</h5>
+        <h5>
+          <Link to={`/product/${id}`} className={styles.name}>
+            {name}
+          </Link>
+        </h5>
         <StarRating id={id} stars={stars} userStars={userStars} />
       </div>
       <div className={styles.line}></div>

@@ -43,11 +43,16 @@
     text-align: center;
     padding: 20px;
 
-    h5 {
+    .name {
       color: $primary;
+      font: inherit;
+      text-decoration: none;
       font-size: 16px;
       line-height: 24px;
       letter-spacing: 1px;
+      transition: color 500ms ease;
+    }:hover{
+      color: $text-color;
     }
 
     .stars {
