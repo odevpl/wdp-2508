@@ -283,6 +283,10 @@ const initialState = {
   cart: {
     products: [],
   },
+  viewport: {
+    width: 1024,
+    mode: 'desktop',
+  },
 };
 
 export default initialState;
