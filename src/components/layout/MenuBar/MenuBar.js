@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
 
 import ProductSearch from '../../features/ProductSearch/ProductSearch';
-import { getAll } from '../../../redux/categoriesRedux';
 
 import styles from './MenuBar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,8 +10,6 @@ import Button from '../../common/Button/Button';
 
 const MenuBar = ({ children }) => {
   const [shown, setShown] = useState(false);
-  const categories = useSelector(getAll);
-  const path = useLocation().pathname;
 
   return (
     <div className={styles.root}>
@@ -26,24 +21,27 @@ const MenuBar = ({ children }) => {
           <div className={styles.menu}>
             <ul>
               <li>
-                <Link to='/' className={path === '/' ? styles.active : ''}>
+                <a href='#' className={styles.active}>
                   Home
-                </Link>
+                </a>
               </li>
-              {categories.map(category => (
-                <li key={category.id}>
-                  <Link
-                    to={`/shop/${category.id}`}
-                    className={path === `/shop/${category.id}` ? styles.active : ''}
-                  >
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
               <li>
-                <Link to='/blog' className={path === '/blog' ? styles.active : ''}>
-                  Blog
-                </Link>
+                <a href='#'>Furniture</a>
+              </li>
+              <li>
+                <a href='#'>Chair</a>
+              </li>
+              <li>
+                <a href='#'>Table</a>
+              </li>
+              <li>
+                <a href='#'>Sofa</a>
+              </li>
+              <li>
+                <a href='#'>Bedroom</a>
+              </li>
+              <li>
+                <a href='#'>Blog</a>
               </li>
             </ul>
           </div>
