@@ -4,7 +4,7 @@ import Feedback from './Feedback';
 import { Provider } from 'react-redux';
 import store from '../../../redux/store';
 
-describe('Component ProductBox', () => {
+describe('Component Feedback', () => {
   it('should render without crashing', () => {
     const component = shallow(
       <Provider store={store}>
