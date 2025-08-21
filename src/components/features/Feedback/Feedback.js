@@ -23,7 +23,7 @@ const Feedback = () => {
   const dots = [];
   for (let i = 0; i < commentsCount; i++) {
     dots.push(
-      <li>
+      <li key={i}>
         <a
           onClick={handleCommentChange(i)}
           className={i === activeFeedbackId ? styles.active : ''}
