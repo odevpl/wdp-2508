@@ -7,12 +7,14 @@
 
   .container {
     display: flex;
-    height: 420px;
     justify-content: space-between;
   }
 
   .leftSection {
     width: 30%;
+    @media (max-width: 992px) {
+      display: none;
+    }
 
     .photo {
       position: relative;
@@ -178,6 +180,9 @@
   }
   .rightSection {
     width: 65%;
+    @media (max-width: 992px) {
+      width: 100%;
+    }
 
     .rightSectionPhoto {
       position: relative;
@@ -198,12 +203,23 @@
         text-align: center;
         background-color: rgba(0, 0, 0, 0.5);
         color: #ffffff;
+        @media (max-width: 576px) {
+          padding: 5px 0;
+        }
         h2 {
           font-size: 35px;
           letter-spacing: 2px;
+          @media (max-width: 576px) {
+            font-size: 10px;
+          }
           span {
             font-weight: bold;
           }
+        }
+      }
+      .rightSectionDescription p {
+        @media (max-width: 576px) {
+          font-size: 7px;
         }
       }
       .rightSectionButton {
@@ -222,6 +238,12 @@
         &:hover {
           background-color: $primary;
           color: #ffffff;
+        }
+        @media (max-width: 767px) {
+          padding: 5px;
+        }
+        @media (max-width: 576px) {
+          font-size: 10px;
         }
       }
     }
