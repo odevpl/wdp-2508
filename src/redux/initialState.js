@@ -309,6 +309,10 @@ const initialState = {
       image: '/images/feedback/alice_johnson.jpg',
     },
   ],
+  viewport: {
+    width: 1024,
+    mode: 'desktop',
+  },
 };
 
 export default initialState;
