@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './PromotionSection.module.scss';
@@ -13,6 +13,7 @@ import {
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import Swipeable from '../Swipeable/Swipeable';
 
 let timePromotion = [
   { number: 25, title: 'DAYS' },
@@ -21,7 +22,20 @@ let timePromotion = [
   { number: 30, title: 'SECS' },
 ];
 export default function PromotionSection({ id }) {
-  const promotion = useSelector(state => state.products.find(el => el.id === id));
+  const products = useSelector(state => state.products);
+  const firestIndex = products.findIndex(el => el.id === id);
+
+  const [index, setIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
+
+  const promotion = products[index];
+
+  function handleLeft() {
+    setIndex(el => (el + 1) % products.length);
+  }
+
+  function handleRight() {
+    setIndex(el => (el - 1 + products.length) % products.length);
+  }
 
   if (!promotion) return <p>Promocja nie znaleziona</p>;
 
@@ -37,15 +51,13 @@ export default function PromotionSection({ id }) {
               <div className={styles.titleSale}>HOT DEALS</div>
               <div className={styles.dots}>
                 <ul>
-                  <li>
-                    <a>p</a>
-                  </li>
-                  <li>
-                    <a>p</a>
-                  </li>
-                  <li>
-                    <a>p</a>
-                  </li>
+                  {[0, 1, 2].map(el => {
+                    return (
+                      <li key={el.id}>
+                        <a className={el === 1 ? styles.isActive : ''}>+</a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -103,7 +115,11 @@ export default function PromotionSection({ id }) {
             </div>
           </div>
         </div>
-        <div className={styles.rightSection}>
+        <Swipeable
+          leftAction={handleLeft}
+          rightAction={handleRight}
+          className={styles.rightSection}
+        >
           <div
             className={styles.rightSectionPhoto}
             style={{ '--ProductBox-bg-image': `url(${promotion.image})` }}
@@ -117,14 +133,14 @@ export default function PromotionSection({ id }) {
             <Button className={styles.rightSectionButton}>SHOP NOW</Button>
           </div>
           <div className={styles.rightSectionButtons}>
-            <Button className={styles.buttonLeft}>
+            <Button onClick={handleLeft} className={styles.buttonLeft}>
               <FontAwesomeIcon icon={faArrowLeft} />
             </Button>
-            <Button className={styles.buttonRight}>
+            <Button onClick={handleRight} className={styles.buttonRight}>
               <FontAwesomeIcon icon={faArrowRight} />
             </Button>
           </div>
-        </div>
+        </Swipeable>
       </div>
     </div>
   );
