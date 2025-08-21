@@ -86,11 +86,11 @@ class NewFurniture extends React.Component {
       <div className={styles.root}>
         <div className='container'>
           <div className={styles.panelBar}>
-            <div className='row no-gutters align-items-end'>
-              <div className={'col-auto ' + styles.heading}>
+            <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
+              <div className={styles.heading}>
                 <h3>New furniture</h3>
               </div>
-              <div className={'col ' + styles.menu}>
+              <div className={`col ${styles.menu}`}>
                 <ul>
                   {categories.map(item => (
                     <li key={item.id}>
@@ -104,7 +104,7 @@ class NewFurniture extends React.Component {
                   ))}
                 </ul>
               </div>
-              <div className={'col-auto ' + styles.dots}>
+              <div className={styles.dots}>
                 <ul>{dots}</ul>
               </div>
             </div>
@@ -117,7 +117,7 @@ class NewFurniture extends React.Component {
               {categoryProducts
                 .slice(activePage * 8, (activePage + 1) * 8)
                 .map(item => (
-                  <div key={item.id} className='col-3'>
+                  <div key={item.id} className='col-12 col-sm-6 col-md-4 col-lg-3'>
                     <ProductBox
                       {...item}
                       handleCompare={() => this.handleCompare(item)}
