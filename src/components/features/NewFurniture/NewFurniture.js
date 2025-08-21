@@ -62,7 +62,7 @@ class NewFurniture extends React.Component {
   }
 
   render() {
-    const { categories, products } = this.props;
+    const { categories, products, viewport } = this.props;
     const { activeCategory, activePage, counter } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
@@ -81,6 +81,17 @@ class NewFurniture extends React.Component {
         </li>
       );
     }
+
+    //console.log('viewport', this.state.viewport);
+
+    let colSize =
+      viewport.mode === 'desktop'
+        ? 'col-3'
+        : viewport.mode === 'tablet'
+        ? 'col-4'
+        : viewport.mode === 'mobile'
+        ? 'col-sm-6 col-12'
+        : 'col-12';
 
     return (
       <div className={styles.root}>
@@ -117,7 +128,7 @@ class NewFurniture extends React.Component {
               {categoryProducts
                 .slice(activePage * 8, (activePage + 1) * 8)
                 .map(item => (
-                  <div key={item.id} className='col-12 col-sm-6 col-md-4 col-lg-3'>
+                  <div key={item.id} className={colSize}>
                     <ProductBox
                       {...item}
                       handleCompare={() => this.handleCompare(item)}
@@ -178,11 +189,16 @@ NewFurniture.propTypes = {
       newFurniture: PropTypes.bool,
     })
   ),
+  viewport: PropTypes.shape({
+    width: PropTypes.number,
+    mode: PropTypes.string,
+  }),
 };
 
 NewFurniture.defaultProps = {
   categories: [],
   products: [],
+  viewport: { width: 1024, mode: 'desktop' },
 };
 
 export default NewFurniture;
