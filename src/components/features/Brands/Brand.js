@@ -9,27 +9,32 @@ const Brands = () => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Responsywna liczba widocznych brandów
-  const updateVisibleCount = () => {
-    const width = window.innerWidth;
-    if (width < 480) setVisibleCount(1);
-    else if (width < 768) setVisibleCount(2);
-    else if (width < 1024) setVisibleCount(4);
-    else setVisibleCount(6);
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 6,
+  slidesToScroll: 6,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
-    setCurrentIndex(0); // reset przy zmianie liczby widocznych
-  };
-
-  useEffect(() => {
-    updateVisibleCount();
-    window.addEventListener('resize', updateVisibleCount);
-    return () => window.removeEventListener('resize', updateVisibleCount);
-  }, []);
-
-  const maxIndex = Math.max(brands.length - visibleCount, 0);
-
-  const swipeLeft = () => {
-    setCurrentIndex(prev => Math.min(prev + visibleCount, maxIndex));
   };
 
   const swipeRight = () => {
