@@ -1,0 +1,13 @@
+@import "../../../styles/settings.scss";
+
+.stars {
+  a {
+    text-decoration: none;   
+  }
+  .starUser {
+    color: $primary;
+  }
+  .starDefault {
+    color: black;
+  }
+}

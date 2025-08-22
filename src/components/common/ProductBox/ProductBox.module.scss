@@ -35,8 +35,8 @@
     position: relative;
     padding: 80% 10px 0 10px;
     background: {
-      color: $light-bg;
-      size: contain;
+      image: var(--ProductBox-bg-image);
+      size: cover;
       position: center;
       repeat: no-repeat;
     }
@@ -64,7 +64,13 @@
       right: 10px;
       opacity: 0;
       transform: translateY(10px);
-      transition: opacity $hover-bg-time $hover-transition, transform $hover-transform-time $hover-transition;
+      transition: opacity $hover-bg-time $hover-transition,
+        transform $hover-transform-time $hover-transition;
+    }
+    .button {
+      @media (max-width: 1199px) {
+        font-size: 11px;
+      }
     }
   }
 
@@ -72,11 +78,17 @@
     text-align: center;
     padding: 20px;
 
-    h5 {
+    .name {
       color: $primary;
+      font: inherit;
+      text-decoration: none;
       font-size: 16px;
       line-height: 24px;
       letter-spacing: 1px;
+      transition: color 500ms ease;
+    }
+    :hover {
+      color: $text-color;
     }
 
     .stars {
@@ -134,6 +146,10 @@
         color: inherit;
         transition: color 0.3s ease, background-color 0.3s ease;
       }
+    }
+
+    .active {
+      background-color: $primary;
     }
   }
 }

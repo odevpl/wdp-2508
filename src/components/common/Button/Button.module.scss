@@ -35,4 +35,12 @@
     color: white;
   }
 }
-  
+
+.spotlight {
+  @extend .main;
+  background-color: $spotlight-color;
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 15px 30px;
+}

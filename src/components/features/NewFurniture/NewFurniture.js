@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../common/Button/Button';
+import Swipeable from '../Swipeable/Swipeable';
 
 class NewFurniture extends React.Component {
   state = {
     activePage: 0,
     activeCategory: 'bed',
+    counter: [],
   };
 
   handlePageChange(newPage) {
@@ -18,9 +23,45 @@ class NewFurniture extends React.Component {
     this.setState({ activeCategory: newCategory });
   }
 
+  handleCompare = product => {
+    const { counter } = this.state;
+    const compare = counter.find(el => el.id === product.id);
+    if (compare) {
+      this.setState({ counter: counter.filter(el => el.id !== product.id) });
+    } else {
+      if (counter.length >= 4) {
+        alert('Możesz dodać maksymalnie 4 produkty do porównainia');
+      } else {
+        this.setState({ counter: [...counter, product] });
+      }
+    }
+  };
+
+  leftAction(pagesCount) {
+    const newPage = this.state.activePage + 1;
+    if (newPage < 0) {
+      return;
+    } else if (newPage >= pagesCount) {
+      return;
+    } else {
+      this.handlePageChange(newPage);
+    }
+  }
+
+  rightAction(pagesCount) {
+    const newPage = this.state.activePage - 1;
+    if (newPage < 0) {
+      return;
+    } else if (newPage >= pagesCount) {
+      return;
+    } else {
+      this.handlePageChange(newPage);
+    }
+  }
+
   render() {
-    const { categories, products } = this.props;
-    const { activeCategory, activePage } = this.state;
+    const { categories, products, viewport } = this.props;
+    const { activeCategory, activePage, counter } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
     const pagesCount = Math.ceil(categoryProducts.length / 8);
@@ -39,15 +80,24 @@ class NewFurniture extends React.Component {
       );
     }
 
+    let colSize = 'col-12';
+    if (viewport.mode === 'desktop') {
+      colSize = 'col-3';
+    } else if (viewport.mode === 'tablet') {
+      colSize = 'col-4';
+    } else if (viewport.mode === 'mobile') {
+      colSize = 'col-sm-6 col-12';
+    }
+
     return (
       <div className={styles.root}>
         <div className='container'>
           <div className={styles.panelBar}>
-            <div className='row no-gutters align-items-end'>
-              <div className={'col-auto ' + styles.heading}>
+            <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
+              <div className={styles.heading}>
                 <h3>New furniture</h3>
               </div>
-              <div className={'col ' + styles.menu}>
+              <div className={`col ${styles.menu}`}>
                 <ul>
                   {categories.map(item => (
                     <li key={item.id}>
@@ -63,19 +113,56 @@ class NewFurniture extends React.Component {
                   ))}
                 </ul>
               </div>
-              <div className={'col-auto ' + styles.dots}>
+              <div className={styles.dots}>
                 <ul>{dots}</ul>
               </div>
             </div>
           </div>
-          <div className='row'>
-            {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
-              <div key={item.id} className='col-3'>
-                <ProductBox {...item} />
-              </div>
-            ))}
-          </div>
+          <Swipeable
+            leftAction={() => this.leftAction(pagesCount)}
+            rightAction={() => this.rightAction(pagesCount)}
+          >
+            <div className='row'>
+              {categoryProducts
+                .slice(activePage * 8, (activePage + 1) * 8)
+                .map(item => (
+                  <div key={item.id} className={colSize}>
+                    <ProductBox
+                      {...item}
+                      handleCompare={() => this.handleCompare(item)}
+                    />
+                  </div>
+                ))}
+            </div>
+          </Swipeable>
         </div>
+        {counter.length > 0 && (
+          <div className={styles.compareContainer}>
+            <ul>
+              {counter.map(product => {
+                return (
+                  <li key={product.id}>
+                    <img src={product.image} alt={product.name} />
+                    <Button
+                      className={styles.removeBtn}
+                      variant='outline'
+                      onClick={() => {
+                        this.setState({
+                          counter: counter.filter(el => el.id !== product.id),
+                        });
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faTimes} />
+                    </Button>
+                  </li>
+                );
+              })}
+              <Button className={styles.compareBtn} variant='small'>
+                Compare
+              </Button>
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
@@ -100,11 +187,16 @@ NewFurniture.propTypes = {
       newFurniture: PropTypes.bool,
     })
   ),
+  viewport: PropTypes.shape({
+    width: PropTypes.number,
+    mode: PropTypes.string,
+  }),
 };
 
 NewFurniture.defaultProps = {
   categories: [],
   products: [],
+  viewport: { width: 1024, mode: 'desktop' },
 };
 
 export default NewFurniture;

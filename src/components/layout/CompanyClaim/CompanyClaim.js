@@ -14,14 +14,14 @@ const CompanyClaim = () => {
   return (
     <div className={styles.root}>
       <div className='container'>
-        <div className='row align-items-center'>
+        <div className={`row align-items-center ${styles.container}`}>
           <div className={`col text-left ${styles.phoneNumber}`}>
             <p>
-              <FontAwesomeIcon className={styles.icon} icon={faMobileAlt} /> 2300 - 3560
-              - 222
+              <FontAwesomeIcon className={styles.icon} icon={faMobileAlt} />
+              <span className={styles.number}>2300 - 3560 - 222</span>
             </p>
           </div>
-          <div className='col text-center'>
+          <div className={`col text-center ${styles.image}`}>
             <a href='#'>
               <img src='/images/logo.png' alt='Bazar' />
             </a>
