@@ -3,20 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "run-p start:* ",
-    "start:react": "react-scripts start",
+    "start": "run-p start:*",
+    "start:react": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "start-silent": "run-p start > /dev/null",
-    "start-and-test": "run-p start-silent test ",
-    "start-and-watch": "run-p start watch ",
-    "watch": "run-p watch:* ",
+    "start-and-test": "run-p start-silent test",
+    "start-and-watch": "run-p start watch",
+    "watch": "run-p watch:*",
     "watch:format": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
     "refactor": "run-s refactor:*",
     "refactor:format": "prettier --write \"src/**/*.{js,html,scss}\"",
     "refactor:lint": "eslint src/",
-    "build": "react-scripts build",
-    "test": "react-scripts test --noStackTrace",
-    "test-all": "react-scripts test --watchAll=false --noStackTrace",
-    "test-related": "react-scripts test --watchAll=false --noStackTrace --findRelatedTests",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+    "test": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts test --noStackTrace",
+    "test-all": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts test --watchAll=false --noStackTrace",
+    "test-related": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts test --watchAll=false --noStackTrace --findRelatedTests",
     "eject": "react-scripts eject"
   },
   "husky": {
@@ -60,9 +60,11 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
+    "react-slick": "^0.31.0",
     "react-test-renderer": "^16.9.0",
     "redux": "^4.0.4",
-    "sass": "^1.54.3"
+    "sass": "^1.54.3",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "husky": "^3.1.0",

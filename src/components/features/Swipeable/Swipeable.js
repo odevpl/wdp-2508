@@ -1,29 +1,27 @@
+// src/components/features/Swipeable/Swipeable.js
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Swipeable.module.scss';
 
 const Swipeable = ({ leftAction, rightAction, children }) => {
-  const touchData = {
-    start: { x: 0, y: 0 },
-    end: { x: 0, y: 0 },
+  const touchData = { start: 0, end: 0 };
+
+  const handleTouchStart = e => {
+    touchData.start = e.changedTouches[0].screenX;
   };
 
-  function handleTouchStart(e) {
-    touchData.start.x = e.changedTouches[0].screenX;
-  }
-
-  function handleTouchEnd(e) {
-    touchData.end.x = e.changedTouches[0].screenX;
-    if (touchData.end.x < touchData.start.x) {
-      //Left
-      leftAction();
-    } else if (touchData.end.x > touchData.start.x) {
-      //Right
-      rightAction();
-    }
-  }
+  const handleTouchEnd = e => {
+    touchData.end = e.changedTouches[0].screenX;
+    if (touchData.end < touchData.start) leftAction();
+    else if (touchData.end > touchData.start) rightAction();
+  };
 
   return (
-    <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div
+      className={styles.swipeable}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {children}
     </div>
   );
