@@ -1,5 +1,363 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  padding: $base-padding 0;
+  position: relative;
+
+  .section {
+    margin-block: calc($base-padding * 2);
+
+  }
+
+ .bannerColor {
+  position: absolute;
+  background-color: #7F7F7F;
+  color: #ffffff;
+  padding: 1rem 0;
+  height: 340px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+ }
+
+  .banner {
+    padding-block: calc($base-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    text-transform: capitalize;
+
+  .bTitle, .bPath{
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: fit-content;
+  }
+
+  .bTitle{
+    font-size: 24px;
+    color: #DEDEDE;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .bPath{
+    font-size: 13px;
+    color: #DEDEDE;
+    font-weight: 400;
+
+    span {
+      padding-inline: 0.5rem;
+    }
+
+    a {
+      font-size: inherit;
+      color: inherit;
+      font-weight: inherit;
+      cursor: pointer;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+
+  }
+
+ .productWrapper {
+  padding-bottom: calc($base-padding);
+  background: #ffffff;
+  border: 1px solid #7F7F7F;
+  padding: 19px;
+  margin-top: 0;
+
+  .product {
+    height: 667px;
+  }
+
+  .productGallery {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .mainImg {
+      position: relative;
+      background: #F4F5F7;
+      max-height: 500px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .resizeBtn {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 1;
+      }
+    }
+
+    .thumbnailsWrapper {
+      padding: 15px 18px 36px 15px;
+      overflow: hidden;
+
+      .thumbnails {
+        position: relative;
+        display: flex;
+        gap: 22px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+        .thumbnail {
+          min-width: 105px;
+          height: 105px;
+          width: 90px;
+          background: #F4F5F7;
+          object-fit: cover;
+          cursor: pointer;
+          opacity: 0.5;
+          &.active,&:hover{
+            opacity: 1;
+          }
+        }
+      }
+
+      .controlBtn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        &.left {
+          left: -15px;
+        }
+        &.right {
+          right: -15px;
+        }
+      }
+
+    }
+
+  }
+  }
+
+  .productInfo {
+    padding: 10px;
+    position: relative;
+
+    .group {
+      border-bottom: 1px solid #CCCCCC;
+      padding-block: 22px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .option {
+        font-size: 14px;
+        font-weight: 600;
+
+      }
+
+      p, label, h4{
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .productPageBtns {
+      display: flex;
+      gap: 5px;
+      position: absolute;
+      right: 10px;
+    }
+
+    .productTitle {
+      font-weight: 600;
+      h3 {
+        font-size: 22px;
+      }
+      p {
+        font-size: 12px;
+        font-weight: 400;
+        .reviews {
+          padding-left: 15px;
+          padding-right: 12px;
+          border-right: 1px solid #CCCCCC;
+        }
+        .addReview a{
+          color: inherit;
+          padding-left: 12px;
+        }
+      }
+    }
+
+    .productPrice {
+      p{
+        .oldPrice {
+          font-size: 19px;
+          color: #7F7F7F;
+          text-decoration: line-through;
+          padding-right: 1rem;
+        }
+        .newPrice {
+          padding: 4px 8px;
+          background: #2A2A2A;
+          font-size: 20px;
+          font-weight: 600;
+          color: #ffffff;
+        }
+      }
+    }
+
+    .productShopBtns {
+
+      .actionBtns {
+        display: flex;
+        gap: 8px;
+        padding-bottom: 22px;
+      }
+
+      .quantityBtns {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        label {
+          cursor: pointer;
+          padding-right: calc(32px - 7px);
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield; /* Firefox */
+        }
+        input {
+          width: 73px;
+          height: 34px;
+          border: 1px solid #2A2A2A;
+          text-align: center;
+        }
+      }
+
+    }
+
+    .quickOverview {
+      h4{
+        font-size: 15px;
+        font-weight: 600;
+        padding-bottom: 16px;
+      }
+      p {
+        font-size: 14px;
+        color: #676767;
+        font-weight: 400;
+        line-height: 25px;
+      }
+    }
+
+    .productDetails {
+      text-transform: capitalize;
+      span {
+        min-width: 100px;
+        display: inline-block;
+      }
+    }
+
+    .socials {
+      list-style: none;
+      display: flex;
+      gap: 5px;
+      padding-left: 0;
+      margin-bottom: 0;
+
+      .btnSocial{
+        display: block;
+        border: 1px solid #7F7F7F;
+        padding: 5px 10px;
+        font-size: 13px;
+        color: #7F7F7F;
+        text-decoration: none;
+      }
+      .facebook {
+        &:hover{
+          border-color: #3B5998;
+          color: #ffffff;
+          background-color: #3B5998;
+          span {
+            color: #ffffff;
+          }
+        }
+        span{
+        color: #3B5998;
+      }
+      }
+      .google {
+          &:hover{
+            border-color: #DB4437;
+            color: #ffffff;
+            background-color: #DB4437;
+            span {
+              color: #ffffff;
+            }
+          }
+          span{
+          color: #DB4437;
+        }
+      }
+      .twitter {
+        &:hover{
+          border-color: #1DA1F2;
+          color: #ffffff;
+          background-color: #1DA1F2;
+          span {
+            color: #ffffff;
+          }
+        }
+        span{
+        color: #1DA1F2;
+      }
+      }
+      .pinterest {
+        &:hover{
+          border-color: #E60023;
+          color: #ffffff;
+          background-color: #E60023;
+          span {
+            color: #ffffff;
+          }
+        }
+        span{
+        color: #E60023;
+      }
+      }
+      .linkedin {
+        &:hover{
+          border-color: #0077B5;
+          color: #ffffff;
+          background-color: #0077B5;
+          span {
+            color: #ffffff;
+          }
+        }
+        span{
+        color: #0077B5;
+      }
+      }
+
+    }
+
+  }
+
 }
