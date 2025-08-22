@@ -39,9 +39,12 @@ const ProductBox = ({
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <div className={styles.buttons}>
-          <Button variant='small'>Quick View</Button>
+          <Button variant='small' className={styles.button}>
+            Quick View
+          </Button>
           <Button variant='small'>
-            <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
+            <FontAwesomeIcon icon={faShoppingBasket} />
+            <span className={styles.button}>ADD TO CART</span>
           </Button>
         </div>
       </div>
