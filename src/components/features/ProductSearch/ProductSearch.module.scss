@@ -2,11 +2,16 @@
 
 .root {
   border: 1px solid $form-border-color;
-  display: inline-flex;
+  display: flex;
   height: 45px;
   color: $text-color;
+  @media (max-width: 576px) {
+    max-width: 90%;
+    width: 100%;
+  }
 
   .category {
+    flex: 1;
     border-right: 1px solid $form-border-color;
     display: flex;
     align-items: center;
@@ -26,21 +31,33 @@
     }
 
     select {
+      width: 100%;
       -webkit-appearance: none;
       border: 0;
       background-color: transparent;
       padding: 5px 30px 5px 35px;
       position: relative;
       z-index: 1;
+      font-size: 14px;
+      @media (max-width: 576px) {
+        font-size: 10px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: $primary;
+      }
     }
   }
 
   .searchField {
+    flex: 1;
     display: flex;
     align-items: center;
     position: relative;
 
     input {
+      width: 100%;
       border: 0;
       padding-left: 10px;
       font-size: 14px;
@@ -48,6 +65,11 @@
 
       &::placeholder {
         color: $text-color;
+      }
+      @media (max-width: 576px) {
+        &::placeholder {
+          font-size: 10px;
+        }
       }
     }
 

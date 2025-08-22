@@ -41,6 +41,9 @@ $hover-transition: ease;
 $hover-transform: none;
 $hover-text-decoration: none;
 
+// Dodatkowe kolory
+$spotlight-color: #79ae30;
+
 // Mixiny hover
 %hover-style {
   transition: background-color $hover-bg-time $hover-transition,
