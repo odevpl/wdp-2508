@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Swipeable.module.scss';
 
-const Swipeable = ({ leftAction, rightAction, children }) => {
+const Swipeable = ({ leftAction, rightAction, children, className }) => {
   const touchData = { start: 0, end: 0 };
 
   const handleTouchStart = e => {
@@ -18,7 +18,7 @@ const Swipeable = ({ leftAction, rightAction, children }) => {
 
   return (
     <div
-      className={styles.swipeable}
+      className={`${styles.swipeable} ${className || ''}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -31,6 +31,7 @@ Swipeable.propTypes = {
   leftAction: PropTypes.func,
   rightAction: PropTypes.func,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Swipeable;
