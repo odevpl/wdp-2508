@@ -1,0 +1,76 @@
+@import '../../../styles/settings.scss';
+
+.swipeable {
+  position: relative;
+  overflow: hidden;
+
+  .track {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 10px; // odstęp między elementami
+  }
+
+  .brandItem {
+    flex-shrink: 0;
+    width: 100%; // JS ustawia dokładnie width wg visibleCount
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    &:hover img {
+      filter: grayscale(0%);
+    }
+  }
+
+  // Strzałki
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: $primary;
+    color: $white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 18px;
+    border-radius: 4px;
+  }
+
+  .prev {
+    left: 5px;
+  }
+
+  .next {
+    right: 5px;
+  }
+}
+
+// Responsywność
+@media (max-width: 1024px) {
+  .swipeable .track {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .swipeable .track {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swipeable .track {
+    gap: 4px;
+  }
+}

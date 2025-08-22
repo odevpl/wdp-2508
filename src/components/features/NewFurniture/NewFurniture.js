@@ -38,7 +38,6 @@ class NewFurniture extends React.Component {
   };
 
   leftAction(pagesCount) {
-    //console.log('<- left');
     const newPage = this.state.activePage + 1;
     if (newPage < 0) {
       return;
@@ -50,7 +49,6 @@ class NewFurniture extends React.Component {
   }
 
   rightAction(pagesCount) {
-    //console.log('right ->');
     const newPage = this.state.activePage - 1;
     if (newPage < 0) {
       return;
@@ -62,7 +60,7 @@ class NewFurniture extends React.Component {
   }
 
   render() {
-    const { categories, products } = this.props;
+    const { categories, products, viewport } = this.props;
     const { activeCategory, activePage, counter } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
@@ -71,15 +69,24 @@ class NewFurniture extends React.Component {
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
       dots.push(
-        <li>
+        <li key={i}>
           <a
             onClick={() => this.handlePageChange(i)}
-            className={i === activePage && styles.active}
+            className={i === activePage ? styles.active : undefined}
           >
             page {i}
           </a>
         </li>
       );
+    }
+
+    let colSize = 'col-12';
+    if (viewport.mode === 'desktop') {
+      colSize = 'col-3';
+    } else if (viewport.mode === 'tablet') {
+      colSize = 'col-4';
+    } else if (viewport.mode === 'mobile') {
+      colSize = 'col-sm-6 col-12';
     }
 
     return (
@@ -95,7 +102,9 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        className={item.id === activeCategory && styles.active}
+                        className={
+                          item.id === activeCategory ? styles.active : undefined
+                        }
                         onClick={() => this.handleCategoryChange(item.id)}
                       >
                         {item.name}
@@ -117,7 +126,7 @@ class NewFurniture extends React.Component {
               {categoryProducts
                 .slice(activePage * 8, (activePage + 1) * 8)
                 .map(item => (
-                  <div key={item.id} className='col-12 col-sm-6 col-md-4 col-lg-3'>
+                  <div key={item.id} className={colSize}>
                     <ProductBox
                       {...item}
                       handleCompare={() => this.handleCompare(item)}
@@ -178,11 +187,16 @@ NewFurniture.propTypes = {
       newFurniture: PropTypes.bool,
     })
   ),
+  viewport: PropTypes.shape({
+    width: PropTypes.number,
+    mode: PropTypes.string,
+  }),
 };
 
 NewFurniture.defaultProps = {
   categories: [],
   products: [],
+  viewport: { width: 1024, mode: 'desktop' },
 };
 
 export default NewFurniture;

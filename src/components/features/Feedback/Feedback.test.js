@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MenuBar from './MenuBar';
+import Feedback from './Feedback';
 import { Provider } from 'react-redux';
 import store from '../../../redux/store';
 
-describe('Component MenuBar', () => {
+describe('Component Feedback', () => {
   it('should render without crashing', () => {
     const component = shallow(
       <Provider store={store}>
-        <MenuBar />
+        <Feedback />
       </Provider>
     );
     expect(component).toBeTruthy();

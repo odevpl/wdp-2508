@@ -283,6 +283,36 @@ const initialState = {
   cart: {
     products: [],
   },
+  feedback: [
+    {
+      id: '1',
+      name: 'John Doe',
+      description: 'Homeowner',
+      comment:
+        'The service was exceptional and the quality of the products exceeded my expectations. Every piece of furniture fits perfectly in my home and adds a touch of elegance. I highly recommend this company to anyone looking for premium furniture.',
+      image: '/images/feedback/john_doe.jpg',
+    },
+    {
+      id: '2',
+      name: 'Mike Smith',
+      description: 'Designer',
+      comment:
+        'I am truly impressed by the unique furniture designs and the attention to detail. The pieces are both stylish and comfortable, making my studio a more creative and inviting space. I will definitely purchase more items in the future.',
+      image: '/images/feedback/mike_smith.jpg',
+    },
+    {
+      id: '3',
+      name: 'Alice Johnson',
+      description: 'Interior Decorator',
+      comment:
+        'This is the best place for modern furniture! The selection is fantastic and the quality is outstanding. My clients are always pleased with the results, and I appreciate the excellent customer support throughout the entire process.',
+      image: '/images/feedback/alice_johnson.jpg',
+    },
+  ],
+  viewport: {
+    width: 1024,
+    mode: 'desktop',
+  },
 };
 
 export default initialState;
