@@ -4,6 +4,32 @@
   background-color: #ffffff;
   border: 1px solid #e1e1e1;
   margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  @extend %hover-effect;
+
+  &:hover {
+    box-shadow: 0 2px 10px rgba($black, 0.1);
+
+    .photo {
+      background-color: darken($light-bg, 5%);
+    }
+
+    .photo .buttons {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    // Hover dla ceny
+    .actions .price {
+      background-color: $primary;
+      color: $white;
+
+      button {
+        color: $white;
+      }
+    }
+  }
 
   .photo {
     position: relative;
@@ -15,22 +41,31 @@
       repeat: no-repeat;
     }
     overflow: hidden;
-    align-items: flex-end;
 
     .sale {
       position: absolute;
       top: -30px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #292929;
+      background-color: $form-border-color;
       border-radius: 50%;
-      color: #ffffff;
+      color: $white;
       padding: 30px 15px 5px 15px;
+      z-index: 1;
     }
 
     .buttons {
       display: flex;
       justify-content: space-between;
+      gap: 5px;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity $hover-bg-time $hover-transition,
+        transform $hover-transform-time $hover-transition;
     }
     .button {
       @media (max-width: 1199px) {
@@ -51,21 +86,26 @@
       line-height: 24px;
       letter-spacing: 1px;
       transition: color 500ms ease;
-    }:hover{
+    }
+    :hover {
       color: $text-color;
     }
 
     .stars {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+
       a {
         text-decoration: none;
-        color: rgb(42, 42, 42);
+        color: $text-color;
       }
     }
   }
 
   .line {
     margin: 0 10px;
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid $text-color;
     position: relative;
 
     &::before {
@@ -84,6 +124,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .outlines {
+      display: flex;
+      gap: 5px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: $primary;
+      background-color: transparent; // zawsze widoczna
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        color: inherit;
+        transition: color 0.3s ease, background-color 0.3s ease;
+      }
+    }
+
     .active {
       background-color: $primary;
     }

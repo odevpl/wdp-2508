@@ -1,6 +1,9 @@
+// src/components/common/ProductBox/ProductBox.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleFavourite } from '../../../redux/productsRedux';
 
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,9 +15,6 @@ import {
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import StarRating from '../../features/StarRating/StarRating';
-
-import { useDispatch } from 'react-redux';
-import { toggleFavourite } from '../../../redux/productsRedux';
 
 const ProductBox = ({
   id,
@@ -35,6 +35,11 @@ const ProductBox = ({
     dispatch(toggleFavourite(id));
   };
 
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(price);
+
   return (
     <div className={styles.root} style={{ '--ProductBox-bg-image': `url(${image})` }}>
       <Link to={`/product/${id}`}>
@@ -51,6 +56,7 @@ const ProductBox = ({
           </div>
         </div>
       </Link>
+
       <div className={styles.content}>
         <h5>
           <Link to={`/product/${id}`} className={styles.name}>
@@ -59,7 +65,9 @@ const ProductBox = ({
         </h5>
         <StarRating id={id} stars={stars} userStars={userStars} />
       </div>
+
       <div className={styles.line}></div>
+
       <div className={styles.actions}>
         <div className={styles.outlines}>
           <Button
@@ -79,9 +87,10 @@ const ProductBox = ({
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
+
         <div className={styles.price}>
           <Button noHover variant='small'>
-            $ {price}
+            {formattedPrice}
           </Button>
         </div>
       </div>

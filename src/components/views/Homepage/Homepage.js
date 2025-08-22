@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import Brands from '../../features/Brands/Brand';
 
 import styles from './Homepage.module.scss';
 
@@ -14,9 +14,8 @@ const Homepage = () => (
     <FeatureBoxes />
     <NewFurniture />
     <FurnitureGallery />
+    <Brands />
   </div>
 );
-
-// Homepage.propTypes = {};
 
 export default Homepage;
