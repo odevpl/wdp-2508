@@ -31,28 +31,11 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
+import StarRating from '../../features/StarRating/StarRating';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const product = useSelector(state => getProductById(state, productId));
-
-  // Placeholder starts generator for render only
-  function generateStars(stars) {
-    let starsArray = [];
-
-    for (let i = 0; i < stars; i++) {
-      starsArray.push(<FontAwesomeIcon key={i} icon={faStar}></FontAwesomeIcon>);
-    }
-    if (starsArray.length < 5) {
-      for (let i = stars; i < 5; i++) {
-        starsArray.push(
-          <FontAwesomeIcon key={i} icon={faStarOutline}></FontAwesomeIcon>
-        );
-      }
-    }
-    return starsArray;
-  }
-  // Placeholder ends
 
   return (
     <div className={styles.root}>
@@ -119,7 +102,7 @@ const ProductPage = () => {
                   <h3>{product.name}</h3>
                   <p>
                     <span className={styles.starts}>
-                      {generateStars(product.stars)}
+                      <StarRating stars={product.stars} variant={'renderOnly'} />
                     </span>
                     <span className={styles.reviews}>{'(0 reviews )'}</span>
                     <span className={styles.addReview}>
