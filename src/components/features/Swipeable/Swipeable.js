@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Swipeable.module.scss';
 
 const Swipeable = ({ leftAction, rightAction, children, className }) => {
   const touchData = {
@@ -24,7 +25,7 @@ const Swipeable = ({ leftAction, rightAction, children, className }) => {
 
   return (
     <div
-      className={className}
+      className={`${styles.swipeable} ${className || ''}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
