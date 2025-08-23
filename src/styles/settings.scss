@@ -1,39 +1,19 @@
-// !!! NIE UŻYWAĆ ZMIENNYCH Z SEKCJI "KOLORY BAZOWE" BEZPOŚREDNIO W KOMPONENTACH !!!
-// Kolory bazowe - definicje
-$black: #000000;
-$white: #ffffff;
-$darkGray-1: #2a2a2a;
-$darkGray-2: #363636;
-$darkGray-3: #434343;
-$darkGray-4: #292929;
-$primary-orange: #d58e32;
-$light-gray-1: #f4f5f7;
-$light-gray-2: #e1e1e1;
+$base-padding: 24px;
 
-// !!! UŻYWAJ TYLKO ZMIENNYCH Z PONIŻSZEJ SEKCJI W KOMPONENTACH !!!
-// Mapowanie kolorów na zastosowania
-// Nagłówek
-$header-topbar-bg: $darkGray-3;
-$header-bg: $darkGray-2;
+$header-topbar-bg: #434343;
+$header-bg: #363636;
 
-// Stopka
-$footer-claim-bg: $darkGray-1;
-$footer-bg: $darkGray-2;
+$footer-claim-bg: #2a2a2a;
+$footer-bg: #363636;
 
-// Tekst
-$text-color: $darkGray-1;
+$primary: #d58e32;
 
-// Formularze
-$form-border-color: $darkGray-4;
-$light-bg: $light-gray-1;
-$border-color: $light-gray-2;
+$text-color: #2a2a2a;
 
-// Efekty hover
-$primary: $primary-orange;
-$hover-bg: $primary-orange;
-$hover-color: $white;
+$form-border-color: #292929;
 
-// Animacje
+$hover-bg: $primary;
+$hover-color: #ffffff;
 $hover-bg-time: 250ms;
 $hover-color-time: 250ms;
 $hover-transform-time: 250ms;
@@ -41,10 +21,8 @@ $hover-transition: ease;
 $hover-transform: none;
 $hover-text-decoration: none;
 
-// Dodatkowe kolory
 $spotlight-color: #79ae30;
 
-// Mixiny hover
 %hover-style {
   transition: background-color $hover-bg-time $hover-transition,
     color $hover-color-time $hover-transition,
@@ -57,10 +35,3 @@ $spotlight-color: #79ae30;
     text-decoration: $hover-text-decoration;
   }
 }
-
-%hover-effect {
-  transition: all $hover-bg-time $hover-transition;
-}
-
-// Inne
-$base-padding: 24px;

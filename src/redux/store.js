@@ -4,7 +4,6 @@ import initialState from './initialState';
 import cartReducer from './cartRedux';
 import categoriesReducer from './categoriesRedux';
 import productsReducer from './productsRedux';
-import brandsReducer from './brandsRedux'; // <-- poprawny import
 import viewportReducer from './viewportRedux';
 
 // define reducers
@@ -12,13 +11,12 @@ const reducers = {
   cart: cartReducer,
   categories: categoriesReducer,
   products: productsReducer,
-  brands: brandsReducer, // <-- dodany brandsReducer
   viewport: viewportReducer,
 };
 
 // add blank reducers for initial state properties without reducers
 Object.keys(initialState).forEach(item => {
-  if (typeof reducers[item] === 'undefined') {
+  if (typeof reducers[item] == 'undefined') {
     reducers[item] = (statePart = null) => statePart;
   }
 });
