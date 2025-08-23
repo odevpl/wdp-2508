@@ -30,6 +30,11 @@ const MenuBar = ({ children }) => {
                   Home
                 </Link>
               </li>
+              <li>
+                <Link to='/shop' className={path === '/shop' ? styles.active : ''}>
+                  Furniture
+                </Link>
+              </li>
               {categories.map(category => (
                 <li key={category.id}>
                   <Link
@@ -61,6 +66,11 @@ const MenuBar = ({ children }) => {
                 <li>
                   <Link to='/' className='dropdown-item'>
                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/shop' className='dropdown-item'>
+                    Furniture
                   </Link>
                 </li>
                 {categories.map(category => (

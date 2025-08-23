@@ -29,11 +29,13 @@ export default function PromotionSection({ id }) {
 
   const promotion = products[index];
 
-  function handleLeft() {
+  function handleLeft(e) {
+    if (e) e.preventDefault();
     setIndex(el => (el + 1) % products.length);
   }
 
-  function handleRight() {
+  function handleRight(e) {
+    if (e) e.preventDefault();
     setIndex(el => (el - 1 + products.length) % products.length);
   }
 
