@@ -9,7 +9,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { starRating } from '../../../redux/productsRedux';
 
-const StarRating = ({ id, stars, userStars }) => {
+const StarRating = ({ id, stars, userStars, variant }) => {
   const [hoveredStar, setHoveredStar] = React.useState(0);
   const [myStars, setMyStars] = React.useState(userStars);
   const currentStarsValue = myStars || stars;
@@ -32,7 +32,7 @@ const StarRating = ({ id, stars, userStars }) => {
   };
 
   return (
-    <div className={styles.stars}>
+    <div className={`${styles.stars} ${variant ? styles[variant] : ''}`}>
       {[1, 2, 3, 4, 5].map(i => (
         <a
           key={i}
@@ -56,10 +56,15 @@ const StarRating = ({ id, stars, userStars }) => {
   );
 };
 
+StarRating.defaultProps = {
+  variant: 'default', // Add this line
+};
+
 StarRating.propTypes = {
   id: PropTypes.string,
   stars: PropTypes.number,
   userStars: PropTypes.number,
+  variant: PropTypes.string,
 };
 
 export default StarRating;

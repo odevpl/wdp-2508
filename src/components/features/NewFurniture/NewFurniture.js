@@ -69,10 +69,10 @@ class NewFurniture extends React.Component {
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
       dots.push(
-        <li key={i}>
+        <li>
           <a
             onClick={() => this.handlePageChange(i)}
-            className={i === activePage ? styles.active : undefined}
+            className={i === activePage && styles.active}
           >
             page {i}
           </a>
@@ -102,9 +102,7 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        className={
-                          item.id === activeCategory ? styles.active : undefined
-                        }
+                        className={item.id === activeCategory && styles.active}
                         onClick={() => this.handleCategoryChange(item.id)}
                       >
                         {item.name}

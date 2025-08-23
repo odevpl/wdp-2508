@@ -44,11 +44,13 @@ export default function PromotionSection({ id }) {
     pause.current = Date.now() + 10000;
   }
 
-  function handleRight() {
+  function handleRight(e) {
+    if (e) e.preventDefault();
     setRightIndex(el => (el + 1) % products.length);
   }
 
-  function handleLeft() {
+  function handleLeft(e) {
+    if (e) e.preventDefault();
     setRightIndex(el => (el - 1 + products.length) % products.length);
   }
 
