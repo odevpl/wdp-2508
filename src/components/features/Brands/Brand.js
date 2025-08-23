@@ -9,38 +9,41 @@ const Brands = () => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 6,
-  slidesToScroll: 6,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
       },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
       },
-    },
-  ],
-};
-
+    ],
   };
 
   const swipeRight = () => {
     setCurrentIndex(prev => Math.max(prev - visibleCount, 0));
   };
 
+  const swipeLeft = () => {
+    // TODO
+  };
+
+  const maxIndex = 0; // TODO
   const isAtStart = currentIndex === 0;
   const isAtEnd = currentIndex === maxIndex;
 
