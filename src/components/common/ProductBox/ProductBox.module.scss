@@ -51,8 +51,9 @@
       line-height: 24px;
       letter-spacing: 1px;
       transition: color 500ms ease;
-    }:hover{
-      color: $text-color;
+      &:hover{
+        color: $text-color;
+      }
     }
 
     .stars {
