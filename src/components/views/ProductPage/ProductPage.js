@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductPage.module.scss';
 import Button from '../../common/Button/Button';
@@ -56,22 +56,9 @@ const ProductPage = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.bannerColor}></div>
       <div className='container'>
-        <div className={styles.banner}>
-          <h2 className={styles.bTitle}>{product.productCategory}</h2>
-          <p className={styles.bPath}>
-            <a href='/'>{'Home'}</a>
-            {<span> {'>'} </span>}
-            <a href={'/' + product.productCategory}>{product.productCategory}</a>
-            {<span> {'>'} </span>}
-            <a href={'/' + product.category} className={styles.active}>
-              {product.category}
-            </a>
-          </p>
-        </div>
-        <div className={styles.productWrapper + ' ' + styles.section}>
-          <div className={styles.product + ' row'}>
+        <div className={`${styles.productWrapper} ${styles.section}`}>
+          <div className={`${styles.product} row`}>
             <div className='col-6'>
               <div className={styles.productGallery}>
                 <div className={styles.mainImg}>
@@ -84,7 +71,7 @@ const ProductPage = () => {
                 </div>
                 <div className={styles.thumbnailsWrapper}>
                   <div className={styles.thumbnails}>
-                    <div className={styles.thumbnail + ' ' + styles.active}>
+                    <div className={`${styles.thumbnail} ${styles.active}`}>
                       {<img src={product.image} alt={product.name} />}
                     </div>
                     <div className={styles.thumbnail}>
@@ -103,12 +90,12 @@ const ProductPage = () => {
                       {<img src={product.image} alt={product.name} />}
                     </div>
 
-                    <div className={styles.controlBtn + ' ' + styles.left}>
+                    <div className={`${styles.controlBtn} ${styles.left}`}>
                       <Button variant='outline'>
                         <FontAwesomeIcon icon={faChevronLeft}>Left</FontAwesomeIcon>
                       </Button>
                     </div>
-                    <div className={styles.controlBtn + ' ' + styles.right}>
+                    <div className={`${styles.controlBtn} ${styles.right}`}>
                       <Button variant='outline'>
                         <FontAwesomeIcon icon={faChevronRight}>Right</FontAwesomeIcon>
                       </Button>
@@ -128,29 +115,27 @@ const ProductPage = () => {
                   </Button>
                 </div>
 
-                <div className={styles.group + ' ' + styles.productTitle}>
+                <div className={`${styles.group} ${styles.productTitle}`}>
                   <h3>{product.name}</h3>
                   <p>
                     <span className={styles.starts}>
                       {generateStars(product.stars)}
                     </span>
-                    <span className={styles.reviews}>
-                      {'(' + '0' + ' reviews' + ')'}
-                    </span>
+                    <span className={styles.reviews}>{'(0 reviews )'}</span>
                     <span className={styles.addReview}>
                       <a href='#'>Add Your review</a>
                     </span>
                   </p>
                 </div>
 
-                <div className={styles.group + ' ' + styles.productPrice}>
+                <div className={`${styles.group} ${styles.productPrice}`}>
                   <p>
                     <span className={styles.oldPrice}>${product.price}</span>
                     <span className={styles.newPrice}>${product.promoPrice}</span>
                   </p>
                 </div>
 
-                <div className={styles.group + ' ' + styles.productShopBtns}>
+                <div className={`${styles.group} ${styles.productShopBtns}`}>
                   <div className={styles.actionBtns}>
                     <Button variant='addToCart'>
                       <FontAwesomeIcon icon={faShoppingBasket}>
@@ -188,12 +173,12 @@ const ProductPage = () => {
                   </form>
                 </div>
 
-                <div className={styles.group + ' ' + styles.quickOverview}>
+                <div className={`${styles.group} ${styles.quickOverview}`}>
                   <h4>Quick Overview</h4>
                   <p>{product.overview.quick}</p>
                 </div>
 
-                <div className={styles.group + ' ' + styles.productDetails}>
+                <div className={`${styles.group} ${styles.productDetails}`}>
                   <p>
                     <span className={styles.option}>Availability:</span>
                     {product.availability}
@@ -204,9 +189,9 @@ const ProductPage = () => {
                   </p>
                 </div>
 
-                <ul className={styles.group + ' ' + styles.socials}>
+                <ul className={`${styles.group} ${styles.socials}`}>
                   <li>
-                    <a href='#' className={styles.btnSocial + ' ' + styles.facebook}>
+                    <a href='#' className={`${styles.btnSocial} ${styles.facebook}`}>
                       <span>
                         <FontAwesomeIcon icon={faFacebookF}>Facebook</FontAwesomeIcon>
                       </span>{' '}
@@ -214,7 +199,7 @@ const ProductPage = () => {
                     </a>
                   </li>
                   <li>
-                    <a href='#' className={styles.btnSocial + ' ' + styles.google}>
+                    <a href='#' className={`${styles.btnSocial} ${styles.google}`}>
                       <span>
                         <FontAwesomeIcon icon={faGooglePlusG}>
                           GooglePlus
@@ -224,7 +209,7 @@ const ProductPage = () => {
                     </a>
                   </li>
                   <li>
-                    <a href='#' className={styles.btnSocial + ' ' + styles.twitter}>
+                    <a href='#' className={`${styles.btnSocial} ${styles.twitter}`}>
                       <span>
                         <FontAwesomeIcon icon={faTwitter}>Twitter</FontAwesomeIcon>
                       </span>{' '}
@@ -232,7 +217,7 @@ const ProductPage = () => {
                     </a>
                   </li>
                   <li>
-                    <a href='#' className={styles.btnSocial + ' ' + styles.pinterest}>
+                    <a href='#' className={`${styles.btnSocial} ${styles.pinterest}`}>
                       <span>
                         <FontAwesomeIcon icon={faPinterestP}>Pinterest</FontAwesomeIcon>
                       </span>{' '}
@@ -240,7 +225,7 @@ const ProductPage = () => {
                     </a>
                   </li>
                   <li>
-                    <a href='#' className={styles.btnSocial + ' ' + styles.linkedin}>
+                    <a href='#' className={`${styles.btnSocial} ${styles.linkedin}`}>
                       <span>
                         <FontAwesomeIcon icon={faLinkedinIn}>LinkedIn</FontAwesomeIcon>
                       </span>{' '}

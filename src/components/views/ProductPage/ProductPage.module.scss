@@ -8,63 +8,6 @@
 
   }
 
- .bannerColor {
-  position: absolute;
-  background-color: #7F7F7F;
-  color: #ffffff;
-  padding: 1rem 0;
-  height: 340px;
-  width: 100%;
-  left: 0;
-  right: 0;
-  z-index: -1;
-
- }
-
-  .banner {
-    padding-block: calc($base-padding);
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    text-transform: capitalize;
-
-  .bTitle, .bPath{
-    padding: 0;
-    margin: 0;
-    display: block;
-    width: fit-content;
-  }
-
-  .bTitle{
-    font-size: 24px;
-    color: #DEDEDE;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .bPath{
-    font-size: 13px;
-    color: #DEDEDE;
-    font-weight: 400;
-
-    span {
-      padding-inline: 0.5rem;
-    }
-
-    a {
-      font-size: inherit;
-      color: inherit;
-      font-weight: inherit;
-      cursor: pointer;
-
-      &.active {
-        font-weight: bold;
-      }
-    }
-  }
-
-  }
-
  .productWrapper {
   padding-bottom: calc($base-padding);
   background: #ffffff;
