@@ -8,7 +8,7 @@ const ProductList = () => {
       <div className='row no-gutters'>
         <div className='col-12 text-center'>Banner</div>
       </div>
-      <div className='row bg-light no-gutters'>
+      <div className='row no-gutters'>
         <div className='col-9 p-2 text-center'>Product List</div>
         <div className='col-3 p-2'>
           <h5 className='p-2'>Filters</h5>
