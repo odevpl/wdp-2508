@@ -1,13 +1,24 @@
 @import "../../../styles/settings.scss";
 
 .stars {
+
+&.default{
   a {
-    text-decoration: none;   
+    text-decoration: none;
   }
   .starUser {
     color: $primary;
   }
   .starDefault {
-    color: black;
+    color: $text-color;
   }
+}
+&.renderOnly {
+  .starDefault{
+    color: $text-color;
+  }
+  user-select: none;
+  pointer-events: none;
+}
+
 }

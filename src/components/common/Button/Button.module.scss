@@ -33,6 +33,19 @@
   @extend %hover-style;
 }
 
+.addToCart {
+  @extend .outline;
+  background-color: $primary;
+  color: #ffffff;
+  border: 1px solid $primary;
+  text-transform: uppercase;
+  font-weight: bold;
+  &:hover {
+    background-color: #ffffff;
+    color: $primary;
+  }
+}
+
 .spotlight {
   @extend .main;
   background-color: $spotlight-color;
