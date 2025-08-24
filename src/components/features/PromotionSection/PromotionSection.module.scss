@@ -1,0 +1,275 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .leftSection {
+    width: 30%;
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    .photo {
+      position: relative;
+      padding: 80% 10px 0 10px;
+      background: {
+        image: var(--ProductBox-bg-image);
+        size: contain;
+        position: center;
+        repeat: no-repeat;
+      }
+      &:hover .buttons {
+        opacity: 1;
+        visibility: visible;
+      }
+      &:hover .timer {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .sale {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: #292929;
+        color: #ffffff;
+
+        .dots {
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          ul {
+            margin-right: 10px;
+            list-style: none;
+
+            li {
+              display: inline-block;
+              margin-left: 0.5rem;
+
+              a {
+                @extend %hover-style;
+                display: block;
+                width: 13px;
+                height: 13px;
+                border-radius: 6px;
+                background-color: #e1e1e1;
+                font-size: 0;
+
+                &.active,
+                &:hover {
+                  background-color: $primary;
+                }
+              }
+            }
+          }
+        }
+      }
+      .timer {
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s;
+      }
+      .timer ul {
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        padding: 0;
+        margin: 0;
+        line-height: 4px;
+        list-style: none;
+        color: white;
+
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 50px;
+          height: 50px;
+          padding-top: 10px;
+          margin: 0 6px;
+          border-radius: 50%;
+          background-color: rgba(0, 0, 0, 0.7);
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .buttons {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        bottom: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+      }
+    }
+    .content {
+      text-align: center;
+      padding: 20px;
+
+      h5 {
+        color: $primary;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 1px;
+      }
+
+      .stars {
+        a {
+          text-decoration: none;
+          color: rgb(42, 42, 42);
+        }
+      }
+    }
+
+    .line {
+      margin: 0 10px;
+      border-bottom: 1px solid #2a2a2a;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        width: 30px;
+        border-bottom: 4px solid $primary;
+        transform: translateX(-50%);
+      }
+    }
+
+    .actions {
+      padding: 15px 10px 10px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .price {
+        display: flex;
+        align-items: center;
+
+        .oldPrice {
+          padding-right: 15px;
+          text-decoration: line-through;
+          color: gray;
+        }
+      }
+    }
+
+    .active {
+      color: $primary;
+      border-color: $primary;
+    }
+  }
+  .rightSection {
+    width: 65%;
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+
+    .rightSectionPhoto {
+      position: relative;
+      padding: 54% 10px 0 10px;
+      background: {
+        image: var(--ProductBox-bg-image);
+        size: contain;
+        position: center;
+        repeat: no-repeat;
+      }
+      .rightSectionDescription {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        padding: 15px 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        @media (max-width: 576px) {
+          padding: 5px 0;
+        }
+        h2 {
+          font-size: 35px;
+          letter-spacing: 2px;
+          @media (max-width: 576px) {
+            font-size: 10px;
+          }
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+      .rightSectionDescription p {
+        @media (max-width: 576px) {
+          font-size: 7px;
+        }
+      }
+      .rightSectionButton {
+        position: absolute;
+        top: 67%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        background-color: #ffffff;
+        padding: 13px;
+        color: black;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        transition: 0.4s;
+        &:hover {
+          background-color: $primary;
+          color: #ffffff;
+        }
+        @media (max-width: 767px) {
+          padding: 5px;
+        }
+        @media (max-width: 576px) {
+          font-size: 10px;
+        }
+      }
+    }
+    .rightSectionButtons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      background-color: black;
+
+      .buttonLeft {
+        @extend %hover-style;
+        padding: 3px 0;
+        width: 50%;
+        color: white;
+        text-align: center;
+      }
+      .buttonRight {
+        @extend %hover-style;
+        padding: 3px 0;
+        width: 50%;
+        color: white;
+        text-align: center;
+      }
+    }
+  }
+  .isActive {
+    background-color: $primary;
+  }
+}
