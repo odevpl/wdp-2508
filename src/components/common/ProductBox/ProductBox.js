@@ -63,6 +63,7 @@ const ProductBox = ({
       </div>
 
       <div className={styles.line}></div>
+
       <div className={styles.actions}>
         <div className={styles.outlines}>
           <Button
@@ -87,7 +88,11 @@ const ProductBox = ({
           {typeof oldPrice === 'number' && oldPrice > price && (
             <span className={styles.oldPrice}>$ {oldPrice}</span>
           )}
-          <Button noHover variant='small'>
+          <Button
+            noHover
+            variant='small'
+            className={styles.priceButton} // <--- KLUCZOWE, żeby SCSS nadpisał tło
+          >
             $ {price}
           </Button>
         </div>

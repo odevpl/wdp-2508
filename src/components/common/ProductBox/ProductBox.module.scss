@@ -4,6 +4,26 @@
   background-color: #ffffff;
   border: 1px solid #e1e1e1;
   margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+
+    .photo .buttons {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    
+    .actions .price .priceButton {
+      background-color: $primary !important;
+      color: #fff !important;
+      border-color: $primary !important;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  }
 
   .photo {
     position: relative;
@@ -31,7 +51,12 @@
     .buttons {
       display: flex;
       justify-content: space-between;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
     }
+
     .button {
       @media (max-width: 1199px) {
         font-size: 11px;
@@ -51,6 +76,7 @@
       line-height: 24px;
       letter-spacing: 1px;
       transition: color 500ms ease;
+
       &:hover {
         color: $text-color;
       }
@@ -97,6 +123,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
+
+    
+    .priceButton {
+      border: 1px solid transparent;
+    }
   }
 
   .oldPrice {
