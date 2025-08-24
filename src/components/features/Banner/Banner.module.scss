@@ -1,0 +1,73 @@
+@import "../../../styles/settings.scss";
+
+.dimension {
+  margin-top: -24px;
+  //margin-bottom: -24px;
+}
+
+.advert {
+  background-color: $header-topbar-bg;
+  color: white;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.advertTitle {
+  margin-top: -10px;
+  font-size: 48px;       
+  font-weight: 700;
+  letter-spacing: 4px;
+  display: flex;
+  gap: 20px;             
+  justify-content: center;
+}
+
+.light {
+  font-weight: 300;
+}
+.bold {
+  font-weight: 900;
+}
+
+.advertSubtitle {
+  margin-left: 10px;
+  margin-top: -10px;
+  font-size: 26px;
+  letter-spacing: 10px;
+  word-spacing: 8px;
+  text-transform: uppercase;
+  font-weight: 400;
+  .highlight {
+    color: $primary;
+    font-weight: 700;
+  }
+}
+
+.navigation {
+  background-color: #e0e0e0;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  
+  a {
+    text-decoration: none;
+    color: $text-color;
+    transition: color 250ms ease;
+    &:hover{
+      text-decoration: none;
+      color: $primary;
+    }
+  } 
+  a.active{
+    text-decoration: none;
+    color: $primary;
+  }
+  span {
+    padding: 0 10px;
+  }
+}
