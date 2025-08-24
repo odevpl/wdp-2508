@@ -2,11 +2,10 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductPage.module.scss';
 import Button from '../../common/Button/Button';
+import StarRating from '../../features/StarRating/StarRating';
 
 import { useParams } from 'react-router';
-
 import { useSelector } from 'react-redux';
-
 import { getProductById } from '../../../redux/productsRedux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,10 +19,7 @@ import {
   faEnvelope,
   faPlus,
   faMinus,
-  faStar,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 import {
   faFacebookF,
   faTwitter,
@@ -31,7 +27,6 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
-import StarRating from '../../features/StarRating/StarRating';
 
 const ProductPage = () => {
   const { productId } = useParams();
