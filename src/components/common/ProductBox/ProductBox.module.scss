@@ -51,7 +51,7 @@
       line-height: 24px;
       letter-spacing: 1px;
       transition: color 500ms ease;
-      &:hover{
+      &:hover {
         color: $text-color;
       }
     }
@@ -85,8 +85,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .active {
       background-color: $primary;
+      color: $primary;
+      border-color: $primary;
     }
+  }
+
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .oldPrice {
+    text-decoration: line-through;
+    opacity: 0.6;
+    font-size: 0.95em;
   }
 }
