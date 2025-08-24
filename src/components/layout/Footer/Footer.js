@@ -17,7 +17,7 @@ const Footer = ({ children }) => (
     <div className={styles.footerMenu}>
       <div className='container'>
         <div className='row'>
-          <div className='col'>
+          <div className='col-12 text-center text-sm-left col-sm-6 col-md-3'>
             <div className={styles.menuWrapper}>
               <h6>Information</h6>
               <ul>
@@ -36,7 +36,7 @@ const Footer = ({ children }) => (
               </ul>
             </div>
           </div>
-          <div className='col'>
+          <div className='col-12 text-center text-sm-left col-sm-6 col-md-3'>
             <div className={styles.menuWrapper}>
               <h6>My account</h6>
               <ul>
@@ -55,7 +55,7 @@ const Footer = ({ children }) => (
               </ul>
             </div>
           </div>
-          <div className='col'>
+          <div className='col-12 text-center text-sm-left col-sm-6 col-md-3'>
             <div className={styles.menuWrapper}>
               <h6>Information</h6>
               <ul>
@@ -74,7 +74,7 @@ const Footer = ({ children }) => (
               </ul>
             </div>
           </div>
-          <div className='col'>
+          <div className='col-12 text-center text-sm-left col-sm-6 col-md-3'>
             <div className={styles.menuWrapper}>
               <h6>Orders</h6>
               <ul>
@@ -92,7 +92,13 @@ const Footer = ({ children }) => (
                 </li>
               </ul>
             </div>
-            <img src='./images/cards.png' alt='Supported credit cards' />
+            <div className={styles.paymentMethods + 'd-flex justify-content-center'}>
+              <img
+                src='./images/cards.png'
+                alt='Supported credit cards'
+                className='img-fluid'
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -100,11 +106,20 @@ const Footer = ({ children }) => (
     <div className={styles.bottomBar}>
       <div className='container'>
         <div className='row align-items-center'>
-          <div className='col'></div>
-          <div className={'col text-center ' + styles.copyright}>
+          <div className='col-12 col-md-4 text-center text-md-left mb-2 mb-md-0'></div>
+          <div
+            className={
+              'col-12 col-sm-7 col-md-4 text-center text-sm-left text-md-center ' +
+              styles.copyright
+            }
+          >
             <p>©Copyright 2016 Bazar | All Rights Reserved</p>
           </div>
-          <div className={'col text-right ' + styles.socialMedia}>
+          <div
+            className={
+              'col-12 col-sm-5 col-md-4 text-center text-sm-right ' + styles.socialMedia
+            }
+          >
             <ul>
               <li>
                 <a href='#'>

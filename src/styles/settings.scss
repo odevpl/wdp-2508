@@ -21,6 +21,8 @@ $hover-transition: ease;
 $hover-transform: none;
 $hover-text-decoration: none;
 
+$spotlight-color: #79ae30;
+
 %hover-style {
   transition: background-color $hover-bg-time $hover-transition,
     color $hover-color-time $hover-transition,

@@ -1,0 +1,83 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  margin-block: 2rem;
+  .titleBar {
+    margin-bottom: 30px;
+    position: relative;
+
+    .bar {
+      border-bottom: 4px solid #e2e2e2;
+    }
+
+    .heading {
+      position: relative;
+
+      h3 {
+        color: $primary;
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 38px;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 45px;
+        border-bottom: 4px solid $primary;
+      }
+    }
+  }
+
+  .spotlight {
+  background: #e2e2e2;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    margin: auto;
+
+  }
+
+    .productInfo {
+      $base-padding: 32px;
+      z-index: 1;
+      position: absolute;
+      top: 4rem;
+      left: 4rem;
+
+      p{
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 0;
+        padding-bottom: $base-padding;
+        span{
+          font-size: 48px;
+          color: $spotlight-color;
+        }
+      }
+
+      h3{
+        font-size: 48px;
+        line-height: 38px;
+        color: #d58e32;
+        font-weight: 600;
+        padding-bottom: calc($base-padding + 5px);
+        text-transform: capitalize;
+      }
+  }
+  }
+
+}
