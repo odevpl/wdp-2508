@@ -67,7 +67,7 @@
                 background-color: #e1e1e1;
                 font-size: 0;
 
-                &.active,
+                &.isActive,
                 &:hover {
                   background-color: $primary;
                 }
