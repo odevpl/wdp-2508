@@ -1,10 +1,5 @@
 @import "../../../styles/settings.scss";
 
-.dimension {
-  margin-top: -24px;
-  //margin-bottom: -24px;
-}
-
 .advert {
   background-color: $header-topbar-bg;
   color: white;
@@ -70,4 +65,14 @@
   span {
     padding: 0 10px;
   }
+}
+
+.productBackground {
+    background-color: #e0e0e0;
+    height: 160px;
+    margin-bottom: auto;
+}
+
+.dimensions {
+    margin-bottom: -100px;
 }
