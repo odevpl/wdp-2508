@@ -46,7 +46,7 @@
 .arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-55%);
   background-color: #292929;
   color: #fff;
   border: none;
@@ -55,11 +55,12 @@
   height: 60px;
   cursor: pointer;
   font-size: 24px;
-  z-index: 10;
+  z-index: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s;
+  padding-bottom: 5px;
 
   &:hover {
     background-color: rgba(0,0,0,0.8);
