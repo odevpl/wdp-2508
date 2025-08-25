@@ -20,6 +20,7 @@ const ProductBox = ({
   id,
   name,
   price,
+  oldPrice,
   promo,
   stars,
   userStars,
@@ -51,6 +52,7 @@ const ProductBox = ({
           </div>
         </div>
       </Link>
+
       <div className={styles.content}>
         <h5>
           <Link to={`/product/${id}`} className={styles.name}>
@@ -59,6 +61,7 @@ const ProductBox = ({
         </h5>
         <StarRating id={id} stars={stars} userStars={userStars} />
       </div>
+
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
@@ -79,7 +82,11 @@ const ProductBox = ({
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
+
         <div className={styles.price}>
+          {typeof oldPrice === 'number' && oldPrice > price && (
+            <span className={styles.oldPrice}>$ {oldPrice}</span>
+          )}
           <Button noHover variant='small'>
             $ {price}
           </Button>
@@ -94,6 +101,7 @@ ProductBox.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
+  oldPrice: PropTypes.number,
   promo: PropTypes.string,
   stars: PropTypes.number,
   userStars: PropTypes.number,

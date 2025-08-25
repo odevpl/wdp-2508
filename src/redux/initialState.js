@@ -21,7 +21,8 @@ const initialState = {
       category: 'bed',
       marketingTags: ['featured'],
       price: 30,
-      promoPrice: 25,
+      oldPrice: 40, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 3,
       promo: 'sale',
@@ -41,7 +42,8 @@ const initialState = {
       category: 'bed',
       marketingTags: ['featured'],
       price: 30,
-      promoPrice: 25,
+      oldPrice: 35, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 0,
       promo: 'sale',
@@ -61,7 +63,8 @@ const initialState = {
       category: 'bed',
       marketingTags: ['saleOff'],
       price: 30,
-      promoPrice: 25,
+      oldPrice: 37, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 5,
       promo: 'sale',
@@ -81,7 +84,8 @@ const initialState = {
       category: 'bed',
       marketingTags: ['topRated'],
       price: 30,
-      promoPrice: 25,
+      oldPrice: 42, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 0,
       promo: 'sale',
