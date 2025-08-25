@@ -68,11 +68,15 @@
 }
 
 .productBackground {
-    background-color: #e0e0e0;
-    height: 160px;
-    margin-bottom: auto;
+  position: absolute;
+  background-color: #e0e0e0;
+  height: 180px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  margin: 0 15px;
 }
 
-.dimensions {
-    margin-bottom: -100px;
+.dimension {
+    position: relative;
 }
