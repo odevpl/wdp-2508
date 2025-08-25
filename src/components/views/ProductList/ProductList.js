@@ -6,9 +6,11 @@ import Banner from '../../features/Banner/Banner';
 const ProductList = () => {
   //ProductList component implementation
   return (
-    <div className={styles.root}>
-      <Banner />;
-    </div>
+    <Banner mode='ProductList'>
+      <div className={styles.root}>
+        <p>This is ProductList page.</p>
+      </div>
+    </Banner>
   );
 };
 
