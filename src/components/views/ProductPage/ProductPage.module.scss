@@ -128,6 +128,7 @@
         font-size: 22px;
       }
       p {
+        display: flex;
         font-size: 12px;
         font-weight: 400;
         .reviews {
@@ -299,6 +300,103 @@
       }
       }
 
+    }
+
+  }
+
+  .productTabs {
+    border: 1px solid #E6E6E6;
+
+      .tabs {
+        display: flex;
+        height: 54px;
+
+        .tab {
+          background: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #E6E6E6;
+          border-top: none;
+          color: $text-color;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 16px;
+          height: 100%;
+          width: 154px;
+          &:hover {
+            color: $primary;
+            text-decoration: none;
+            border-bottom: none;
+          }
+        }
+
+        .active {
+          border-bottom: none;
+          color: $primary;
+        }
+      }
+
+    .tabContent {
+      padding: 36px;
+      border: 1px solid #E6E6E6;
+      border-top: none;
+      border-bottom: none;
+
+      .tabReview {
+        p, span {
+          padding: 0;
+          margin: 0;
+        }
+
+        .reviews {
+          padding-bottom: 40px;
+        }
+
+        .addReview {
+          font-weight: bold;
+          padding-bottom: 35px;
+        }
+
+        .userRating {
+          padding-bottom: 34px;
+          p {
+            padding-bottom: 26px;
+          }
+          .stars {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+          }
+        }
+
+        .userReview {
+          display: flex;
+          flex-direction: column;
+          textarea {
+            height: 100px;
+            margin-bottom: 20px;
+            resize: none;
+          }
+          .userData {
+            height: 51px;
+            gap:  20px;
+
+            input {
+              padding-left: 1rem;
+            }
+            .submitBtn {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 14px;
+            }
+          }
+        }
+
+      }
     }
 
   }
