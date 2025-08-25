@@ -468,6 +468,11 @@ const initialState = {
     { id: 3, name: 'Home & You', logo: 'https://i.imgur.com/z8BGkzc.png' },
     { id: 4, name: 'Agata', logo: 'https://i.imgur.com/z8BGkzc.png' },
     { id: 5, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 6, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 7, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 8, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 9, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 10, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
   ],
 };
 
