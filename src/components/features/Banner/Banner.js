@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Banner.module.scss';
 import { useLocation } from 'react-router';
@@ -9,9 +9,8 @@ import { useSelector } from 'react-redux';
 const Banner = ({ mode, children }) => {
   const location = useLocation();
   const path = location.pathname;
-  let link = '';
-  let linkCap = '';
-  let classActive = false;
+  const [linkCap, setLinkCap] = useState('');
+  const [classActive, setClassActive] = useState(false);
 
   const productId = location.pathname.includes('/product/')
     ? location.pathname.split('/product/')[1]
@@ -21,15 +20,18 @@ const Banner = ({ mode, children }) => {
     productId ? getProductById(state, productId) : null
   );
 
-  if (mode === 'ProductList' && path !== '/shop') {
-    link = path.split('/shop/')[1];
-    linkCap = link.charAt(0).toUpperCase() + link.slice(1);
-    classActive = true;
-  } else if (mode === 'ProductList' && path === '/shop') {
-    classActive = false;
-  } else if (mode === 'ProductPage') {
-    linkCap = product.name;
-  }
+  useEffect(() => {
+    if (mode === 'ProductList' && path !== '/shop') {
+      const currentLink = path.split('/shop/')[1];
+      setLinkCap(currentLink.charAt(0).toUpperCase() + currentLink.slice(1));
+      setClassActive(true);
+    } else if (mode === 'ProductList' && path === '/shop') {
+      setClassActive(false);
+      setLinkCap('');
+    } else if (mode === 'ProductPage' && product) {
+      setLinkCap(product.name);
+    }
+  }, [mode, path, product]);
 
   return (
     (mode === 'ProductList' && (
@@ -70,7 +72,8 @@ const Banner = ({ mode, children }) => {
             {linkCap}
           </Link>
         </div>
-        <div className={styles.productBackground}>{children}</div>
+        <div className={styles.productBackground}></div>
+        {children}
       </div>
     ))
   );
