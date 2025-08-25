@@ -8,6 +8,9 @@ export const getProductById = ({ products }, productId) =>
 export const getNew = ({ products }) =>
   products.filter(item => item.newFurniture === true);
 
+export const getByMarketingTag = ({ products }, tag) =>
+  products.filter(product => product.marketingTags.includes(tag));
+
 /* actions */
 const createActionName = actionName => `app/products/${actionName}`;
 export const TOGGLE_FAVOURITE = createActionName('TOGGLE_FAVOURITE');
