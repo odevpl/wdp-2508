@@ -10,6 +10,7 @@ const ShopPage = ({ products, viewport }) => {
   const [activePage] = useState(0);
   const [activeCategory] = useState('bed');
   const [counter, setCounter] = useState([]);
+  const [viewMode, setViewMode] = useState('grid');
 
   const handleCompare = product => {
     const exists = counter.find(el => el.id === product.id);
@@ -41,16 +42,28 @@ const ShopPage = ({ products, viewport }) => {
             </div>
             <div className={`col ${styles.menu}`}></div>
             <div className={styles.menuIcon}>
-              <FontAwesomeIcon icon={faGripVertical} />
-              <FontAwesomeIcon icon={faList} />
+              <FontAwesomeIcon
+                icon={faGripVertical}
+                className={viewMode === 'grid' ? styles.active : ''}
+                onClick={() => setViewMode('grid')}
+              />
+              <FontAwesomeIcon
+                icon={faList}
+                className={viewMode === 'list' ? styles.active : ''}
+                onClick={() => setViewMode('list')}
+              />
             </div>
           </div>
         </div>
 
-        <div className='column'>
+        <div className={viewMode === 'grid' ? 'row' : 'column'}>
           {categoryProducts.slice(activePage * 12, (activePage + 1) * 12).map(item => (
-            <div key={item.id} className={colSize}>
-              <ProductBox {...item} handleCompare={() => handleCompare(item)} />
+            <div key={item.id} className={viewMode === 'grid' ? colSize : 'col'}>
+              <ProductBox
+                {...item}
+                viewMode={viewMode}
+                handleCompare={() => handleCompare(item)}
+              />
             </div>
           ))}
         </div>
@@ -97,5 +110,4 @@ ShopPage.propTypes = {
     mode: PropTypes.string,
   }),
 };
-
 export default ShopPage;

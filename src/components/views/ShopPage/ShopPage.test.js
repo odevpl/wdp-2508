@@ -4,8 +4,11 @@ import ShopPage from './ShopPage';
 
 describe('Component ShopPage', () => {
   it('should render without crashing', () => {
-    const categories = ['bed', 'table', 'sofa'];
-    const component = shallow(<ShopPage categories={categories} />);
+    const mockProducts = [];
+    const mockViewport = { width: 1024 };
+    const component = shallow(
+      <ShopPage products={mockProducts} viewport={mockViewport} />
+    );
     expect(component).toBeTruthy();
   });
 });
