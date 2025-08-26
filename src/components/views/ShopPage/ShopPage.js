@@ -44,12 +44,12 @@ const ShopPage = ({ products, viewport }) => {
             <div className={styles.menuIcon}>
               <FontAwesomeIcon
                 icon={faGripVertical}
-                className={viewMode === 'grid' ? styles.active : ''}
+                className={viewMode === 'grid' ? styles.isActive : ''}
                 onClick={() => setViewMode('grid')}
               />
               <FontAwesomeIcon
                 icon={faList}
-                className={viewMode === 'list' ? styles.active : ''}
+                className={viewMode === 'list' ? styles.isActive : ''}
                 onClick={() => setViewMode('list')}
               />
             </div>
