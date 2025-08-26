@@ -8,6 +8,7 @@ import {
   faHeart,
   faExchangeAlt,
   faShoppingBasket,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
@@ -32,6 +33,12 @@ const ProductBox = ({
 }) => {
   const dispatch = useDispatch();
 
+  const description = [
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium diam sit amet ex scelerisque, a aliquam ipsum blandit. Nulla.',
+  ];
+  const gridShow = viewMode === 'grid';
+  const listShow = viewMode === 'list';
+
   const handleToggleFavourite = e => {
     e.preventDefault();
     dispatch(toggleFavourite(id));
@@ -39,20 +46,25 @@ const ProductBox = ({
 
   return (
     <div
-      className={`${styles.root} ${viewMode === 'list' ? styles.list : styles.grid}`}
+      className={`${styles.root} ${listShow ? styles.list : styles.grid}`}
       style={{ '--ProductBox-bg-image': `url(${image})` }}
     >
       <Link to={`/product/${id}`}>
         <div className={styles.photo}>
           {promo && <div className={styles.sale}>{promo}</div>}
           <div className={styles.buttons}>
-            <Button variant='small' className={styles.button}>
+            <Button
+              variant='small'
+              className={`${styles.button} ${styles.quickViewBtn}`}
+            >
               Quick View
             </Button>
-            <Button variant='small'>
-              <FontAwesomeIcon icon={faShoppingBasket} />
-              <span className={styles.button}>ADD TO CART</span>
-            </Button>
+            {gridShow && (
+              <Button variant='small' className={styles.addToCartBtn}>
+                <FontAwesomeIcon icon={faShoppingBasket} />
+                <span className={styles.button}>ADD TO CART</span>
+              </Button>
+            )}
           </div>
         </div>
       </Link>
@@ -63,7 +75,18 @@ const ProductBox = ({
               {name}
             </Link>
           </h5>
+          {listShow && (
+            <div className={styles.price}>
+              {typeof oldPrice === 'number' && oldPrice > price && (
+                <span className={styles.oldPrice}>$ {oldPrice}</span>
+              )}
+              <Button noHover variant='small'>
+                $ {price}
+              </Button>
+            </div>
+          )}
           <StarRating id={id} stars={stars} userStars={userStars} />
+          {listShow && <p>{description}</p>}
         </div>
 
         <div className={styles.line}></div>
@@ -85,16 +108,28 @@ const ProductBox = ({
             >
               <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
             </Button>
-          </div>
-
-          <div className={styles.price}>
-            {typeof oldPrice === 'number' && oldPrice > price && (
-              <span className={styles.oldPrice}>$ {oldPrice}</span>
+            {listShow && (
+              <Button variant='outline'>
+                <FontAwesomeIcon icon={faSearch} />
+              </Button>
             )}
-            <Button noHover variant='small'>
-              $ {price}
-            </Button>
+            {listShow && (
+              <Button variant='small' className={styles.addToCartBtn}>
+                <FontAwesomeIcon icon={faShoppingBasket} />
+                <span className={styles.button}>ADD TO CART</span>
+              </Button>
+            )}
           </div>
+          {gridShow && (
+            <div className={styles.price}>
+              {typeof oldPrice === 'number' && oldPrice > price && (
+                <span className={styles.oldPrice}>$ {oldPrice}</span>
+              )}
+              <Button noHover variant='small'>
+                $ {price}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
