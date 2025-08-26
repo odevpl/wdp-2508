@@ -28,6 +28,7 @@ const ProductBox = ({
   isFavourite,
   isCompared,
   handleCompare,
+  viewMode = 'grid',
 }) => {
   const dispatch = useDispatch();
 
@@ -37,7 +38,10 @@ const ProductBox = ({
   };
 
   return (
-    <div className={styles.root} style={{ '--ProductBox-bg-image': `url(${image})` }}>
+    <div
+      className={`${styles.root} ${viewMode === 'list' ? styles.list : styles.grid}`}
+      style={{ '--ProductBox-bg-image': `url(${image})` }}
+    >
       <Link to={`/product/${id}`}>
         <div className={styles.photo}>
           {promo && <div className={styles.sale}>{promo}</div>}
@@ -52,44 +56,45 @@ const ProductBox = ({
           </div>
         </div>
       </Link>
-
-      <div className={styles.content}>
-        <h5>
-          <Link to={`/product/${id}`} className={styles.name}>
-            {name}
-          </Link>
-        </h5>
-        <StarRating id={id} stars={stars} userStars={userStars} />
-      </div>
-
-      <div className={styles.line}></div>
-      <div className={styles.actions}>
-        <div className={styles.outlines}>
-          <Button
-            variant='outline'
-            onClick={handleToggleFavourite}
-            className={isFavourite ? styles.active : ''}
-          >
-            <FontAwesomeIcon icon={isFavourite ? faHeart : farHeart}>
-              Favorite
-            </FontAwesomeIcon>
-          </Button>
-          <Button
-            variant='outline'
-            onClick={handleCompare}
-            className={isCompared ? styles.active : ''}
-          >
-            <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
-          </Button>
+      <div className={styles.details}>
+        <div className={styles.content}>
+          <h5>
+            <Link to={`/product/${id}`} className={styles.name}>
+              {name}
+            </Link>
+          </h5>
+          <StarRating id={id} stars={stars} userStars={userStars} />
         </div>
 
-        <div className={styles.price}>
-          {typeof oldPrice === 'number' && oldPrice > price && (
-            <span className={styles.oldPrice}>$ {oldPrice}</span>
-          )}
-          <Button noHover variant='small'>
-            $ {price}
-          </Button>
+        <div className={styles.line}></div>
+        <div className={styles.actions}>
+          <div className={styles.outlines}>
+            <Button
+              variant='outline'
+              onClick={handleToggleFavourite}
+              className={isFavourite ? styles.active : ''}
+            >
+              <FontAwesomeIcon icon={isFavourite ? faHeart : farHeart}>
+                Favorite
+              </FontAwesomeIcon>
+            </Button>
+            <Button
+              variant='outline'
+              onClick={handleCompare}
+              className={isCompared ? styles.active : ''}
+            >
+              <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
+            </Button>
+          </div>
+
+          <div className={styles.price}>
+            {typeof oldPrice === 'number' && oldPrice > price && (
+              <span className={styles.oldPrice}>$ {oldPrice}</span>
+            )}
+            <Button noHover variant='small'>
+              $ {price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -109,6 +114,7 @@ ProductBox.propTypes = {
   image: PropTypes.string,
   isFavourite: PropTypes.bool,
   isCompared: PropTypes.bool,
+  viewMode: PropTypes.string,
 };
 
 export default ProductBox;
