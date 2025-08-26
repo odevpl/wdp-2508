@@ -8,6 +8,7 @@ import {
   faHeart,
   faExchangeAlt,
   faShoppingBasket,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
@@ -28,8 +29,15 @@ const ProductBox = ({
   isFavourite,
   isCompared,
   handleCompare,
+  viewMode = 'grid',
 }) => {
   const dispatch = useDispatch();
+
+  const description = [
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium diam sit amet ex scelerisque, a aliquam ipsum blandit. Nulla.',
+  ];
+  const gridShow = viewMode === 'grid';
+  const listShow = viewMode === 'list';
 
   const handleToggleFavourite = e => {
     e.preventDefault();
@@ -37,56 +45,90 @@ const ProductBox = ({
   };
 
   return (
-    <div className={styles.root} style={{ '--ProductBox-bg-image': `url(${image})` }}>
+    <div
+      className={`${styles.root} ${listShow ? styles.list : styles.grid}`}
+      style={{ '--ProductBox-bg-image': `url(${image})` }}
+    >
       <Link to={`/product/${id}`}>
         <div className={styles.photo}>
           {promo && <div className={styles.sale}>{promo}</div>}
           <div className={styles.buttons}>
-            <Button variant='small' className={styles.button}>
+            <Button
+              variant='small'
+              className={`${styles.button} ${styles.quickViewBtn}`}
+            >
               Quick View
             </Button>
-            <Button variant='small'>
-              <FontAwesomeIcon icon={faShoppingBasket} />
-              <span className={styles.button}>ADD TO CART</span>
-            </Button>
+            {gridShow && (
+              <Button variant='small' className={styles.addToCartBtn}>
+                <FontAwesomeIcon icon={faShoppingBasket} />
+                <span className={styles.button}>ADD TO CART</span>
+              </Button>
+            )}
           </div>
         </div>
       </Link>
-
-      <div className={styles.content}>
-        <h5>
-          <Link to={`/product/${id}`} className={styles.name}>
-            {name}
-          </Link>
-        </h5>
-        <StarRating id={id} stars={stars} userStars={userStars} />
-      </div>
-
-      <div className={styles.line}></div>
-
-      <div className={styles.actions}>
-        <div className={styles.outlines}>
-          <Button
-            variant='outline'
-            onClick={handleToggleFavourite}
-            className={isFavourite ? styles.active : ''}
-          >
-            <FontAwesomeIcon icon={isFavourite ? faHeart : farHeart}>
-              Favorite
-            </FontAwesomeIcon>
-          </Button>
-          <Button
-            variant='outline'
-            onClick={handleCompare}
-            className={isCompared ? styles.active : ''}
-          >
-            <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
-          </Button>
+      <div className={styles.details}>
+        <div className={styles.content}>
+          <h5>
+            <Link to={`/product/${id}`} className={styles.name}>
+              {name}
+            </Link>
+          </h5>
+          {listShow && (
+            <div className={styles.price}>
+              {typeof oldPrice === 'number' && oldPrice > price && (
+                <span className={styles.oldPrice}>$ {oldPrice}</span>
+              )}
+              <Button noHover variant='small'>
+                $ {price}
+              </Button>
+            </div>
+          )}
+          <StarRating id={id} stars={stars} userStars={userStars} />
+          {listShow && <p>{description}</p>}
         </div>
 
-        <div className={styles.price}>
-          {typeof oldPrice === 'number' && oldPrice > price && (
-            <span className={styles.oldPrice}>$ {oldPrice}</span>
+        <div className={styles.line}></div>
+        <div className={styles.actions}>
+          <div className={styles.outlines}>
+            <Button
+              variant='outline'
+              onClick={handleToggleFavourite}
+              className={isFavourite ? styles.active : ''}
+            >
+              <FontAwesomeIcon icon={isFavourite ? faHeart : farHeart}>
+                Favorite
+              </FontAwesomeIcon>
+            </Button>
+            <Button
+              variant='outline'
+              onClick={handleCompare}
+              className={isCompared ? styles.active : ''}
+            >
+              <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
+            </Button>
+            {listShow && (
+              <Button variant='outline'>
+                <FontAwesomeIcon icon={faSearch} />
+              </Button>
+            )}
+            {listShow && (
+              <Button variant='small' className={styles.addToCartBtn}>
+                <FontAwesomeIcon icon={faShoppingBasket} />
+                <span className={styles.button}>ADD TO CART</span>
+              </Button>
+            )}
+          </div>
+          {gridShow && (
+            <div className={styles.price}>
+              {typeof oldPrice === 'number' && oldPrice > price && (
+                <span className={styles.oldPrice}>$ {oldPrice}</span>
+              )}
+              <Button noHover variant='small'>
+                $ {price}
+              </Button>
+            </div>
           )}
           <Button
             noHover
@@ -114,6 +156,7 @@ ProductBox.propTypes = {
   image: PropTypes.string,
   isFavourite: PropTypes.bool,
   isCompared: PropTypes.bool,
+  viewMode: PropTypes.string,
 };
 
 export default ProductBox;
