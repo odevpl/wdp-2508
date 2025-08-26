@@ -1,4 +1,5 @@
 @import "../../../styles/settings.scss";
+$base-padding: 32px;
 
 .root {
   margin-block: 2rem;
@@ -34,42 +35,39 @@
   }
 
   .spotlight {
-  background: #e2e2e2;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+    background: #e2e2e2;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
 
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    position: absolute;
-    top: -50%;
-    bottom: -50%;
-    margin: auto;
-
-  }
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+      position: absolute;
+      top: -50%;
+      bottom: -50%;
+      margin: auto;
+    }
 
     .productInfo {
-      $base-padding: 32px;
       z-index: 1;
       position: absolute;
       top: 4rem;
       left: 4rem;
 
-      p{
+      p {
         font-size: 18px;
         text-transform: uppercase;
         font-weight: 600;
         margin: 0;
-        padding-bottom: $base-padding;
-        span{
+        span {
           font-size: 48px;
           color: $spotlight-color;
         }
       }
 
-      h3{
+      h3 {
         font-size: 48px;
         line-height: 38px;
         color: #d58e32;
@@ -77,7 +75,6 @@
         padding-bottom: calc($base-padding + 5px);
         text-transform: capitalize;
       }
+    }
   }
-  }
-
 }
