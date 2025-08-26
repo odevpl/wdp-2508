@@ -1,64 +1,75 @@
 import React, { useState } from 'react';
 import styles from './ShopPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faGripVertical, faList, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
-// import ProductBox from '../../common/ProductBox/ProductBox';
+import ProductBox from '../../common/ProductBox/ProductBox';
 import PropTypes from 'prop-types';
 
-const ShopPage = ({ categories }) => {
-  const [counter] = useState([]);
+const ShopPage = ({ products, viewport }) => {
+  const [activePage] = useState(0);
+  const [activeCategory] = useState('bed');
+  const [counter, setCounter] = useState([]);
+
+  const handleCompare = product => {
+    const exists = counter.find(el => el.id === product.id);
+    if (exists) {
+      setCounter(counter.filter(el => el.id !== product.id));
+    } else {
+      if (counter.length >= 4) {
+        alert('Możesz dodać maksymalnie 4 produkty do porównania');
+      } else {
+        setCounter([...counter, product]);
+      }
+    }
+  };
+
+  const categoryProducts = products.filter(item => item.category === activeCategory);
+
+  let colSize = 'col-12';
+  if (viewport.mode === 'desktop') colSize = 'col-3';
+  else if (viewport.mode === 'tablet') colSize = 'col-4';
+  else if (viewport.mode === 'mobile') colSize = 'col-sm-6 col-12';
+
   return (
     <div className={styles.root}>
       <div className='container'>
         <div className={styles.panelBar}>
           <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
             <div className={styles.heading}>
-              <h3>New furniture</h3>
+              <h3>Furniture</h3>
             </div>
-            <div className={`col ${styles.menu}`}>
-              <ul>
-                {categories.map(item => (
-                  <li key={item.id}>
-                    <a onClick={() => this.handleCategoryChange(item.id)}>
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <div className={`col ${styles.menu}`}></div>
+            <div className={styles.menuIcon}>
+              <FontAwesomeIcon icon={faGripVertical} />
+              <FontAwesomeIcon icon={faList} />
             </div>
           </div>
         </div>
 
-        <div className='row'>
-          {/* {categoryProducts.slice(activePage * 8, (activePage + 1) * 8).map(item => (
+        <div className='column'>
+          {categoryProducts.slice(activePage * 12, (activePage + 1) * 12).map(item => (
             <div key={item.id} className={colSize}>
-              <ProductBox {...item} handleCompare={() => this.handleCompare(item)} />
+              <ProductBox {...item} handleCompare={() => handleCompare(item)} />
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
       {counter.length > 0 && (
         <div className={styles.compareContainer}>
           <ul>
-            {counter.map(product => {
-              return (
-                <li key={product.id}>
-                  <img src={product.image} alt={product.name} />
-                  <Button
-                    className={styles.removeBtn}
-                    variant='outline'
-                    onClick={() => {
-                      this.setState({
-                        counter: counter.filter(el => el.id !== product.id),
-                      });
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faTimes} />
-                  </Button>
-                </li>
-              );
-            })}
+            {counter.map(product => (
+              <li key={product.id}>
+                <img src={product.image} alt={product.name} />
+                <Button
+                  className={styles.removeBtn}
+                  variant='outline'
+                  onClick={() => setCounter(counter.filter(el => el.id !== product.id))}
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </Button>
+              </li>
+            ))}
             <Button className={styles.compareBtn} variant='small'>
               Compare
             </Button>
@@ -70,7 +81,21 @@ const ShopPage = ({ categories }) => {
 };
 
 ShopPage.propTypes = {
-  children: PropTypes.node,
-  categories: PropTypes.arrayOf(PropTypes.string),
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      category: PropTypes.string,
+      price: PropTypes.number,
+      stars: PropTypes.number,
+      promo: PropTypes.string,
+      newFurniture: PropTypes.bool,
+    })
+  ),
+  viewport: PropTypes.shape({
+    width: PropTypes.number,
+    mode: PropTypes.string,
+  }),
 };
+
 export default ShopPage;

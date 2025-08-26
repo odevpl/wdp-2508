@@ -1,5 +1,130 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  padding: $base-padding 0;
+  .panelBar {
+    margin-bottom: 30px;
+    position: relative;
+    @media (max-width: 780px) {
+      margin-bottom: 4rem;
+    }
+
+    :global(.row) > * {
+      border-bottom: 4px solid #e2e2e2;
+    }
+    .panelBarMenu {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      @media (max-width: 780px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .heading {
+      position: relative;
+      @media (max-width: 780px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        color: $primary;
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 38px;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 45px;
+        border-bottom: 4px solid $primary;
+      }
+    }
+  }
+
+  .menu {
+    text-align: center;
+  }
+  .menuIcon {
+    display: flex;
+    gap: 0.5rem;
+    border: 2px solid black;
+    margin: 2px;
+    padding: 5px;
+    align-items: center;
+    cursor: pointer;
+    @extend %hover-style;
+  }
+
+  .compareContainer {
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border-top: 1px solid $primary;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      li {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        img {
+          max-width: 8rem;
+          height: 4rem;
+          object-fit: contain;
+          cursor: pointer;
+        }
+        .removeBtn {
+          display: none;
+          position: absolute;
+          top: -10px;
+          right: -5px;
+          padding: 3px 3px;
+          border: none;
+          cursor: pointer;
+
+          @extend %hover-style;
+        }
+        &:hover .removeBtn {
+          display: block;
+        }
+      }
+    }
+    .compareBtn {
+      margin-left: auto;
+      top: 0;
+      left: 0;
+      padding: 0.5rem;
+      background-color: $primary;
+      cursor: pointer;
+      @extend %hover-style;
+      &:hover {
+        background-color: lighten($primary, 10%);
+      }
+    }
+  }
 }
