@@ -130,6 +130,13 @@ const ProductBox = ({
               </Button>
             </div>
           )}
+          <Button
+            noHover
+            variant='small'
+            className={styles.priceButton} // <--- KLUCZOWE, żeby SCSS nadpisał tło
+          >
+            $ {price}
+          </Button>
         </div>
       </div>
     </div>

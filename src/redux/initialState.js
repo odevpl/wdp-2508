@@ -14,8 +14,8 @@ const initialState = {
       isCompared: false,
       category: 'bed',
       price: 30,
-      oldPrice: 40,          // z WDP250801-6
-      promoPrice: 25,        // z master
+      oldPrice: 40, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 3,
       promo: 'sale',
@@ -34,8 +34,8 @@ const initialState = {
       isCompared: false,
       category: 'bed',
       price: 30,
-      oldPrice: 35,          // z WDP250801-6
-      promoPrice: 25,        // z master
+      oldPrice: 35, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 0,
       promo: 'sale',
@@ -54,8 +54,8 @@ const initialState = {
       isCompared: true,
       category: 'bed',
       price: 30,
-      oldPrice: 37,          // z WDP250801-6
-      promoPrice: 25,        // z master
+      oldPrice: 37, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 5,
       promo: 'sale',
@@ -74,8 +74,8 @@ const initialState = {
       isCompared: true,
       category: 'bed',
       price: 30,
-      oldPrice: 42,          // z WDP250801-6
-      promoPrice: 25,        // z master
+      oldPrice: 42, // z WDP250801-6
+      promoPrice: 25, // z master
       stars: 2,
       userStars: 0,
       promo: 'sale',
@@ -461,6 +461,19 @@ const initialState = {
     width: 1024,
     mode: 'desktop',
   },
+
+  brands: [
+    { id: 1, name: 'IKEA', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 2, name: 'Leroy Merlin', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 3, name: 'Home & You', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 4, name: 'Agata', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 5, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 6, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 7, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 8, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 9, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+    { id: 10, name: 'Black Red White', logo: 'https://i.imgur.com/z8BGkzc.png' },
+  ],
 };
 
 export default initialState;
