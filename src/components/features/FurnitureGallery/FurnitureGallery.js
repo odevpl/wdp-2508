@@ -3,11 +3,12 @@ import React from 'react';
 import GalleryBox from '../../common/GalleryBox/GalleryBox';
 import Button from '../../common/Button/Button';
 import styles from './FurnitureGallery.module.scss';
+
 const FurnitureGallery = () => {
   const spotlightProduct = {
     price: '250.00',
     name: 'Bedroom Bed',
-    image: '/images/products/chair_aenean_ru_bristique_1.jpg',
+    image: '/images/products/bed_aenean_ru_bristique_11.jpg',
   };
 
   return (

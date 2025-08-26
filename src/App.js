@@ -12,6 +12,7 @@ import ProductList from './components/views/ProductList/ProductList';
 import ProductPage from './components/views/ProductPage/ProductPage';
 import BlogPage from './components/views/BlogPage/BlogPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
+import ShopPage from './components/views/ShopPage/ShopPage.Container';
 
 const App = () => (
   <Provider store={store}>
@@ -20,6 +21,7 @@ const App = () => (
         <Switch>
           <Route exact path={'/'} component={Homepage} />
           <Route exact path={'/login'} component={LoginPage} />
+          <Route exact path={'/shop'} component={ShopPage} />
           <Route exact path={'/shop/:categoryId'} component={ProductList} />
           <Route exact path={'/product/:productId'} component={ProductPage} />
           <Route exact path={'/blog'} component={BlogPage} />

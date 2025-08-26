@@ -20,10 +20,7 @@ import {
   faEnvelope,
   faPlus,
   faMinus,
-  faStar,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 import {
   faFacebookF,
   faTwitter,
@@ -31,7 +28,9 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
+
 import StarRating from '../../features/StarRating/StarRating';
+import TabReview from '../../features/TabReview/TabReview';
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -218,6 +217,25 @@ const ProductPage = () => {
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+        <div className={`${styles.productTabs} ${styles.section}`}>
+          <div className={`${styles.tabs}`}>
+            <a href='#' className={`${styles.tab}`}>
+              Description
+            </a>
+            <a href='#' className={`${styles.tab} ${styles.active}`}>
+              Reviews{`(0)`}
+            </a>
+            <a href='#' className={`${styles.tab}`}>
+              Specification
+            </a>
+            <a href='#' className={`${styles.tab}`}>
+              Custom Tab
+            </a>
+          </div>
+          <div className={`${styles.tabContent}`}>
+            <TabReview />
           </div>
         </div>
       </div>
