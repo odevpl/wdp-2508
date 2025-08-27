@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './RegisterPage.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faEye } from '@fortawesome/free-solid-svg-icons';
 
 export default function RegisterPage() {
   return (
@@ -8,11 +10,11 @@ export default function RegisterPage() {
         <form className={styles.form}>
           <div className={styles.accountType}>
             <div className={styles.accountItem}>
-              <input id='hasAccount' type='radio' />
+              <input id='hasAccount' type='checkbox' />
               <label htmlFor='hasAccount'>Mam konto</label>
             </div>
             <div className={styles.accountItem}>
-              <input id='noAccount' type='radio' />
+              <input id='noAccount' type='checkbox' />
               <label htmlFor='noAccount'>Nie mam konta</label>
             </div>
           </div>
@@ -26,9 +28,10 @@ export default function RegisterPage() {
           <div className={styles.inputGroup}>
             <input type='password' placeholder='Powtórz hasło *' />
           </div>
-          <div className={styles.checkboxItem}>
-            <input id='showPassword' type='checkbox' />
-            <label htmlFor='showPassword'>Pokaż hasło</label>
+          <div className={styles.checkboxItemPassword}>
+            <FontAwesomeIcon icon={faEye} />
+            {/* <FontAwesomeIcon icon={faEyeSlash} /> */}
+            <p>Pokaż hasło</p>
           </div>
           <div className={styles.checkboxGroup}>
             <div className={styles.checkboxItem}>
@@ -51,6 +54,7 @@ export default function RegisterPage() {
           </div>
           <div className={styles.buttonGroup}>
             <button type='button' className={styles.buttonBack}>
+              <FontAwesomeIcon icon={faArrowLeft} />
               Wróć
             </button>
             <button type='button' className={styles.buttonRegister}>
