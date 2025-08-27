@@ -1,9 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import RegisterPage from './RegisterPage';
 
 describe('RegisterPage', () => {
   it('renders without crashing', () => {
-    shallow(<RegisterPage />);
+    mount(
+      <MemoryRouter>
+        <RegisterPage />
+      </MemoryRouter>
+    );
   });
 });

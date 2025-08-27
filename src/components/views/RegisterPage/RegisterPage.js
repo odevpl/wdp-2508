@@ -3,8 +3,14 @@ import styles from './RegisterPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEye } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterPage() {
+  const history = useHistory();
+
+  const handleGoHome = () => {
+    history.push('/');
+  };
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -54,11 +60,21 @@ export default function RegisterPage() {
             </div>
           </div>
           <div className={styles.buttonGroup}>
-            <Button variant='outline' type='button' className={styles.buttonBack}>
+            <Button
+              onClick={handleGoHome}
+              variant='outline'
+              type='button'
+              className={styles.buttonBack}
+            >
               <FontAwesomeIcon icon={faArrowLeft} />
               <span>Wróć</span>
             </Button>
-            <Button variant='small' type='button' className={styles.buttonRegister}>
+            <Button
+              onClick={handleGoHome}
+              variant='small'
+              type='button'
+              className={styles.buttonRegister}
+            >
               Zarejestruj się
             </Button>
           </div>
