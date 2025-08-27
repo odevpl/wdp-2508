@@ -5,37 +5,37 @@ export default function RegisterPage() {
   return (
     <div className={styles.root}>
       <div className='container'>
-        <form>
-          <div>
-            <div>
+        <form className={styles.form}>
+          <div className={styles.accountType}>
+            <div className={styles.accountItem}>
               <input id='hasAccount' type='radio' />
               <label htmlFor='hasAccount'>Mam konto</label>
             </div>
-            <div>
+            <div className={styles.accountItem}>
               <input id='noAccount' type='radio' />
               <label htmlFor='noAccount'>Nie mam konta</label>
             </div>
           </div>
-          <p>Podaj dane do rejestracji</p>
-          <div>
+          <p className={styles.title}>Podaj dane do rejestracji</p>
+          <div className={styles.inputGroup}>
             <input type='email' placeholder='E-mail *' />
           </div>
-          <div>
+          <div className={styles.inputGroup}>
             <input type='password' placeholder='Hasło *' />
           </div>
-          <div>
+          <div className={styles.inputGroup}>
             <input type='password' placeholder='Powtórz hasło *' />
           </div>
-          <div>
+          <div className={styles.checkboxItem}>
             <input id='showPassword' type='checkbox' />
             <label htmlFor='showPassword'>Pokaż hasło</label>
           </div>
-          <div>
-            <div>
+          <div className={styles.checkboxGroup}>
+            <div className={styles.checkboxItem}>
               <input id='acceptAll' type='checkbox' />
               <label htmlFor='acceptAll'>Zaznacz wszystko</label>
             </div>
-            <div>
+            <div className={styles.checkboxItem}>
               <input id='acceptStatute' type='checkbox' />
               <label htmlFor='acceptStatute'>
                 Akceptuje warunki
@@ -44,14 +44,18 @@ export default function RegisterPage() {
                 </span>
               </label>
             </div>
-            <div>
+            <div className={styles.checkboxItem}>
               <input id='newsletter' type='checkbox' />
               <label htmlFor='newsletter'>Tak. Chcę otrzymywać newsletter</label>
             </div>
           </div>
-          <div>
-            <button>Wróć</button>
-            <button>Zarejestruj się </button>
+          <div className={styles.buttonGroup}>
+            <button type='button' className={styles.buttonBack}>
+              Wróć
+            </button>
+            <button type='button' className={styles.buttonRegister}>
+              Zarejestruj się
+            </button>
           </div>
         </form>
       </div>
