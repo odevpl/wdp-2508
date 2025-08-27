@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './RegisterPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEye } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../common/Button/Button';
 
 export default function RegisterPage() {
   return (
@@ -53,13 +54,13 @@ export default function RegisterPage() {
             </div>
           </div>
           <div className={styles.buttonGroup}>
-            <button type='button' className={styles.buttonBack}>
+            <Button variant='outline' type='button' className={styles.buttonBack}>
               <FontAwesomeIcon icon={faArrowLeft} />
-              Wróć
-            </button>
-            <button type='button' className={styles.buttonRegister}>
+              <span>Wróć</span>
+            </Button>
+            <Button variant='small' type='button' className={styles.buttonRegister}>
               Zarejestruj się
-            </button>
+            </Button>
           </div>
         </form>
       </div>
