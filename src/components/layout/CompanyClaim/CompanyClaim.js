@@ -5,10 +5,11 @@ import styles from './CompanyClaim.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { getCount } from '../../../redux/cartRedux';
+import { useSelector } from 'react-redux';
 
 const CompanyClaim = () => {
-  const [count, setCount] = useState(1);
+  const count = useSelector(getCount);
   const showCount = count > 99999 ? '99999+' : count;
 
   return (

@@ -4,11 +4,8 @@ import styles from './ProductPage.module.scss';
 import Button from '../../common/Button/Button';
 
 import { useParams } from 'react-router';
-
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { getProductById } from '../../../redux/productsRedux';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -31,10 +28,17 @@ import {
 
 import StarRating from '../../features/StarRating/StarRating';
 import TabReview from '../../features/TabReview/TabReview';
+import { addProduct } from '../../../redux/cartRedux';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const product = useSelector(state => getProductById(state, productId));
+  const dispatch = useDispatch();
+
+  const handleAddToCart = e => {
+    e.preventDefault();
+    dispatch(addProduct(product));
+  };
 
   return (
     <div className={styles.root}>
@@ -119,7 +123,7 @@ const ProductPage = () => {
 
                 <div className={`${styles.group} ${styles.productShopBtns}`}>
                   <div className={styles.actionBtns}>
-                    <Button variant='addToCart'>
+                    <Button variant='addToCart' onClick={handleAddToCart}>
                       <FontAwesomeIcon icon={faShoppingBasket}>
                         Add to Cart
                       </FontAwesomeIcon>{' '}

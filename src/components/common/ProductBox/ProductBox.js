@@ -14,8 +14,9 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import StarRating from '../../features/StarRating/StarRating';
 
-import { useDispatch } from 'react-redux';
-import { toggleFavourite } from '../../../redux/productsRedux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductById, toggleFavourite } from '../../../redux/productsRedux';
+import { addProduct } from '../../../redux/cartRedux';
 
 const ProductBox = ({
   id,
@@ -32,6 +33,7 @@ const ProductBox = ({
   viewMode = 'grid',
 }) => {
   const dispatch = useDispatch();
+  const product = useSelector(state => getProductById(state, id));
 
   const description = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium diam sit amet ex scelerisque, a aliquam ipsum blandit. Nulla.',
@@ -42,6 +44,11 @@ const ProductBox = ({
   const handleToggleFavourite = e => {
     e.preventDefault();
     dispatch(toggleFavourite(id));
+  };
+
+  const handleAddToCart = e => {
+    e.preventDefault();
+    dispatch(addProduct(product));
   };
 
   return (
@@ -60,7 +67,11 @@ const ProductBox = ({
               Quick View
             </Button>
             {gridShow && (
-              <Button variant='small' className={styles.addToCartBtn}>
+              <Button
+                variant='small'
+                className={styles.addToCartBtn}
+                onClick={handleAddToCart}
+              >
                 <FontAwesomeIcon icon={faShoppingBasket} />
                 <span className={styles.button}>ADD TO CART</span>
               </Button>
