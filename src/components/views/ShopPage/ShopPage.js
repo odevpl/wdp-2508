@@ -37,7 +37,7 @@ const ShopPage = ({ products, viewport }) => {
     <div className={styles.root}>
       <div className='container'>
         <div className='row'>
-          <main className='col-9'>
+          <main className='col-11'>
             <div className={styles.panelBar}>
               <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
                 <div className={styles.heading}>
@@ -74,7 +74,7 @@ const ShopPage = ({ products, viewport }) => {
             </div>
           </main>
 
-          <aside className='col-3'>
+          <aside className='col-1'>
             <PriceFilter />
           </aside>
         </div>
