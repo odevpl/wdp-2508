@@ -1,12 +1,13 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductList.module.scss';
+import Banner from '../../features/Banner/Banner';
 
 const ProductList = () => {
   return (
     <div className='container'>
       <div className='row no-gutters'>
-        <div className='col-12 text-center'>Banner</div>
+        <Banner/>
       </div>
       <div className='row no-gutters'>
         <div className='col-9 p-2 text-center'>Product List</div>
