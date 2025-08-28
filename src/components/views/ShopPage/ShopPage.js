@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical, faList, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
 import ProductBox from '../../common/ProductBox/ProductBox';
+import PriceFilter from '../../common/PriceFilter/PriceFilter';
 import PropTypes from 'prop-types';
 
 const ShopPage = ({ products, viewport }) => {
@@ -35,39 +36,50 @@ const ShopPage = ({ products, viewport }) => {
   return (
     <div className={styles.root}>
       <div className='container'>
-        <div className={styles.panelBar}>
-          <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
-            <div className={styles.heading}>
-              <h3>Furniture</h3>
+        <div className='row'>
+          <main className='col-9'>
+            <div className={styles.panelBar}>
+              <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
+                <div className={styles.heading}>
+                  <h3>Furniture</h3>
+                </div>
+                <div className={`col ${styles.menu}`}></div>
+                <div className={styles.menuIcon}>
+                  <FontAwesomeIcon
+                    icon={faGripVertical}
+                    className={viewMode === 'grid' ? styles.isActive : ''}
+                    onClick={() => setViewMode('grid')}
+                  />
+                  <FontAwesomeIcon
+                    icon={faList}
+                    className={viewMode === 'list' ? styles.isActive : ''}
+                    onClick={() => setViewMode('list')}
+                  />
+                </div>
+              </div>
             </div>
-            <div className={`col ${styles.menu}`}></div>
-            <div className={styles.menuIcon}>
-              <FontAwesomeIcon
-                icon={faGripVertical}
-                className={viewMode === 'grid' ? styles.isActive : ''}
-                onClick={() => setViewMode('grid')}
-              />
-              <FontAwesomeIcon
-                icon={faList}
-                className={viewMode === 'list' ? styles.isActive : ''}
-                onClick={() => setViewMode('list')}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div className={viewMode === 'grid' ? 'row' : 'column'}>
-          {categoryProducts.slice(activePage * 12, (activePage + 1) * 12).map(item => (
-            <div key={item.id} className={viewMode === 'grid' ? colSize : 'col'}>
-              <ProductBox
-                {...item}
-                viewMode={viewMode}
-                handleCompare={() => handleCompare(item)}
-              />
+            <div className={viewMode === 'grid' ? 'row' : 'column'}>
+              {categoryProducts
+                .slice(activePage * 12, (activePage + 1) * 12)
+                .map(item => (
+                  <div key={item.id} className={viewMode === 'grid' ? colSize : 'col'}>
+                    <ProductBox
+                      {...item}
+                      viewMode={viewMode}
+                      handleCompare={() => handleCompare(item)}
+                    />
+                  </div>
+                ))}
             </div>
-          ))}
+          </main>
+
+          <aside className='col-3'>
+            <PriceFilter />
+          </aside>
         </div>
       </div>
+
       {counter.length > 0 && (
         <div className={styles.compareContainer}>
           <ul>
@@ -110,4 +122,5 @@ ShopPage.propTypes = {
     mode: PropTypes.string,
   }),
 };
+
 export default ShopPage;
