@@ -83,4 +83,55 @@
 
 .dimension {
     position: relative;
+    width: 100%;
+}
+
+@media (max-width: 768px ) {
+  .advertTitle {
+    font-size: 36px;       
+    letter-spacing: 4px;
+    gap: 16px;             
+  }
+  .advertSubtitle {
+    margin-left: 7px;
+    margin-top: 2px;
+    font-size: 22px;
+    letter-spacing: 7px;
+    word-spacing: 4px;
+  }
+}
+
+@media (max-width: 540px ) {
+  .advertTitle {
+    font-size: 22px;       
+    letter-spacing: 4px;
+    gap: 16px;             
+  }
+  .advertSubtitle {
+    margin-left: 4px;
+    margin-top: 2px;
+    font-size: 16px;
+    letter-spacing: 4px;
+    word-spacing: 2px;
+  }
+  .advert {
+    height: 100px;
+  }
+}
+@media (max-width: 366px ) {
+  .advertTitle {
+    display: flex;
+    flex-direction: column; 
+    gap: 0;           
+  }
+  .advertSubtitle {
+    margin-left: 4px;
+    margin-top: 2px;
+    font-size: 16px;
+    letter-spacing: 4px;
+    word-spacing: 2px;
+  }
+  .advert {
+    height: 160px;
+  }
 }

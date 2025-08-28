@@ -19,7 +19,7 @@ const Banner = () => {
   }, [path]);
 
   return (
-    <div className={`container ${styles.dimension}`}>
+    <div className={styles.dimension}>
       <div className={styles.advert}>
         <div className={styles.advertTitle}>
           <span className={styles.light}>BEDROOM</span>
