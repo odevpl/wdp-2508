@@ -57,6 +57,7 @@
       text-decoration: none;
       color: $primary;
     }
+    
   } 
   a.active{
     text-decoration: none;
@@ -64,6 +65,9 @@
   }
   span {
     padding: 0 10px;
+  }
+  .category{
+    color: $primary;
   }
 }
 

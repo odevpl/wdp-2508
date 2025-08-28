@@ -6,11 +6,24 @@ import Banner from '../../features/Banner/Banner';
 const ProductList = () => {
   //ProductList component implementation
   return (
-    <Banner mode='ProductList'>
-      <div className={styles.root}>
-        <p>This is ProductList page.</p>
+    <div className='container'>
+      <div className='row no-gutters'>
+        <Banner />
       </div>
-    </Banner>
+      <div className='row no-gutters'>
+        <div className='col-9 p-2 text-center'>Product List</div>
+        <div className='col-3 p-2'>
+          <h5 className='p-2'>Filters</h5>
+          <div className='p-2'>by categories</div>
+          <div className='p-2'>by color</div>
+          <div className='p-2'>by price</div>
+          <div className='p-2'>by size</div>
+        </div>
+      </div>
+      <div className='row no-gutters'>
+        <div className='col-12 p-2 text-center'>Brands</div>
+      </div>
+    </div>
   );
 };
 
