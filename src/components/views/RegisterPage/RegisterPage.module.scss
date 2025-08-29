@@ -1,0 +1,101 @@
+@import "../../../styles/settings.scss";
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.root {
+  padding: 7rem 0;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    label {
+      margin: 0;
+    }
+    .accountType {
+      display: flex;
+      justify-content: space-between;
+
+      .accountItem {
+        display: flex;
+        gap: 0.5rem;
+        font-weight: bold;
+      }
+    }
+
+    .title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .inputGroup {
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+    .checkboxItemPassword {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.5rem;
+      p {
+        margin: 0;
+      }
+    }
+    .checkboxItem {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      a {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+
+    .checkboxGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .checkboxGroup :first-child {
+      font-weight: bold;
+    }
+
+    .buttonGroup {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .buttonBack span {
+        padding-left: 5px;
+      }
+
+      .buttonBack,
+      .buttonRegister {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 1px rgb(196, 196, 196) solid;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}

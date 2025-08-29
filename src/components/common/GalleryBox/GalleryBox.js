@@ -86,7 +86,7 @@ const GalleryBox = () => {
                   </p>
                 </div>
               </div>
-              <Actions id={product.id} />
+              <Actions id={product.id} isFavourite={product.isFavourite} />
             </div>
           ))}
         </div>

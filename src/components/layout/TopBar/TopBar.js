@@ -3,7 +3,7 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUser, faLock, faBars } from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
 import styles from './TopBar.module.scss';
 
 const TopBar = () => (
@@ -32,16 +32,16 @@ const TopBar = () => (
         <div className={`col text-right ${styles.topMenu}`}>
           <ul>
             <li>
-              <a href='#'>
+              <Link to='/login'>
                 <FontAwesomeIcon className={styles.icon} icon={faUser} />
                 <span className={styles.subtitle}>Login</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href='#'>
+              <Link to={'/register'}>
                 <FontAwesomeIcon className={styles.icon} icon={faLock} />
                 <span className={styles.subtitle}>Register</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a href='#'>

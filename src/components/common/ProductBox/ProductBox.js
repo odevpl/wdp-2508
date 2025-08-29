@@ -13,9 +13,8 @@ import {
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import StarRating from '../../features/StarRating/StarRating';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById, toggleFavourite } from '../../../redux/productsRedux';
+import { getProductById, toggleFavouriteThunk } from '../../../redux/productsRedux';
 import { addProduct } from '../../../redux/cartRedux';
 
 const ProductBox = ({
@@ -43,7 +42,7 @@ const ProductBox = ({
 
   const handleToggleFavourite = e => {
     e.preventDefault();
-    dispatch(toggleFavourite(id));
+    dispatch(toggleFavouriteThunk(id));
   };
 
   const handleAddToCart = e => {

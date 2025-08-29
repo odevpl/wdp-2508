@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Actions.module.scss';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   faHeart,
   faExchangeAlt,
@@ -12,21 +14,33 @@ import Button from '../../common/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductById } from '../../../redux/productsRedux';
 import { addProduct } from '../../../redux/cartRedux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
-const Actions = id => {
+const Actions = ({ id, isFavourite }) => {
   const dispatch = useDispatch();
   const product = useSelector(state => getProductById(state, id));
   const handleAddToCart = e => {
     e.preventDefault();
     dispatch(addProduct(product));
+  }
+  
+  const handleToggleFavourite = e => {
+    e.preventDefault();
+    dispatch(toggleFavouriteThunk(id));
   };
 
   return (
     <div className={styles.actions}>
       <div className={styles.outlines}>
         <div className={styles.btnWrapper}>
-          <Button variant='outline'>
-            <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+          <Button
+            variant='outline'
+            onClick={handleToggleFavourite}
+            className={isFavourite ? styles.active : ''}
+          >
+            <FontAwesomeIcon icon={isFavourite ? faHeart : farHeart}>
+              Favorite
+            </FontAwesomeIcon>
           </Button>
           <div className={styles.tooltip}>Add to favorite</div>
         </div>
@@ -55,6 +69,7 @@ const Actions = id => {
 
 Actions.propTypes = {
   id: PropTypes.string,
+  isFavourite: PropTypes.bool,
 };
 
 export default Actions;

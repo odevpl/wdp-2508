@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductPage.module.scss';
 import Button from '../../common/Button/Button';
-
+import StarRating from '../../features/StarRating/StarRating';
 import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductById } from '../../../redux/productsRedux';
@@ -18,6 +18,7 @@ import {
   faPlus,
   faMinus,
 } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   faFacebookF,
   faTwitter,
@@ -25,10 +26,9 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
-
-import StarRating from '../../features/StarRating/StarRating';
 import TabReview from '../../features/TabReview/TabReview';
 import { addProduct } from '../../../redux/cartRedux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -38,6 +38,12 @@ const ProductPage = () => {
   const handleAddToCart = e => {
     e.preventDefault();
     dispatch(addProduct(product));
+  };
+
+  const dispatch = useDispatch();
+  const handleToggleFavourite = (e, id) => {
+    e.preventDefault();
+    dispatch(toggleFavouriteThunk(id));
   };
 
   return (
@@ -129,8 +135,14 @@ const ProductPage = () => {
                       </FontAwesomeIcon>{' '}
                       Add to Cart
                     </Button>
-                    <Button variant='outline'>
-                      <FontAwesomeIcon icon={faHeart}>Add to Favorite</FontAwesomeIcon>
+                    <Button
+                      variant='outline'
+                      onClick={e => handleToggleFavourite(e, product.id)}
+                      className={product.isFavourite ? styles.active : ''}
+                    >
+                      <FontAwesomeIcon icon={product.isFavourite ? faHeart : farHeart}>
+                        Favorite
+                      </FontAwesomeIcon>
                     </Button>
                     <Button variant='outline'>
                       <FontAwesomeIcon icon={faExchangeAlt}>Compare</FontAwesomeIcon>
