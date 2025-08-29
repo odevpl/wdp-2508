@@ -5,6 +5,7 @@ import { faGripVertical, faList, faTimes } from '@fortawesome/free-solid-svg-ico
 import Button from '../../common/Button/Button';
 import ProductBox from '../../common/ProductBox/ProductBox';
 import PropTypes from 'prop-types';
+import Brands from '../../features/Brands/Brands';
 import Banner from '../../features/Banner/Banner';
 
 const ShopPage = ({ products, viewport }) => {
@@ -93,6 +94,7 @@ const ShopPage = ({ products, viewport }) => {
           </ul>
         </div>
       )}
+      <Brands />
     </div>
   );
 };
