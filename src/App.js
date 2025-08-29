@@ -12,6 +12,7 @@ import ProductList from './components/views/ProductList/ProductList';
 import ProductPage from './components/views/ProductPage/ProductPage';
 import BlogPage from './components/views/BlogPage/BlogPage';
 import ShopPage from './components/views/ShopPage/ShopPage.Container';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
 
 const App = () => {
   const dispatch = useDispatch();
