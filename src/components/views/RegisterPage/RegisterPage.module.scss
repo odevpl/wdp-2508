@@ -1,5 +1,11 @@
 @import "../../../styles/settings.scss";
 
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
 .root {
   padding: 7rem 0;
   max-width: 500px;
