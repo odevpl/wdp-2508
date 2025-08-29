@@ -1,9 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import CompanyClaim from './CompanyClaim';
+import { Provider } from 'react-redux';
+import store from '../../../redux/store';
 
 describe('CompanyClaim', () => {
   it('renders without crashing', () => {
-    shallow(<CompanyClaim />);
+    const component = mount(
+      <Provider store={store}>
+        <CompanyClaim />
+      </Provider>
+    );
+    expect(component.exists()).toBeTruthy();
   });
 });

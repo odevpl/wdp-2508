@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './PromotionSection.module.scss';
 import Button from '../../common/Button/Button';
@@ -18,6 +18,7 @@ import {
   faHeart as farHeart,
 } from '@fortawesome/free-regular-svg-icons';
 import Swipeable from '../Swipeable/Swipeable';
+import { addProduct } from '../../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
@@ -36,6 +37,7 @@ export default function PromotionSection({ id }) {
   const [rightIndex, setRightIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
 
   const pause = useRef(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,6 +72,11 @@ export default function PromotionSection({ id }) {
   const rightPromotion = products[rightIndex];
 
   if (!leftPromotion || !rightPromotion) return <p>Promocja nie znaleziona</p>;
+
+  function handleAddToCart(e) {
+    e.preventDefault();
+    dispatch(addProduct(leftPromotion));
+  }
 
   return (
     <div
@@ -113,7 +120,7 @@ export default function PromotionSection({ id }) {
               </ul>
             </div>
             <div className={styles.buttons}>
-              <Button variant='small'>
+              <Button variant='small' onClick={handleAddToCart}>
                 <FontAwesomeIcon icon={faShoppingBasket} />
                 ADD TO CART
               </Button>
