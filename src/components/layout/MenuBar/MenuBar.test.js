@@ -1,16 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import MenuBar from './MenuBar';
 import { Provider } from 'react-redux';
-import store from '../../../redux/store';
+import { MemoryRouter } from 'react-router-dom';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 
 describe('Component MenuBar', () => {
   it('should render without crashing', () => {
-    const component = shallow(
+    const store = mockStore({ cart: [], categories: [] });
+
+    const wrapper = mount(
       <Provider store={store}>
-        <MenuBar />
+        <MemoryRouter>
+          <MenuBar />
+        </MemoryRouter>
       </Provider>
     );
-    expect(component).toBeTruthy();
+
+    expect(wrapper.exists()).toBe(true);
   });
 });

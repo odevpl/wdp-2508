@@ -1,14 +1,14 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import ProductSearch from './ProductSearch';
+import { shallow } from 'enzyme';
+import Banner from './Banner';
 import { Provider } from 'react-redux';
 import store from '../../../redux/store';
 
-describe('Component ProductSearch', () => {
+describe('Component Banner', () => {
   it('should render without crashing', () => {
-    const component = mount(
+    const component = shallow(
       <Provider store={store}>
-        <ProductSearch />
+        <Banner />
       </Provider>
     );
     expect(component).toBeTruthy();

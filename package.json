@@ -63,6 +63,7 @@
     "react-slick": "^0.31.0",
     "react-test-renderer": "^16.9.0",
     "redux": "^4.0.4",
+    "redux-thunk": "2.4.2",
     "sass": "^1.54.3",
     "slick-carousel": "^1.8.1"
   },
@@ -71,6 +72,7 @@
     "lint-staged": "^9.4.0",
     "onchange": "^6.1.0",
     "prettier": "^1.19.1",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-mock-store": "^1.5.5"
   }
 }

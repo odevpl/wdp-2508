@@ -15,7 +15,7 @@ import Button from '../Button/Button';
 import StarRating from '../../features/StarRating/StarRating';
 
 import { useDispatch } from 'react-redux';
-import { toggleFavourite } from '../../../redux/productsRedux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 const ProductBox = ({
   id,
@@ -41,7 +41,7 @@ const ProductBox = ({
 
   const handleToggleFavourite = e => {
     e.preventDefault();
-    dispatch(toggleFavourite(id));
+    dispatch(toggleFavouriteThunk(id));
   };
 
   return (
