@@ -7,7 +7,7 @@ const ProductList = () => {
   return (
     <div className='container'>
       <div className='row no-gutters'>
-        <Banner/>
+        <Banner />
       </div>
       <div className='row no-gutters'>
         <div className='col-9 p-2 text-center'>Product List</div>
