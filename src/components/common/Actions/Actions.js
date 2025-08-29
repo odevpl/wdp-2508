@@ -1,7 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+
+import PropTypes from 'prop-types';
 import styles from './Actions.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   faHeart,
   faExchangeAlt,
@@ -9,11 +11,17 @@ import {
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
+import { useDispatch } from 'react-redux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 import { updateQuickView } from '../../../redux/quickViewRedux';
-import PropTypes from 'prop-types';
 
-const Actions = ({ id }) => {
+const Actions = ({ id, isFavourite }) => {
   const dispatch = useDispatch();
+  const handleToggleFavourite = e => {
+    e.preventDefault();
+    dispatch(toggleFavouriteThunk(id));
+  };
+
   const handleQuickView = e => {
     e.preventDefault();
     dispatch(updateQuickView({ open: true, productId: id }));
@@ -23,8 +31,14 @@ const Actions = ({ id }) => {
     <div className={styles.actions}>
       <div className={styles.outlines}>
         <div className={styles.btnWrapper}>
-          <Button variant='outline'>
-            <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+          <Button
+            variant='outline'
+            onClick={handleToggleFavourite}
+            className={isFavourite ? styles.active : ''}
+          >
+            <FontAwesomeIcon icon={isFavourite ? faHeart : farHeart}>
+              Favorite
+            </FontAwesomeIcon>
           </Button>
           <div className={styles.tooltip}>Add to favorite</div>
         </div>
@@ -53,6 +67,7 @@ const Actions = ({ id }) => {
 
 Actions.propTypes = {
   id: PropTypes.string,
+  isFavourite: PropTypes.bool,
 };
 
 export default Actions;
