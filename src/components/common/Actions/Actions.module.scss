@@ -9,6 +9,11 @@
   z-index: 1;
   height: 100%;
 
+  .active {
+    color: $primary;
+    border-color: $primary;
+  }
+
   .outlines {
     display: flex;
     height: 100%;

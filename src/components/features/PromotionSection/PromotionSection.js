@@ -5,6 +5,7 @@ import styles from './PromotionSection.module.scss';
 import Button from '../../common/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faHeart,
   faStar,
   faExchangeAlt,
   faShoppingBasket,
@@ -12,8 +13,13 @@ import {
   faArrowRight,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import {
+  faStar as farStar,
+  faHeart as farHeart,
+} from '@fortawesome/free-regular-svg-icons';
 import Swipeable from '../Swipeable/Swipeable';
+import { useDispatch } from 'react-redux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 let timePromotion = [
   { number: 25, title: 'DAYS' },
@@ -24,6 +30,7 @@ let timePromotion = [
 export default function PromotionSection({ id }) {
   const products = useSelector(state => state.products);
   const firestIndex = products.findIndex(el => el.id === id);
+  const dispatch = useDispatch();
 
   const [leftIndex, setLeftIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
   const [rightIndex, setRightIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
@@ -53,6 +60,11 @@ export default function PromotionSection({ id }) {
     if (e) e.preventDefault();
     setRightIndex(el => (el - 1 + products.length) % products.length);
   }
+
+  const handleToggleFavourite = (e, id) => {
+    e.preventDefault();
+    dispatch(toggleFavouriteThunk(id));
+  };
 
   const leftPromotion = products[leftIndex];
   const rightPromotion = products[rightIndex];
@@ -127,8 +139,14 @@ export default function PromotionSection({ id }) {
               <Button variant='outline'>
                 <FontAwesomeIcon icon={faEye} />
               </Button>
-              <Button variant='outline'>
-                <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+              <Button
+                variant='outline'
+                onClick={e => handleToggleFavourite(e, leftPromotion.id)}
+                className={leftPromotion.isFavourite ? styles.active : ''}
+              >
+                <FontAwesomeIcon icon={leftPromotion.isFavourite ? faHeart : farHeart}>
+                  Favorite
+                </FontAwesomeIcon>
               </Button>
               <Button variant='outline'>
                 <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
