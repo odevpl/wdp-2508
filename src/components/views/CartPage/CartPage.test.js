@@ -1,9 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import CartPage from './CartPage';
+import { Provider } from 'react-redux';
+import store from '../../../redux/store';
 
 describe('CartPage', () => {
   it('renders without crashing', () => {
-    shallow(<CartPage />);
+    mount(
+      <Provider store={store}>
+        <CartPage />
+      </Provider>
+    );
   });
 });
