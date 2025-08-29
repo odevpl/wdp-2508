@@ -491,7 +491,10 @@ const initialState = {
     width: 1024,
     mode: 'desktop',
   },
-
+  quickView: {
+    open: false,
+    productId: null,
+  },
   brands: [
     { id: 1, name: 'IKEA', logo: 'https://i.imgur.com/z8BGkzc.png' },
     { id: 2, name: 'Leroy Merlin', logo: 'https://i.imgur.com/z8BGkzc.png' },

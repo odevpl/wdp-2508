@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import QuickView from '../../features/QuickView/QuickView';
 
 import { useDispatch } from 'react-redux';
 import { setViewportMode } from '../../../redux/viewportRedux';
@@ -24,6 +25,7 @@ const MainLayout = ({ children }) => {
     <div>
       <Header />
       {children}
+      <QuickView />
       <Footer />
     </div>
   );

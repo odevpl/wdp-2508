@@ -16,6 +16,7 @@ import StarRating from '../../features/StarRating/StarRating';
 
 import { useDispatch } from 'react-redux';
 import { toggleFavourite } from '../../../redux/productsRedux';
+import { updateQuickView } from '../../../redux/quickViewRedux';
 
 const ProductBox = ({
   id,
@@ -44,6 +45,11 @@ const ProductBox = ({
     dispatch(toggleFavourite(id));
   };
 
+  const handleQuickView = e => {
+    e.preventDefault();
+    dispatch(updateQuickView({ open: true, productId: id }));
+  };
+
   return (
     <div
       className={`${styles.root} ${listShow ? styles.list : styles.grid}`}
@@ -56,6 +62,9 @@ const ProductBox = ({
             <Button
               variant='small'
               className={`${styles.button} ${styles.quickViewBtn}`}
+              onClick={e => {
+                handleQuickView(e);
+              }}
             >
               Quick View
             </Button>

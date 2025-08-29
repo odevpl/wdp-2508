@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './PromotionSection.module.scss';
 import Button from '../../common/Button/Button';
@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Swipeable from '../Swipeable/Swipeable';
+import { updateQuickView } from '../../../redux/quickViewRedux';
 
 let timePromotion = [
   { number: 25, title: 'DAYS' },
@@ -22,6 +23,7 @@ let timePromotion = [
   { number: 30, title: 'SECS' },
 ];
 export default function PromotionSection({ id }) {
+  const dispatch = useDispatch();
   const products = useSelector(state => state.products);
   const firestIndex = products.findIndex(el => el.id === id);
 
@@ -53,6 +55,12 @@ export default function PromotionSection({ id }) {
     if (e) e.preventDefault();
     setRightIndex(el => (el - 1 + products.length) % products.length);
   }
+
+  const handleQuickView = (e, id) => {
+    e.preventDefault();
+    pause.current = Date.now() + 10000;
+    dispatch(updateQuickView({ open: true, productId: id }));
+  };
 
   const leftPromotion = products[leftIndex];
   const rightPromotion = products[rightIndex];
@@ -124,7 +132,10 @@ export default function PromotionSection({ id }) {
           <div className={styles.line}></div>
           <div className={styles.actions}>
             <div className={styles.outlines}>
-              <Button variant='outline'>
+              <Button
+                variant='outline'
+                onClick={e => handleQuickView(e, leftPromotion.id)}
+              >
                 <FontAwesomeIcon icon={faEye} />
               </Button>
               <Button variant='outline'>
