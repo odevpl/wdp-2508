@@ -18,7 +18,15 @@ const GalleryBox = () => {
   const products = useSelector(state => getByMarketingTag(state, activeTag));
   const [activeProductIndex, setActiveProductIndex] = useState(0);
 
-  const itemsPerPage = 6;
+  const getItemsPerPage = width => {
+    if (width >= 768) return 6;
+    if (width >= 576) return 5;
+    if (width >= 480) return 4;
+    return 3;
+  };
+
+  const width = window.innerWidth;
+  const itemsPerPage = getItemsPerPage(width);
   const totalSlides = Math.ceil(products.length / itemsPerPage);
 
   const handleTagChange = tagId => {
@@ -78,7 +86,7 @@ const GalleryBox = () => {
                   </p>
                 </div>
               </div>
-              <Actions />
+              <Actions id={product.id} isFavourite={product.isFavourite} />
             </div>
           ))}
         </div>

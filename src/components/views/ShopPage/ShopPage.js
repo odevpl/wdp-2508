@@ -6,6 +6,7 @@ import Button from '../../common/Button/Button';
 import ProductBox from '../../common/ProductBox/ProductBox';
 import PropTypes from 'prop-types';
 import Brands from '../../features/Brands/Brands';
+import Banner from '../../features/Banner/Banner';
 
 const ShopPage = ({ products, viewport }) => {
   const [activePage] = useState(0);
@@ -36,6 +37,9 @@ const ShopPage = ({ products, viewport }) => {
   return (
     <div className={styles.root}>
       <div className='container'>
+        <div className='row no-gutters'>
+          <Banner />
+        </div>
         <div className={styles.panelBar}>
           <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
             <div className={styles.heading}>

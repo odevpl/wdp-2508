@@ -25,7 +25,7 @@ const FurnitureGallery = () => {
             </div>
             <GalleryBox />
           </div>
-          <div className={'col'}>
+          <div className={'col d-none d-lg-block'}>
             <div className={styles.spotlight}>
               <img src={spotlightProduct.image} alt={spotlightProduct.name} />
               <div className={styles.productInfo}>

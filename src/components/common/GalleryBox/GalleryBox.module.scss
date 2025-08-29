@@ -30,6 +30,9 @@
         outline: none;
         box-shadow: none;
       }
+      @media (max-width: 576px) {
+        font-weight: 400;
+      }
     }
   }
 
@@ -144,6 +147,9 @@
         }
       }
     }
+    @media (max-width: 576px) {
+      width: 100%;
+    }
   }
 
   .thumbnailCarousel {
@@ -153,12 +159,39 @@
     border-bottom: 1px solid #e2e2e2;
     overflow: hidden;
     position: relative;
+
+    @media (max-width: 768px) {
+      width: 480px;
+      margin: auto;
+    }
+
+    @media (max-width: 576px) {
+      width: 400px;
+    }
+
+    @media (max-width: 480px) {
+      width: 340px;
+    }
   }
 
   .thumbnailContainer {
     padding-left: 3rem;
     width: calc(84px * 6);
     overflow: hidden;
+
+    @media (max-width: 768px) {
+      width: calc(84px * 5);
+    }
+
+    @media (max-width: 576px) {
+      padding-left: 2.4rem;
+      width: calc(84px * 4);
+    }
+
+    @media (max-width: 480px) {
+      padding-left: 2.6rem;
+      width: 265px;
+    }
   }
 
   .thumbnailWrapper {
@@ -167,6 +200,7 @@
   }
 
   .thumbnail {
+    flex-shrink: 0;
     min-width: 70px;
     width: 70px;
     height: 70px;
@@ -211,5 +245,9 @@
   button:disabled {
     opacity: 0.3;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 }
