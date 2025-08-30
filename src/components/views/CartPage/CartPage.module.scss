@@ -12,7 +12,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
     }
 
     p {
@@ -43,6 +43,13 @@
       padding: 10px;
       border-bottom: 1px solid #ddd;
 
+      .xmarkIcon {
+        width: 17px;
+        height: 17px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+      }
       div {
         display: flex;
         align-items: center;

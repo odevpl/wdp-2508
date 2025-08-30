@@ -44,7 +44,7 @@ export default function CartPage() {
             return (
               <div key={el.id} className={styles.row}>
                 <div>
-                  <FontAwesomeIcon icon={faTimes} />
+                  <FontAwesomeIcon className={styles.xmarkIcon} icon={faTimes} />
                 </div>
                 <div>
                   <img src={el.image} alt='imageThings' />
