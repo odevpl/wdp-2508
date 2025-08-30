@@ -1,0 +1,156 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  padding: 20px;
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+
+    p {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+
+  .cartContainer {
+    display: flex;
+    gap: 20px;
+  }
+
+  .cartTable {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .rowHeader,
+    .row {
+      display: grid;
+      grid-template-columns: 40px 60px 1fr 80px 120px 80px;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+
+      div {
+        display: flex;
+        align-items: center;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+
+      button {
+        background: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 2px 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+
+      span {
+        margin: 0 8px;
+      }
+    }
+
+    .rowHeader {
+      background-color: #f8f8f8;
+      font-weight: bold;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .cartActions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #555;
+      }
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .cartSummary {
+    width: 250px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+
+    .empty {
+      height: 10px;
+    }
+
+    h3 {
+      margin: 0;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+    }
+
+    .checkoutBtn {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #555;
+      }
+    }
+  }
+}
