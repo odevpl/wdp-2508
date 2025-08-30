@@ -20,9 +20,14 @@ export default function CartPage() {
       <div className='container'>
         <h2>The Template</h2>
         <div className={styles.breadcrumb}>
-          <FontAwesomeIcon icon={faHome} />
-          <FontAwesomeIcon icon={faArrowRight} />
-          <p>Cart</p>
+          <div>
+            <h2>Cart</h2>
+          </div>
+          <div className={styles.rightSectionBreadCrumbs}>
+            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faArrowRight} />
+            <p>Cart</p>
+          </div>
         </div>
 
         <div className={styles.cartTable}>
