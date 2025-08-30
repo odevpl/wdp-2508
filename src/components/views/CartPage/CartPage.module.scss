@@ -2,7 +2,6 @@
 
 .root {
   padding: 20px;
-
   .breadcrumb {
     display: flex;
     align-items: center;
@@ -110,16 +109,21 @@
       align-items: center;
     }
   }
-
+  .containerCartSummary {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 0;
+  }
   .cartSummary {
-    width: 250px;
+    width: 400px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     display: flex;
+    margin-right: 0;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     flex-shrink: 0;
 
     .empty {
@@ -137,6 +141,12 @@
       display: flex;
       justify-content: space-between;
       font-weight: 500;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     .checkoutBtn {
@@ -146,6 +156,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      text-align: center;
       border: 1px solid #ccc;
       @extend %hover-style;
     }

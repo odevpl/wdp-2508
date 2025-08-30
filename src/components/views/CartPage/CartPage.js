@@ -50,7 +50,7 @@ export default function CartPage() {
                   <img src={el.image} alt='imageThings' />
                 </div>
                 <div>{el.name}</div>
-                <div>{el.price}</div>
+                <div>$ {el.price}</div>
                 <div>
                   <button>
                     <FontAwesomeIcon icon={faMinus} />
@@ -72,24 +72,26 @@ export default function CartPage() {
           </div>
           <Button variant='outline'>UPDATE CART</Button>
         </div>
-        <div className={styles.cartSummary}>
-          <div className={styles.empty}></div>
-          <h3>Cart Totals</h3>
-          <div className={styles.row}>
-            <span>Subtotal</span>
-            <span>$140</span>
+        <div className={styles.containerCartSummary}>
+          <div className={styles.cartSummary}>
+            <div className={styles.empty}></div>
+            <h3>Cart Totals</h3>
+            <div className={styles.row}>
+              <span>Subtotal</span>
+              <span>$140</span>
+            </div>
+            <div className={styles.row}>
+              <span>Total</span>
+              <span>$140</span>
+            </div>
+            <div className={styles.row}>
+              <span>Total</span>
+              <span>$140</span>
+            </div>
+            <Button variant='outline' className={styles.checkoutBtn}>
+              PROCEED TO CHECKOUT
+            </Button>
           </div>
-          <div className={styles.row}>
-            <span>Total</span>
-            <span>$140</span>
-          </div>
-          <div className={styles.row}>
-            <span>Total</span>
-            <span>$140</span>
-          </div>
-          <Button variant='outline' className={styles.checkoutBtn}>
-            PROCEED TO CHECKOUT
-          </Button>
         </div>
       </div>
     </div>
