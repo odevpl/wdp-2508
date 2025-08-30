@@ -1,5 +1,11 @@
 @import "../../../styles/settings.scss";
 
+.error {
+  color: red;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
 .root {
   padding-block: calc($base-padding * 2);
 

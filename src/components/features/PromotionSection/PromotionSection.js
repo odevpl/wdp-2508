@@ -19,7 +19,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import Swipeable from '../Swipeable/Swipeable';
 import { addProduct } from '../../../redux/cartRedux';
-import { useDispatch } from 'react-redux';
+import { updateQuickView } from '../../../redux/quickViewRedux';
 import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 let timePromotion = [
@@ -66,6 +66,12 @@ export default function PromotionSection({ id }) {
   const handleToggleFavourite = (e, id) => {
     e.preventDefault();
     dispatch(toggleFavouriteThunk(id));
+  };
+
+  const handleQuickView = (e, id) => {
+    e.preventDefault();
+    pause.current = Date.now() + 10000;
+    dispatch(updateQuickView({ open: true, productId: id }));
   };
 
   const leftPromotion = products[leftIndex];
@@ -143,7 +149,10 @@ export default function PromotionSection({ id }) {
           <div className={styles.line}></div>
           <div className={styles.actions}>
             <div className={styles.outlines}>
-              <Button variant='outline'>
+              <Button
+                variant='outline'
+                onClick={e => handleQuickView(e, leftPromotion.id)}
+              >
                 <FontAwesomeIcon icon={faEye} />
               </Button>
               <Button
