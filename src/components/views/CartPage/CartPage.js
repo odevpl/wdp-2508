@@ -9,6 +9,7 @@ import {
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
+import Button from '../../common/Button/Button';
 
 export default function CartPage() {
   const products = useSelector(state => state.products);
@@ -62,9 +63,9 @@ export default function CartPage() {
         <div className={styles.cartActions}>
           <div>
             <input type='text' placeholder='Coupon code' />
-            <button>APPLY COUPON</button>
+            <Button variant='outline'>APPLY COUPON</Button>
           </div>
-          <button>UPDATE CART</button>
+          <Button variant='outline'>UPDATE CART</Button>
         </div>
         <div className={styles.cartSummary}>
           <div className={styles.empty}></div>
@@ -81,7 +82,9 @@ export default function CartPage() {
             <span>Total</span>
             <span>$140</span>
           </div>
-          <button className={styles.checkoutBtn}>PROCEED TO CHECKOUT</button>
+          <Button variant='outline' className={styles.checkoutBtn}>
+            PROCEED TO CHECKOUT
+          </Button>
         </div>
       </div>
     </div>
