@@ -161,4 +161,7 @@
       @extend %hover-style;
     }
   }
+  .colorPrice {
+    color: $primary;
+  }
 }

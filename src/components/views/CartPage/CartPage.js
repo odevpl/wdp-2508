@@ -50,7 +50,7 @@ export default function CartPage() {
                   <img src={el.image} alt='imageThings' />
                 </div>
                 <div>{el.name}</div>
-                <div>$ {el.price}</div>
+                <div className={styles.colorPrice}>$ {el.price}</div>
                 <div>
                   <button>
                     <FontAwesomeIcon icon={faMinus} />
@@ -60,7 +60,7 @@ export default function CartPage() {
                     <FontAwesomeIcon icon={faPlus} />
                   </button>
                 </div>
-                <div>$50</div>
+                <div className={styles.colorPrice}>$50</div>
               </div>
             );
           })}
@@ -78,15 +78,11 @@ export default function CartPage() {
             <h3>Cart Totals</h3>
             <div className={styles.row}>
               <span>Subtotal</span>
-              <span>$140</span>
+              <span className={styles.colorPrice}>$140</span>
             </div>
             <div className={styles.row}>
               <span>Total</span>
-              <span>$140</span>
-            </div>
-            <div className={styles.row}>
-              <span>Total</span>
-              <span>$140</span>
+              <span className={styles.colorPrice}>$140</span>
             </div>
             <Button variant='outline' className={styles.checkoutBtn}>
               PROCEED TO CHECKOUT
