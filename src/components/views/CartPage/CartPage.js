@@ -10,11 +10,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import Button from '../../common/Button/Button';
+import { useHistory } from 'react-router-dom';
 
 export default function CartPage() {
+  const history = useHistory();
   const products = useSelector(state => state.products);
 
   const firstThree = products.slice(0, 3);
+
+  const handleGoHome = () => {
+    history.push('/');
+  };
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -84,7 +90,11 @@ export default function CartPage() {
               <span>Total</span>
               <span className={styles.colorPrice}>$140</span>
             </div>
-            <Button variant='outline' className={styles.checkoutBtn}>
+            <Button
+              onClick={handleGoHome}
+              variant='outline'
+              className={styles.checkoutBtn}
+            >
               PROCEED TO CHECKOUT
             </Button>
           </div>
