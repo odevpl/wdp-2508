@@ -1,4 +1,26 @@
 const initialState = {
+  promotion: {
+    leftBox: {
+      label_1: 'Guest Room',
+      label_2: 'Sofa',
+      discount: '-20%',
+      img: '/images/products/dining_aenean_ru_bristique_24.jpg',
+    },
+    topBox: {
+      label_1_1: 'Office ',
+      label_1_2: 'chair',
+      label_2: 'Collection',
+      price: '$200.00',
+      img1: '/images/products/chair_aenean_ru_bristique_2.jpg',
+      img2: '/images/products/chair_aenean_ru_bristique_1.jpg',
+    },
+    bottomBox: {
+      label_1_1: 'Special ',
+      label_1_2: 'collection',
+      label_2: 'Save up 45% of furniture',
+      img: '/images/products/sofa_aenean_ru_bristique_6.jpg',
+    },
+  },
   categories: [
     { id: 'bed', name: 'Bed' },
     { id: 'chair', name: 'Chair' },
