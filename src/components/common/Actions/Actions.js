@@ -1,4 +1,5 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import styles from './Actions.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,12 +13,18 @@ import {
 import Button from '../../common/Button/Button';
 import { useDispatch } from 'react-redux';
 import { toggleFavouriteThunk } from '../../../redux/productsRedux';
+import { updateQuickView } from '../../../redux/quickViewRedux';
 
 const Actions = ({ id, isFavourite }) => {
   const dispatch = useDispatch();
   const handleToggleFavourite = e => {
     e.preventDefault();
     dispatch(toggleFavouriteThunk(id));
+  };
+
+  const handleQuickView = e => {
+    e.preventDefault();
+    dispatch(updateQuickView({ open: true, productId: id }));
   };
 
   return (
@@ -42,7 +49,7 @@ const Actions = ({ id, isFavourite }) => {
           <div className={styles.tooltip}>Add to compare</div>
         </div>
         <div className={styles.btnWrapper}>
-          <Button variant='outline'>
+          <Button variant='outline' onClick={handleQuickView}>
             <FontAwesomeIcon icon={faEye}>Quick view</FontAwesomeIcon>
           </Button>
           <div className={styles.tooltip}>Quick view</div>
