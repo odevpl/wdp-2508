@@ -40,7 +40,6 @@ const ProductPage = () => {
     dispatch(addProduct(product));
   };
 
-  const dispatch = useDispatch();
   const handleToggleFavourite = (e, id) => {
     e.preventDefault();
     dispatch(toggleFavouriteThunk(id));

@@ -37,7 +37,6 @@ export default function PromotionSection({ id }) {
   const [rightIndex, setRightIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
 
   const pause = useRef(0);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const interval = setInterval(() => {

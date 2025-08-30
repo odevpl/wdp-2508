@@ -2,7 +2,6 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import styles from './Actions.module.scss';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import {
@@ -24,8 +23,8 @@ const Actions = ({ id, isFavourite }) => {
   const handleAddToCart = e => {
     e.preventDefault();
     dispatch(addProduct(product));
-  }
-  
+  };
+
   const handleToggleFavourite = e => {
     e.preventDefault();
     dispatch(toggleFavouriteThunk(id));
