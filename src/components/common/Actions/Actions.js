@@ -11,12 +11,20 @@ import {
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductById } from '../../../redux/productsRedux';
+import { addProduct } from '../../../redux/cartRedux';
 import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 import { updateQuickView } from '../../../redux/quickViewRedux';
 
 const Actions = ({ id, isFavourite }) => {
   const dispatch = useDispatch();
+  const product = useSelector(state => getProductById(state, id));
+  const handleAddToCart = e => {
+    e.preventDefault();
+    dispatch(addProduct(product));
+  };
+
   const handleToggleFavourite = e => {
     e.preventDefault();
     dispatch(toggleFavouriteThunk(id));
@@ -55,7 +63,7 @@ const Actions = ({ id, isFavourite }) => {
           <div className={styles.tooltip}>Quick view</div>
         </div>
         <div className={styles.btnWrapper}>
-          <Button variant='outline'>
+          <Button variant='outline' onClick={handleAddToCart}>
             <FontAwesomeIcon icon={faShoppingBasket}>Add to cart</FontAwesomeIcon>
           </Button>
           <div className={styles.tooltip}>Add to cart</div>

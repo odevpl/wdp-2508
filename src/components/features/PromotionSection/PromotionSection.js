@@ -18,6 +18,7 @@ import {
   faHeart as farHeart,
 } from '@fortawesome/free-regular-svg-icons';
 import Swipeable from '../Swipeable/Swipeable';
+import { addProduct } from '../../../redux/cartRedux';
 import { updateQuickView } from '../../../redux/quickViewRedux';
 import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
@@ -77,6 +78,11 @@ export default function PromotionSection({ id }) {
 
   if (!leftPromotion || !rightPromotion) return <p>Promocja nie znaleziona</p>;
 
+  function handleAddToCart(e) {
+    e.preventDefault();
+    dispatch(addProduct(leftPromotion));
+  }
+
   return (
     <div
       className={styles.root}
@@ -119,7 +125,7 @@ export default function PromotionSection({ id }) {
               </ul>
             </div>
             <div className={styles.buttons}>
-              <Button variant='small'>
+              <Button variant='small' onClick={handleAddToCart}>
                 <FontAwesomeIcon icon={faShoppingBasket} />
                 ADD TO CART
               </Button>

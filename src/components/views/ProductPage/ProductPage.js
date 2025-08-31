@@ -3,11 +3,9 @@ import React from 'react';
 import styles from './ProductPage.module.scss';
 import Button from '../../common/Button/Button';
 import StarRating from '../../features/StarRating/StarRating';
-
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getProductById } from '../../../redux/productsRedux';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -28,16 +26,20 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
-
 import TabReview from '../../features/TabReview/TabReview';
-import { useDispatch } from 'react-redux';
+import { addProduct } from '../../../redux/cartRedux';
 import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const product = useSelector(state => getProductById(state, productId));
-
   const dispatch = useDispatch();
+
+  const handleAddToCart = e => {
+    e.preventDefault();
+    dispatch(addProduct(product));
+  };
+
   const handleToggleFavourite = (e, id) => {
     e.preventDefault();
     dispatch(toggleFavouriteThunk(id));
@@ -126,7 +128,7 @@ const ProductPage = () => {
 
                 <div className={`${styles.group} ${styles.productShopBtns}`}>
                   <div className={styles.actionBtns}>
-                    <Button variant='addToCart'>
+                    <Button variant='addToCart' onClick={handleAddToCart}>
                       <FontAwesomeIcon icon={faShoppingBasket}>
                         Add to Cart
                       </FontAwesomeIcon>{' '}
