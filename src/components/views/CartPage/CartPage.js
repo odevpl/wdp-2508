@@ -8,19 +8,44 @@ import {
   faArrowRight,
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/Button/Button';
 import { useHistory } from 'react-router-dom';
+import {
+  addProduct,
+  getAll,
+  getTotalPrice,
+  removeOne,
+  removeProduct,
+  resetCart,
+} from '../../../redux/cartRedux';
 
 export default function CartPage() {
   const history = useHistory();
-  const products = useSelector(state => state.products);
-
-  const firstThree = products.slice(0, 3);
+  const products = useSelector(getAll);
+  const dispatch = useDispatch();
+  const subtotal = useSelector(getTotalPrice);
 
   const handleGoHome = () => {
     history.push('/');
+    dispatch(resetCart());
   };
+
+  const handleRemoveFromCart = (e, id) => {
+    e.preventDefault();
+    dispatch(removeProduct({ id }));
+  };
+
+  const handleRemoveOneProduct = (e, id) => {
+    e.preventDefault();
+    dispatch(removeOne({ id }));
+  };
+
+  const handleAddOneProduct = (e, id) => {
+    e.preventDefault();
+    dispatch(addProduct({ id }));
+  };
+
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -46,10 +71,10 @@ export default function CartPage() {
             <div>TOTAL</div>
           </div>
 
-          {firstThree.map(el => {
+          {products.map(el => {
             return (
               <div key={el.id} className={styles.row}>
-                <div>
+                <div onClick={e => handleRemoveFromCart(e, el.id)}>
                   <FontAwesomeIcon className={styles.xmarkIcon} icon={faTimes} />
                 </div>
                 <div>
@@ -58,15 +83,15 @@ export default function CartPage() {
                 <div>{el.name}</div>
                 <div className={styles.colorPrice}>$ {el.price}</div>
                 <div>
-                  <button>
+                  <button onClick={e => handleRemoveOneProduct(e, el.id)}>
                     <FontAwesomeIcon icon={faMinus} />
                   </button>
-                  <span>1</span>
-                  <button>
+                  <span>{el.quantity}</span>
+                  <button onClick={e => handleAddOneProduct(e, el.id)}>
                     <FontAwesomeIcon icon={faPlus} />
                   </button>
                 </div>
-                <div className={styles.colorPrice}>$50</div>
+                <div className={styles.colorPrice}>$ {el.totalPrice}</div>
               </div>
             );
           })}
@@ -84,11 +109,13 @@ export default function CartPage() {
             <h3>Cart Totals</h3>
             <div className={styles.row}>
               <span>Subtotal</span>
-              <span className={styles.colorPrice}>$140</span>
+              <span className={styles.colorPrice}>$ {subtotal}</span>
             </div>
             <div className={styles.row}>
               <span>Total</span>
-              <span className={styles.colorPrice}>$140</span>
+              <span className={styles.colorPrice}>
+                $ {subtotal ? subtotal + 20 : 0}
+              </span>
             </div>
             <Button
               onClick={handleGoHome}

@@ -99,7 +99,7 @@ export default function PromotionSection({ id }) {
                     const dotIndex =
                       (leftIndex + el - 1 + products.length) % products.length;
                     return (
-                      <li key={el.id}>
+                      <li key={el}>
                         <a
                           onClick={() => handleClickProducts(dotIndex)}
                           className={dotIndex === leftIndex ? styles.isActive : ''}
