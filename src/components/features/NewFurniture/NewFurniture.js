@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../../common/Button/Button';
+import Swipeable from '../Swipeable/Swipeable';
 
 class NewFurniture extends React.Component {
   static FADE_MS = 260;
@@ -51,8 +53,20 @@ class NewFurniture extends React.Component {
     }
   };
 
+  leftAction(pagesCount) {
+    const newPage = this.state.activePage + 1;
+    if (newPage < 0 || newPage >= pagesCount) return;
+    this.handlePageChange(newPage);
+  }
+
+  rightAction(pagesCount) {
+    const newPage = this.state.activePage - 1;
+    if (newPage < 0 || newPage >= pagesCount) return;
+    this.handlePageChange(newPage);
+  }
+
   render() {
-    const { categories, products } = this.props;
+    const { categories, products, viewport } = this.props;
     const { activeCategory, activePage, counter } = this.state;
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
@@ -63,7 +77,7 @@ class NewFurniture extends React.Component {
       dots.push(
         <li key={i}>
           <a
-            href='#'
+            href="#"
             onClick={e => {
               e.preventDefault();
               this.handlePageChange(i);
@@ -76,23 +90,30 @@ class NewFurniture extends React.Component {
       );
     }
 
+    let colSize = 'col-12';
+    if (viewport.mode === 'desktop') {
+      colSize = 'col-3';
+    } else if (viewport.mode === 'tablet') {
+      colSize = 'col-4';
+    } else if (viewport.mode === 'mobile') {
+      colSize = 'col-sm-6 col-12';
+    }
+
     return (
       <div className={styles.root}>
-        <div className='container'>
+        <div className="container">
           <div className={styles.panelBar}>
-            <div className='row no-gutters align-items-end'>
-              <div className={'col-auto ' + styles.heading}>
+            <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
+              <div className={styles.heading}>
                 <h3>New furniture</h3>
               </div>
-              <div className={'col ' + styles.menu}>
+              <div className={`col ${styles.menu}`}>
                 <ul>
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        href='#'
-                        className={
-                          item.id === activeCategory ? styles.active : undefined
-                        }
+                        href="#"
+                        className={item.id === activeCategory ? styles.active : undefined}
                         onClick={e => {
                           e.preventDefault();
                           this.handleCategoryChange(item.id);
@@ -104,52 +125,69 @@ class NewFurniture extends React.Component {
                   ))}
                 </ul>
               </div>
-              <div className={'col-auto ' + styles.dots}>
+              <div className={styles.dots}>
                 <ul>{dots}</ul>
               </div>
             </div>
           </div>
-          <div
-            className={`${styles.products} ${
-              this.state.isFading ? styles.isFading : ''
-            }`}
+
+          <Swipeable
+            leftAction={() => this.leftAction(pagesCount)}
+            rightAction={() => this.rightAction(pagesCount)}
           >
-            <div className='row'>
-              {categoryProducts
-                .slice(activePage * 8, (activePage + 1) * 8)
-                .map(item => (
-                  <div key={item.id} className='col-3'>
-                    <ProductBox
-                      {...item}
-                      handleCompare={() => this.handleCompare(item)}
-                    />
-                  </div>
-                ))}
+            <div
+              className={`${styles.products} ${
+                this.state.isFading ? styles.isFading : ''
+              }`}
+            >
+              <div className="row">
+                {categoryProducts
+                  .slice(activePage * 8, (activePage + 1) * 8)
+                  .map(item => (
+                    <div key={item.id} className={colSize}>
+                      <ProductBox
+                        {...item}
+                        handleCompare={() => this.handleCompare(item)}
+                      />
+                    </div>
+                  ))}
+              </div>
             </div>
-          </div>
+          </Swipeable>
         </div>
+
         {counter.length > 0 && (
           <div className={styles.compareContainer}>
             <ul>
-              {counter.map(product => {
-                return (
-                  <li key={product.id}>
-                    <img src={product.image} alt={product.name} />
-                    <Button
-                      className={styles.removeBtn}
-                      variant='outline'
-                      onClick={() => {
-                        this.setState({
-                          counter: counter.filter(el => el.id !== product.id),
-                        });
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTimes} />
+              {counter.map(product => (
+                <li key={product.id}>
+                  <img src={product.image} alt={product.name} />
+                  <h5 className={styles.productName}>{product.name}</h5>
+                  <div className={styles.productInfo}>
+                    <p className={styles.price}>${product.promoPrice?.toFixed(2) || product.price.toFixed(2)}</p>
+                    {product.promoPrice && (
+                      <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
+                    )}
+                    <Button className={product.isFavourite ? styles.active : ''}>
+                      <FontAwesomeIcon
+                        icon={product.isFavourite ? faHeart : farHeart}
+                      />
                     </Button>
-                  </li>
-                );
-              })}
-              <Button className={styles.compareBtn} variant='small'>
+                  </div>
+                  <Button
+                    className={styles.removeBtn}
+                    variant="outline"
+                    onClick={() => {
+                      this.setState({
+                        counter: counter.filter(el => el.id !== product.id),
+                      });
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </Button>
+                </li>
+              ))}
+              <Button className={styles.compareBtn} variant="small">
                 Compare
               </Button>
             </ul>
@@ -179,11 +217,16 @@ NewFurniture.propTypes = {
       newFurniture: PropTypes.bool,
     })
   ),
+  viewport: PropTypes.shape({
+    width: PropTypes.number,
+    mode: PropTypes.string,
+  }),
 };
 
 NewFurniture.defaultProps = {
   categories: [],
   products: [],
+  viewport: { width: 1024, mode: 'desktop' },
 };
 
 export default NewFurniture;

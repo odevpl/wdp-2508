@@ -1,0 +1,58 @@
+@import "../../../styles/settings.scss";
+
+.actions {
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  right: 1rem;
+  z-index: 1;
+  height: 100%;
+
+  .active {
+    color: $primary;
+    border-color: $primary;
+  }
+
+  .outlines {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    .btnWrapper {
+      position: relative;
+      &:hover .tooltip {
+        display: flex;
+      }
+
+      .tooltip {
+        display: none;
+        position: absolute;
+        align-items: center;
+        height: 25px;
+        font-size: 12px;
+        background-color: $text-color;
+        color: $hover-color;
+        min-width: fit-content;
+        text-wrap: nowrap;
+        left: 45px;
+        top: 4px;
+        padding-inline: 1rem;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 8px;
+          left: -6px;
+          width: 10px;
+          height: 10px;
+          clip-path: polygon(100% 0, 0 50%, 100% 100%);
+          background-color: $text-color;
+        }
+      }
+    }
+  }
+}

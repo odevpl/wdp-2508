@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 
 import ProductSearch from '../../features/ProductSearch/ProductSearch';
+import { getAll } from '../../../redux/categoriesRedux';
 
 import styles from './MenuBar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +13,8 @@ import Button from '../../common/Button/Button';
 
 const MenuBar = ({ children }) => {
   const [shown, setShown] = useState(false);
+  const categories = useSelector(getAll);
+  const path = useLocation().pathname;
 
   return (
     <div className={styles.root}>
@@ -21,27 +26,29 @@ const MenuBar = ({ children }) => {
           <div className={styles.menu}>
             <ul>
               <li>
-                <a href='#' className={styles.active}>
+                <Link to='/' className={path === '/' ? styles.active : ''}>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>Furniture</a>
+                <Link to='/shop' className={path === '/shop' ? styles.active : ''}>
+                  Furniture
+                </Link>
               </li>
+              {categories.map(category => (
+                <li key={category.id}>
+                  <Link
+                    to={`/shop/${category.id}`}
+                    className={path === `/shop/${category.id}` ? styles.active : ''}
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <a href='#'>Chair</a>
-              </li>
-              <li>
-                <a href='#'>Table</a>
-              </li>
-              <li>
-                <a href='#'>Sofa</a>
-              </li>
-              <li>
-                <a href='#'>Bedroom</a>
-              </li>
-              <li>
-                <a href='#'>Blog</a>
+                <Link to='/blog' className={path === '/blog' ? styles.active : ''}>
+                  Blog
+                </Link>
               </li>
             </ul>
           </div>
@@ -57,24 +64,26 @@ const MenuBar = ({ children }) => {
             {shown && (
               <ul className='dropdown-menu show'>
                 <li>
-                  <a className='dropdown-item' href='#'>
+                  <Link to='/' className='dropdown-item'>
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className='dropdown-item' href='#'>
+                  <Link to='/shop' className='dropdown-item'>
                     Furniture
-                  </a>
+                  </Link>
                 </li>
+                {categories.map(category => (
+                  <li key={category.id}>
+                    <Link to={`/shop/${category.id}`} className='dropdown-item'>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
                 <li>
-                  <a className='dropdown-item' href='#'>
-                    Chair
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Table
-                  </a>
+                  <Link to='/blog' className='dropdown-item'>
+                    Blog
+                  </Link>
                 </li>
               </ul>
             )}
