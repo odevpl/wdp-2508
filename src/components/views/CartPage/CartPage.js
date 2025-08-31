@@ -8,19 +8,26 @@ import {
   faArrowRight,
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/Button/Button';
 import { useHistory } from 'react-router-dom';
+import { getAll, removeProduct, resetCart } from '../../../redux/cartRedux';
 
 export default function CartPage() {
   const history = useHistory();
-  const products = useSelector(state => state.products);
-
-  const firstThree = products.slice(0, 3);
+  const products = useSelector(getAll);
+  const dispatch = useDispatch();
 
   const handleGoHome = () => {
     history.push('/');
+    dispatch(resetCart());
   };
+
+  const handleRemoveFromCart = (e, id) => {
+    e.preventDefault();
+    dispatch(removeProduct({ id }));
+  };
+
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -46,10 +53,10 @@ export default function CartPage() {
             <div>TOTAL</div>
           </div>
 
-          {firstThree.map(el => {
+          {products.map(el => {
             return (
               <div key={el.id} className={styles.row}>
-                <div>
+                <div onClick={e => handleRemoveFromCart(e, el.id)}>
                   <FontAwesomeIcon className={styles.xmarkIcon} icon={faTimes} />
                 </div>
                 <div>
@@ -61,7 +68,7 @@ export default function CartPage() {
                   <button>
                     <FontAwesomeIcon icon={faMinus} />
                   </button>
-                  <span>1</span>
+                  <span>{el.quantity}</span>
                   <button>
                     <FontAwesomeIcon icon={faPlus} />
                   </button>

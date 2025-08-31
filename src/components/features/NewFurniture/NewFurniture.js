@@ -77,7 +77,7 @@ class NewFurniture extends React.Component {
       dots.push(
         <li key={i}>
           <a
-            href="#"
+            href='#'
             onClick={e => {
               e.preventDefault();
               this.handlePageChange(i);
@@ -101,7 +101,7 @@ class NewFurniture extends React.Component {
 
     return (
       <div className={styles.root}>
-        <div className="container">
+        <div className='container'>
           <div className={styles.panelBar}>
             <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
               <div className={styles.heading}>
@@ -112,8 +112,10 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        href="#"
-                        className={item.id === activeCategory ? styles.active : undefined}
+                        href='#'
+                        className={
+                          item.id === activeCategory ? styles.active : undefined
+                        }
                         onClick={e => {
                           e.preventDefault();
                           this.handleCategoryChange(item.id);
@@ -140,7 +142,7 @@ class NewFurniture extends React.Component {
                 this.state.isFading ? styles.isFading : ''
               }`}
             >
-              <div className="row">
+              <div className='row'>
                 {categoryProducts
                   .slice(activePage * 8, (activePage + 1) * 8)
                   .map(item => (
@@ -164,7 +166,12 @@ class NewFurniture extends React.Component {
                   <img src={product.image} alt={product.name} />
                   <h5 className={styles.productName}>{product.name}</h5>
                   <div className={styles.productInfo}>
-                    <p className={styles.price}>${product.promoPrice?.toFixed(2) || product.price.toFixed(2)}</p>
+                    <p className={styles.price}>
+                      $
+                      {product.promoPrice
+                        ? product.promoPrice.toFixed(2)
+                        : product.price.toFixed(2)}
+                    </p>
                     {product.promoPrice && (
                       <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
                     )}
@@ -176,7 +183,7 @@ class NewFurniture extends React.Component {
                   </div>
                   <Button
                     className={styles.removeBtn}
-                    variant="outline"
+                    variant='outline'
                     onClick={() => {
                       this.setState({
                         counter: counter.filter(el => el.id !== product.id),
@@ -187,7 +194,7 @@ class NewFurniture extends React.Component {
                   </Button>
                 </li>
               ))}
-              <Button className={styles.compareBtn} variant="small">
+              <Button className={styles.compareBtn} variant='small'>
                 Compare
               </Button>
             </ul>

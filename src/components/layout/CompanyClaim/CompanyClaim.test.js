@@ -1,16 +1,18 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import CompanyClaim from './CompanyClaim';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import { mount } from 'enzyme';
 import store from '../../../redux/store';
+import CompanyClaim from './CompanyClaim';
 
 describe('CompanyClaim', () => {
   it('renders without crashing', () => {
-    const component = mount(
+    mount(
       <Provider store={store}>
-        <CompanyClaim />
+        <MemoryRouter>
+          <CompanyClaim />
+        </MemoryRouter>
       </Provider>
     );
-    expect(component.exists()).toBeTruthy();
   });
 });
