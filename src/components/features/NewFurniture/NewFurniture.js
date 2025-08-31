@@ -167,11 +167,13 @@ class NewFurniture extends React.Component {
                   <h5 className={styles.productName}>{product.name}</h5>
                   <div className={styles.productInfo}>
                     <p className={styles.price}>
-                      $
                       {product.promoPrice
-                        ? product.promoPrice.toFixed(2)
-                        : product.price.toFixed(2)}
+                        ? `$${product.promoPrice.toFixed(2)}`
+                        : `$${product.price.toFixed(2)}`}
                     </p>
+                    {product.promoPrice && (
+                      <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
+                    )}
                     {product.promoPrice && (
                       <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
                     )}
