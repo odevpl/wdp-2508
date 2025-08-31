@@ -113,9 +113,7 @@ class NewFurniture extends React.Component {
                     <li key={item.id}>
                       <a
                         href='#'
-                        className={
-                          item.id === activeCategory ? styles.active : undefined
-                        }
+                        className={item.id === activeCategory ? styles.active : undefined}
                         onClick={e => {
                           e.preventDefault();
                           this.handleCategoryChange(item.id);
@@ -167,10 +165,9 @@ class NewFurniture extends React.Component {
                   <h5 className={styles.productName}>{product.name}</h5>
                   <div className={styles.productInfo}>
                     <p className={styles.price}>
-                      $
                       {product.promoPrice
-                        ? product.promoPrice.toFixed(2)
-                        : product.price.toFixed(2)}
+                        ? `$${product.promoPrice.toFixed(2)}`
+                        : `$${product.price.toFixed(2)}`}
                     </p>
                     {product.promoPrice && (
                       <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
