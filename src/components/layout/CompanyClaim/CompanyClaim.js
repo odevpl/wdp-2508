@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { getCount } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const CompanyClaim = () => {
   const count = useSelector(getCount);
@@ -28,12 +30,12 @@ const CompanyClaim = () => {
             </a>
           </div>
           <div className={`col text-right ${styles.cart}`}>
-            <a href='#' className={styles.cartBox}>
+            <Link to='/cart' className={styles.cartBox}>
               <div className={styles.cartIcon}>
                 <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
               </div>
               <div className={styles.cartCounter}>{showCount}</div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
