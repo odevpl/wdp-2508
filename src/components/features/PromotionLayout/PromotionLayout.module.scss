@@ -7,6 +7,10 @@
   max-width: 1200px;
   margin: 40px auto;
   height: 300px;
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
 }
 
 .right {
@@ -120,6 +124,15 @@
     top: -5px;
     left: -35px;
     height: 160px;
+    @media (max-width: 1200px) {
+      left: 75px;
+    }
+    @media (max-width: 768px) {
+      left: 0px;
+    }
+    @media (max-width: 576px) {
+      left: -30px;
+    }
   }
 
   .image2 {
@@ -127,6 +140,19 @@
     top: -55px;
     right: -35px;
     height: 250px;
+    @media (max-width: 1200px) {
+      right: 75px;
+    }
+    @media (max-width: 768px) {
+      right: 0px;
+    }
+    @media (max-width: 576px) {
+      right: -45px;
+    }
+    @media (max-width: 420px) {
+      height: 200px;
+      top: -30px;
+    }
   }
 
   .image3 {
@@ -134,6 +160,18 @@
     top: -80px;
     left: -35px;
     height: 330px;
+    @media (max-width: 1200px) {
+      left: 105px;
+    }
+    @media (max-width: 1000px) {
+      left: -15px;
+    }
+    @media (max-width: 768px) {
+      left: -100px;
+    }
+    @media (max-width: 576px) {
+      left: -150px;
+    }
   }
 
   .label_1_top {
@@ -160,6 +198,9 @@
     padding-bottom: 4px;
     color: $primary;
     letter-spacing: 1.5px;
+    @media (max-width: 1200px) {
+      text-align: left;
+    }
   }
 
   .label_2_bottom {
@@ -169,6 +210,9 @@
     text-align: right;
     width: 100%;
     letter-spacing: 0.7px;
+    @media (max-width: 1200px) {
+      text-align: left;
+    }
   }
 }
 
@@ -177,5 +221,11 @@
   .textWrapper {
     position: static;
     margin-right: 10px;
+  }
+  @media (max-width: 1200px) {
+    justify-content: center;
+    .textWrapper {
+      margin-left: 180px;
+    }
   }
 }
