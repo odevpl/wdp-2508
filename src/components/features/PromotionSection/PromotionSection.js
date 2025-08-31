@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './PromotionSection.module.scss';
 import Button from '../../common/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faHeart,
   faStar,
   faExchangeAlt,
   faShoppingBasket,
@@ -12,8 +13,13 @@ import {
   faArrowRight,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import {
+  faStar as farStar,
+  faHeart as farHeart,
+} from '@fortawesome/free-regular-svg-icons';
 import Swipeable from '../Swipeable/Swipeable';
+import { updateQuickView } from '../../../redux/quickViewRedux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 let timePromotion = [
   { number: 25, title: 'DAYS' },
@@ -24,27 +30,57 @@ let timePromotion = [
 export default function PromotionSection({ id }) {
   const products = useSelector(state => state.products);
   const firestIndex = products.findIndex(el => el.id === id);
+  const dispatch = useDispatch();
 
-  const [index, setIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
+  const [leftIndex, setLeftIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
+  const [rightIndex, setRightIndex] = useState(firestIndex !== -1 ? firestIndex : 0);
 
-  const promotion = products[index];
+  const pause = useRef(0);
 
-  function handleLeft(e) {
-    if (e) e.preventDefault();
-    setIndex(el => (el + 1) % products.length);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Date.now() > pause.current) {
+        setLeftIndex(el => (el + 1) % products.length);
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [products.length]);
+
+  function handleClickProducts(product) {
+    setLeftIndex(product);
+    pause.current = Date.now() + 10000;
   }
 
   function handleRight(e) {
     if (e) e.preventDefault();
-    setIndex(el => (el - 1 + products.length) % products.length);
+    setRightIndex(el => (el + 1) % products.length);
   }
 
-  if (!promotion) return <p>Promocja nie znaleziona</p>;
+  function handleLeft(e) {
+    if (e) e.preventDefault();
+    setRightIndex(el => (el - 1 + products.length) % products.length);
+  }
+
+  const handleToggleFavourite = (e, id) => {
+    e.preventDefault();
+    dispatch(toggleFavouriteThunk(id));
+  };
+
+  const handleQuickView = (e, id) => {
+    e.preventDefault();
+    pause.current = Date.now() + 10000;
+    dispatch(updateQuickView({ open: true, productId: id }));
+  };
+
+  const leftPromotion = products[leftIndex];
+  const rightPromotion = products[rightIndex];
+
+  if (!leftPromotion || !rightPromotion) return <p>Promocja nie znaleziona</p>;
 
   return (
     <div
       className={styles.root}
-      style={{ '--ProductBox-bg-image': `url(${promotion.image})` }}
+      style={{ '--ProductBox-bg-image': `url(${leftPromotion.image})` }}
     >
       <div className={`container ${styles.container}`}>
         <div className={styles.leftSection}>
@@ -54,9 +90,16 @@ export default function PromotionSection({ id }) {
               <div className={styles.dots}>
                 <ul>
                   {[0, 1, 2].map(el => {
+                    const dotIndex =
+                      (leftIndex + el - 1 + products.length) % products.length;
                     return (
                       <li key={el.id}>
-                        <a className={el === 1 ? styles.isActive : ''}>+</a>
+                        <a
+                          onClick={() => handleClickProducts(dotIndex)}
+                          className={dotIndex === leftIndex ? styles.isActive : ''}
+                        >
+                          +
+                        </a>
                       </li>
                     );
                   })}
@@ -83,11 +126,11 @@ export default function PromotionSection({ id }) {
             </div>
           </div>
           <div className={styles.content}>
-            <h5>{promotion.name}</h5>
+            <h5>{leftPromotion.name}</h5>
             <div className={styles.stars}>
               {[1, 2, 3, 4, 5].map(i => (
                 <a key={i} href='#'>
-                  {i <= promotion.stars ? (
+                  {i <= leftPromotion.stars ? (
                     <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
                   ) : (
                     <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
@@ -99,20 +142,29 @@ export default function PromotionSection({ id }) {
           <div className={styles.line}></div>
           <div className={styles.actions}>
             <div className={styles.outlines}>
-              <Button variant='outline'>
+              <Button
+                variant='outline'
+                onClick={e => handleQuickView(e, leftPromotion.id)}
+              >
                 <FontAwesomeIcon icon={faEye} />
               </Button>
-              <Button variant='outline'>
-                <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+              <Button
+                variant='outline'
+                onClick={e => handleToggleFavourite(e, leftPromotion.id)}
+                className={leftPromotion.isFavourite ? styles.active : ''}
+              >
+                <FontAwesomeIcon icon={leftPromotion.isFavourite ? faHeart : farHeart}>
+                  Favorite
+                </FontAwesomeIcon>
               </Button>
               <Button variant='outline'>
                 <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
               </Button>
             </div>
             <div className={styles.price}>
-              <div className={styles.oldPrice}>$ {promotion.price}</div>
+              <div className={styles.oldPrice}>$ {leftPromotion.price}</div>
               <Button noHover variant='small'>
-                $ {promotion.price}
+                $ {leftPromotion.price}
               </Button>
             </div>
           </div>
@@ -124,7 +176,7 @@ export default function PromotionSection({ id }) {
         >
           <div
             className={styles.rightSectionPhoto}
-            style={{ '--ProductBox-bg-image': `url(${promotion.image})` }}
+            style={{ '--ProductBox-bg-image': `url(${rightPromotion.image})` }}
           >
             <div className={styles.rightSectionDescription}>
               <h2>

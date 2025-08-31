@@ -3,11 +3,12 @@ import React from 'react';
 import GalleryBox from '../../common/GalleryBox/GalleryBox';
 import Button from '../../common/Button/Button';
 import styles from './FurnitureGallery.module.scss';
+
 const FurnitureGallery = () => {
   const spotlightProduct = {
     price: '250.00',
     name: 'Bedroom Bed',
-    image: '/images/products/chair_aenean_ru_bristique_1.jpg',
+    image: '/images/products/bed_aenean_ru_bristique_11.jpg',
   };
 
   return (
@@ -24,7 +25,7 @@ const FurnitureGallery = () => {
             </div>
             <GalleryBox />
           </div>
-          <div className={'col'}>
+          <div className={'col d-none d-lg-block'}>
             <div className={styles.spotlight}>
               <img src={spotlightProduct.image} alt={spotlightProduct.name} />
               <div className={styles.productInfo}>

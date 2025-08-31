@@ -1,0 +1,172 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  display: none;
+  left: 5%;
+  bottom: 5%;
+  width: 90%;
+  height: 90%;
+  z-index: 1000;
+  position: fixed;
+  background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.product {
+  width: 100%;
+  height: 100%;
+}
+
+.productInfo {
+  width: 100%;
+  height: 100%;
+  padding-top: 5rem;
+  padding-left: 5rem;
+}
+
+.btnClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.divider {
+  border-bottom: 1px solid #CCCCCC;
+  padding-block: 2rem;
+
+  .review {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .price, .promoPrice {
+    display: inline-block;
+    font-weight: 600;
+  }
+
+  .promo {
+    font-size: 19px;
+    color: #7F7F7F;
+    text-decoration: line-through;
+    padding-right: 1rem;
+  }
+
+  .promoPrice {
+    padding: 4px 8px;
+    background: #2A2A2A;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  h3 a {
+    text-decoration: none;
+    color: #2A2A2A;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    display: block;
+
+    span {
+      font-weight: 600;
+      display: inline-block;
+      width: 100px;
+    }
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 400px;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+}
+
+.open {
+  display: block;
+}
+
+
+@media(max-width: 450px){
+  .root{
+    .divider {
+      .description {
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .review {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        span {
+          font-size: 14px;
+          text-align: center;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+
+
+  @media(max-width: 776px) {
+    .root{
+        overflow-y: scroll;
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .productInfo {
+        padding-left: 1rem;
+      }
+
+      .divider {
+        padding-block: 1rem;
+      }
+
+      .imageWrapper img {
+        width: 200px;
+      }
+  }
+
+  }

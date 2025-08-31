@@ -8,13 +8,17 @@ import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 import PromotionSection from '../../features/PromotionSection/PromotionSection';
 import FurnitureGallery from '../../features/FurnitureGallery/FurnitureGallery';
 import Feedback from '../../features/Feedback/Feedback';
+import Brands from '../../features/Brands/Brands';
+import PromotionLayout from '../../features/PromotionLayout/PromotionLayout';
 
 const Homepage = () => (
   <div className={styles.root}>
     <PromotionSection id='aenean-ru-bristique-1' />
     <FeatureBoxes />
+    <PromotionLayout />
     <NewFurniture />
     <FurnitureGallery />
+    <Brands />
     <Feedback />
   </div>
 );

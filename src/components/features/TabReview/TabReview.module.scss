@@ -1,0 +1,55 @@
+
+      .tabReview {
+        p, span {
+          padding: 0;
+          margin: 0;
+        }
+
+        .reviews {
+          padding-bottom: 40px;
+        }
+
+        .addReview {
+          font-weight: bold;
+          padding-bottom: 35px;
+        }
+
+        .userRating {
+          padding-bottom: 34px;
+          p {
+            padding-bottom: 26px;
+          }
+          .stars {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+          }
+        }
+
+        .userReview {
+          display: flex;
+          flex-direction: column;
+          textarea {
+            height: 100px;
+            margin-bottom: 20px;
+            resize: none;
+          }
+          .userData {
+            height: 51px;
+            gap:  20px;
+
+            input {
+              padding-left: 1rem;
+            }
+            .submitBtn {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 14px;
+            }
+          }
+        }
+
+      }

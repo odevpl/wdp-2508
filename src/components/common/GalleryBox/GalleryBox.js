@@ -1,102 +1,143 @@
 import React, { useState } from 'react';
-//import PropTypes from 'prop-types';
-import Button from '../../common/Button/Button';
+import Swipeable from '../../features/Swipeable/Swipeable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faHeart,
-  faExchangeAlt,
-  faShoppingBasket,
-  faEye,
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import StarRating from '../../features/StarRating/StarRating';
 import styles from './GalleryBox.module.scss';
+import { getAll } from '../../../redux/marketingTagsRedux';
+import { getByMarketingTag } from '../../../redux/productsRedux';
+import { useSelector } from 'react-redux';
+import Actions from '../Actions/Actions';
+
 const GalleryBox = () => {
+  const marketingTags = useSelector(getAll);
+  const [activeTag, setActiveTag] = useState(marketingTags[0].id);
+  const [isFading, setIsFading] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const products = useSelector(state => getByMarketingTag(state, activeTag));
+  const [activeProductIndex, setActiveProductIndex] = useState(0);
+
+  const getItemsPerPage = width => {
+    if (width >= 768) return 6;
+    if (width >= 576) return 5;
+    if (width >= 480) return 4;
+    return 3;
+  };
+
+  const width = window.innerWidth;
+  const itemsPerPage = getItemsPerPage(width);
+  const totalSlides = Math.ceil(products.length / itemsPerPage);
+
+  const handleTagChange = tagId => {
+    setIsFading(true);
+    setActiveTag(tagId);
+    setActiveProductIndex(0);
+    setCurrentSlide(0);
+    setTimeout(() => {
+      setIsFading(false);
+    }, 400);
+  };
+
+  const handlePrev = () => {
+    setCurrentSlide(prev => (prev - 1 >= 0 ? prev - 1 : prev));
+  };
+
+  const handleNext = () => {
+    setCurrentSlide(prev => (prev + 1 < totalSlides ? prev + 1 : prev));
+  };
+
   return (
     <div className={styles.gallery}>
       <div className={'no-gutters justify-content-between d-flex ' + styles.menu}>
-        <button className={'flex-fill ' + styles.btnSales}>Featured</button>
-        <button className={'flex-fill ' + styles.btnSales + ' ' + styles.active}>
-          Top Seller
-        </button>
-        <button className={'flex-fill ' + styles.btnSales}>Sale off</button>
-        <button className={'flex-fill ' + styles.btnSales}>Top Rated</button>
+        {marketingTags.map(tag => (
+          <button
+            key={tag.id}
+            className={`flex-fill  ${styles.btnSales} ${
+              tag.id === activeTag ? styles.active : ''
+            }`}
+            onClick={() => handleTagChange(tag.id)}
+          >
+            {tag.name}
+          </button>
+        ))}
       </div>
       <div className={'row no-gutters'}>
-        <div className={styles.galleryItem}>
-          <img src='' alt='' />
-          <div className={styles.productWrapper}>
-            <div className={styles.product}>
-              <div className={styles.productPrice}>
-                <p className={styles.currentPrice}>$CurrentPrice</p>{' '}
-                <p className={styles.oldPrice}>$OldPrice</p>
+        <div className={`${styles.galleryItem} ${isFading ? styles.fading : ''}`}>
+          {products.map((product, index) => (
+            <div
+              key={product.id}
+              className={`${styles.productWrapper} ${
+                index === activeProductIndex ? styles.active : ''
+              }`}
+            >
+              <img src={product.image} alt={product.name} />
+              <div className={styles.product}>
+                <div className={styles.productPrice}>
+                  <p className={styles.currentPrice}>
+                    ${product.promoPrice.toFixed(2)}
+                  </p>
+                  <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
+                </div>
+                <div className={styles.productInfo}>
+                  <p className={styles.productName}>{product.name}</p>
+                  <p className={styles.productRatings}>
+                    <StarRating stars={product.stars} userStars={product.userStars} />
+                  </p>
+                </div>
               </div>
-              <div className={styles.productInfo}>
-                <p className={styles.productName}>ProductName</p>
-                <p className={styles.productRatings}>
-                  <StarRating stars={0} userStars={0} />
-                </p>
-              </div>
+              <Actions id={product.id} isFavourite={product.isFavourite} />
             </div>
-          </div>
-          <div className={styles.actions}>
-            <div className={styles.outlines}>
-              <div className={styles.btnWrapper}>
-                <Button variant='outline'>
-                  <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
-                </Button>
-                <div className={styles.tooltip}>Add to favorite</div>
-              </div>
-              <div className={styles.btnWrapper}>
-                <Button variant='outline'>
-                  <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
-                </Button>
-                <div className={styles.tooltip}>Add to compare</div>
-              </div>
-              <div className={styles.btnWrapper}>
-                <Button variant='outline'>
-                  <FontAwesomeIcon icon={faEye}>Quick view</FontAwesomeIcon>
-                </Button>
-                <div className={styles.tooltip}>Quick view</div>
-              </div>
-              <div className={styles.btnWrapper}>
-                <Button variant='outline'>
-                  <FontAwesomeIcon icon={faShoppingBasket}>Add to cart</FontAwesomeIcon>
-                </Button>
-                <div className={styles.tooltip}>Add to cart</div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-      <div className={'no-gutters'}>
-        <div className={styles.thumbnailCarousel}>
-          <div className={styles.thumbnailWrapper}>
-            <div className={styles.thumbnail + ' ' + styles.active}>1</div>
-            <div className={styles.thumbnail}>2</div>
-            <div className={styles.thumbnail}>3</div>
-            <div className={styles.thumbnail}>4</div>
-            <div className={styles.thumbnail}>5</div>
-            <div className={styles.thumbnail}>6</div>
-            <div className={styles.thumbnail}>7</div>
-            <div className={styles.thumbnail}>8</div>
-            <div className={styles.thumbnail}>9</div>
-            <div className={styles.thumbnail}>10</div>
-            <div className={styles.thumbnail}>11</div>
-            <div className={styles.thumbnail}>12</div>
-            <div className={styles.thumbnail}>13</div>
+      <Swipeable
+        leftAction={handleNext}
+        rightAction={handlePrev}
+        className={styles.rightSection}
+      >
+        <div className={'no-gutters'}>
+          <div
+            className={`${styles.thumbnailCarousel} ${isFading ? styles.fading : ''}`}
+          >
+            <div className={styles.thumbnailContainer}>
+              <div
+                className={styles.thumbnailWrapper}
+                style={{
+                  transform: `translateX(-${currentSlide * 100}%)`,
+                }}
+              >
+                {products.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className={`${styles.thumbnail} ${
+                      index === activeProductIndex ? styles.active : ''
+                    }`}
+                    onClick={() => setActiveProductIndex(index)}
+                  >
+                    <img src={product.image} alt={product.name} />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              className={styles.prev + ' ' + styles.controlCarousel}
+              onClick={handlePrev}
+              disabled={currentSlide === 0}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+
+            <button
+              className={styles.next + ' ' + styles.controlCarousel}
+              onClick={handleNext}
+              disabled={currentSlide >= totalSlides - 1}
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
           </div>
-
-          <button className={styles.prev + ' ' + styles.controlCarousel}>
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-
-          <button className={styles.next + ' ' + styles.controlCarousel}>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
         </div>
-      </div>
+      </Swipeable>
     </div>
   );
 };

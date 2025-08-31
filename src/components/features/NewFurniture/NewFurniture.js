@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../../common/Button/Button';
 import Swipeable from '../Swipeable/Swipeable';
 
@@ -161,6 +162,18 @@ class NewFurniture extends React.Component {
               {counter.map(product => (
                 <li key={product.id}>
                   <img src={product.image} alt={product.name} />
+                  <h5 className={styles.productName}>{product.name}</h5>
+                  <div className={styles.productInfo}>
+                    <p className={styles.price}>${product.promoPrice?.toFixed(2) || product.price.toFixed(2)}</p>
+                    {product.promoPrice && (
+                      <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
+                    )}
+                    <Button className={product.isFavourite ? styles.active : ''}>
+                      <FontAwesomeIcon
+                        icon={product.isFavourite ? faHeart : farHeart}
+                      />
+                    </Button>
+                  </div>
                   <Button
                     className={styles.removeBtn}
                     variant="outline"

@@ -2,11 +2,10 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ProductPage.module.scss';
 import Button from '../../common/Button/Button';
+import StarRating from '../../features/StarRating/StarRating';
 
 import { useParams } from 'react-router';
-
 import { useSelector } from 'react-redux';
-
 import { getProductById } from '../../../redux/productsRedux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,10 +19,8 @@ import {
   faEnvelope,
   faPlus,
   faMinus,
-  faStar,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   faFacebookF,
   faTwitter,
@@ -31,11 +28,20 @@ import {
   faLinkedinIn,
   faPinterestP,
 } from '@fortawesome/free-brands-svg-icons';
-import StarRating from '../../features/StarRating/StarRating';
+
+import TabReview from '../../features/TabReview/TabReview';
+import { useDispatch } from 'react-redux';
+import { toggleFavouriteThunk } from '../../../redux/productsRedux';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const product = useSelector(state => getProductById(state, productId));
+
+  const dispatch = useDispatch();
+  const handleToggleFavourite = (e, id) => {
+    e.preventDefault();
+    dispatch(toggleFavouriteThunk(id));
+  };
 
   return (
     <div className={styles.root}>
@@ -126,8 +132,14 @@ const ProductPage = () => {
                       </FontAwesomeIcon>{' '}
                       Add to Cart
                     </Button>
-                    <Button variant='outline'>
-                      <FontAwesomeIcon icon={faHeart}>Add to Favorite</FontAwesomeIcon>
+                    <Button
+                      variant='outline'
+                      onClick={e => handleToggleFavourite(e, product.id)}
+                      className={product.isFavourite ? styles.active : ''}
+                    >
+                      <FontAwesomeIcon icon={product.isFavourite ? faHeart : farHeart}>
+                        Favorite
+                      </FontAwesomeIcon>
                     </Button>
                     <Button variant='outline'>
                       <FontAwesomeIcon icon={faExchangeAlt}>Compare</FontAwesomeIcon>
@@ -218,6 +230,25 @@ const ProductPage = () => {
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+        <div className={`${styles.productTabs} ${styles.section}`}>
+          <div className={`${styles.tabs}`}>
+            <a href='#' className={`${styles.tab}`}>
+              Description
+            </a>
+            <a href='#' className={`${styles.tab} ${styles.active}`}>
+              Reviews{`(0)`}
+            </a>
+            <a href='#' className={`${styles.tab}`}>
+              Specification
+            </a>
+            <a href='#' className={`${styles.tab}`}>
+              Custom Tab
+            </a>
+          </div>
+          <div className={`${styles.tabContent}`}>
+            <TabReview />
           </div>
         </div>
       </div>
