@@ -119,8 +119,12 @@ const ProductPage = () => {
 
                 <div className={`${styles.group} ${styles.productPrice}`}>
                   <p>
-                    <span className={styles.oldPrice}>${product.price}</span>
-                    <span className={styles.newPrice}>${product.promoPrice}</span>
+                    <span className={styles.oldPrice}>{`$${product.price.toFixed(
+                      2
+                    )}`}</span>
+                    <span className={styles.newPrice}>{`$${product.promoPrice.toFixed(
+                      2
+                    )}`}</span>
                   </p>
                 </div>
 
