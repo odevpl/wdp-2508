@@ -213,4 +213,12 @@
       }
     }
   }
+  .products {
+    opacity: 1;
+    transition: opacity 260ms ease;
+  }
+
+  .isFading {
+    opacity: 0;
+  }
 }

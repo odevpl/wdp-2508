@@ -10,18 +10,33 @@ import Button from '../../common/Button/Button';
 import Swipeable from '../Swipeable/Swipeable';
 
 class NewFurniture extends React.Component {
+  static FADE_MS = 260;
+
   state = {
     activePage: 0,
     activeCategory: 'bed',
     counter: [],
+    isFading: false,
   };
 
+  fadeAnd(doChange) {
+    if (this.state.isFading) return;
+    this.setState({ isFading: true }, () => {
+      setTimeout(() => {
+        doChange();
+        requestAnimationFrame(() => this.setState({ isFading: false }));
+      }, NewFurniture.FADE_MS);
+    });
+  }
+
   handlePageChange(newPage) {
-    this.setState({ activePage: newPage });
+    if (newPage === this.state.activePage || this.state.isFading) return;
+    this.fadeAnd(() => this.setState({ activePage: newPage }));
   }
 
   handleCategoryChange(newCategory) {
-    this.setState({ activeCategory: newCategory });
+    if (newCategory === this.state.activeCategory || this.state.isFading) return;
+    this.fadeAnd(() => this.setState({ activeCategory: newCategory, activePage: 0 }));
   }
 
   handleCompare = product => {
@@ -40,24 +55,14 @@ class NewFurniture extends React.Component {
 
   leftAction(pagesCount) {
     const newPage = this.state.activePage + 1;
-    if (newPage < 0) {
-      return;
-    } else if (newPage >= pagesCount) {
-      return;
-    } else {
-      this.handlePageChange(newPage);
-    }
+    if (newPage < 0 || newPage >= pagesCount) return;
+    this.handlePageChange(newPage);
   }
 
   rightAction(pagesCount) {
     const newPage = this.state.activePage - 1;
-    if (newPage < 0) {
-      return;
-    } else if (newPage >= pagesCount) {
-      return;
-    } else {
-      this.handlePageChange(newPage);
-    }
+    if (newPage < 0 || newPage >= pagesCount) return;
+    this.handlePageChange(newPage);
   }
 
   render() {
@@ -70,10 +75,14 @@ class NewFurniture extends React.Component {
     const dots = [];
     for (let i = 0; i < pagesCount; i++) {
       dots.push(
-        <li>
+        <li key={i}>
           <a
-            onClick={() => this.handlePageChange(i)}
-            className={i === activePage && styles.active}
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+              this.handlePageChange(i);
+            }}
+            className={i === activePage ? styles.active : undefined}
           >
             page {i}
           </a>
@@ -92,7 +101,7 @@ class NewFurniture extends React.Component {
 
     return (
       <div className={styles.root}>
-        <div className='container'>
+        <div className="container">
           <div className={styles.panelBar}>
             <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
               <div className={styles.heading}>
@@ -103,8 +112,12 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        className={item.id === activeCategory && styles.active}
-                        onClick={() => this.handleCategoryChange(item.id)}
+                        href="#"
+                        className={item.id === activeCategory ? styles.active : undefined}
+                        onClick={e => {
+                          e.preventDefault();
+                          this.handleCategoryChange(item.id);
+                        }}
                       >
                         {item.name}
                       </a>
@@ -117,58 +130,64 @@ class NewFurniture extends React.Component {
               </div>
             </div>
           </div>
+
           <Swipeable
             leftAction={() => this.leftAction(pagesCount)}
             rightAction={() => this.rightAction(pagesCount)}
           >
-            <div className='row'>
-              {categoryProducts
-                .slice(activePage * 8, (activePage + 1) * 8)
-                .map(item => (
-                  <div key={item.id} className={colSize}>
-                    <ProductBox
-                      {...item}
-                      handleCompare={() => this.handleCompare(item)}
-                    />
-                  </div>
-                ))}
+            <div
+              className={`${styles.products} ${
+                this.state.isFading ? styles.isFading : ''
+              }`}
+            >
+              <div className="row">
+                {categoryProducts
+                  .slice(activePage * 8, (activePage + 1) * 8)
+                  .map(item => (
+                    <div key={item.id} className={colSize}>
+                      <ProductBox
+                        {...item}
+                        handleCompare={() => this.handleCompare(item)}
+                      />
+                    </div>
+                  ))}
+              </div>
             </div>
           </Swipeable>
         </div>
+
         {counter.length > 0 && (
           <div className={styles.compareContainer}>
             <ul>
-              {counter.map(product => {
-                return (
-                  <li key={product.id}>
-                    <img src={product.image} alt={product.name} />
-                    <h5 className={styles.productName}>{product.name}</h5>
-                    <div className={styles.productInfo}>
-                      <p className={styles.price}>${product.promoPrice.toFixed(2)}</p>
+              {counter.map(product => (
+                <li key={product.id}>
+                  <img src={product.image} alt={product.name} />
+                  <h5 className={styles.productName}>{product.name}</h5>
+                  <div className={styles.productInfo}>
+                    <p className={styles.price}>${product.promoPrice?.toFixed(2) || product.price.toFixed(2)}</p>
+                    {product.promoPrice && (
                       <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
-                      <Button className={product.isFavourite ? styles.active : ''}>
-                        <FontAwesomeIcon
-                          icon={product.isFavourite ? faHeart : farHeart}
-                        >
-                          Favorite
-                        </FontAwesomeIcon>
-                      </Button>
-                    </div>
-                    <Button
-                      className={styles.removeBtn}
-                      variant='outline'
-                      onClick={() => {
-                        this.setState({
-                          counter: counter.filter(el => el.id !== product.id),
-                        });
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTimes} />
+                    )}
+                    <Button className={product.isFavourite ? styles.active : ''}>
+                      <FontAwesomeIcon
+                        icon={product.isFavourite ? faHeart : farHeart}
+                      />
                     </Button>
-                  </li>
-                );
-              })}
-              <Button className={styles.compareBtn} variant='small'>
+                  </div>
+                  <Button
+                    className={styles.removeBtn}
+                    variant="outline"
+                    onClick={() => {
+                      this.setState({
+                        counter: counter.filter(el => el.id !== product.id),
+                      });
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </Button>
+                </li>
+              ))}
+              <Button className={styles.compareBtn} variant="small">
                 Compare
               </Button>
             </ul>
