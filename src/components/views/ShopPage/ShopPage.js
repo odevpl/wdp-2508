@@ -37,14 +37,14 @@ const ShopPage = ({ products, viewport }) => {
 
   return (
     <div className={styles.root}>
-      <div className="container">
+      <div className='container'>
         {/* Baner na górze */}
-        <div className="row no-gutters">
+        <div className='row no-gutters'>
           <Banner />
         </div>
 
-        <div className="row">
-          <main className="col-11">
+        <div className='row'>
+          <main className='col-11'>
             {/* Pasek z nagłówkiem i przełącznikiem widoku */}
             <div className={styles.panelBar}>
               <div className={`row no-gutters align-items-end ${styles.panelBarMenu}`}>
@@ -67,7 +67,6 @@ const ShopPage = ({ products, viewport }) => {
               </div>
             </div>
 
-            
             <div className={viewMode === 'grid' ? 'row' : 'column'}>
               {categoryProducts
                 .slice(activePage * 12, (activePage + 1) * 12)
@@ -84,13 +83,12 @@ const ShopPage = ({ products, viewport }) => {
           </main>
 
           {/* Filtr ceny */}
-          <aside className="col-1">
+          <aside className='col-1'>
             <PriceFilter />
           </aside>
         </div>
       </div>
 
-      
       {counter.length > 0 && (
         <div className={styles.compareContainer}>
           <ul>
@@ -99,21 +97,20 @@ const ShopPage = ({ products, viewport }) => {
                 <img src={product.image} alt={product.name} />
                 <Button
                   className={styles.removeBtn}
-                  variant="outline"
+                  variant='outline'
                   onClick={() => setCounter(counter.filter(el => el.id !== product.id))}
                 >
                   <FontAwesomeIcon icon={faTimes} />
                 </Button>
               </li>
             ))}
-            <Button className={styles.compareBtn} variant="small">
+            <Button className={styles.compareBtn} variant='small'>
               Compare
             </Button>
           </ul>
         </div>
       )}
 
-      
       <Brands />
     </div>
   );
