@@ -75,8 +75,13 @@ const GalleryBox = () => {
               <div className={styles.product}>
                 <div className={styles.productPrice}>
                   <p className={styles.currentPrice}>
-                    ${product.promoPrice.toFixed(2)}
+                    {product.promoPrice
+                      ? `$${product.promoPrice.toFixed(2)}`
+                      : `$${product.price.toFixed(2)}`}
                   </p>
+                  {product.promoPrice && (
+                    <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
+                  )}
                   <p className={styles.oldPrice}>${product.price.toFixed(2)}</p>
                 </div>
                 <div className={styles.productInfo}>
